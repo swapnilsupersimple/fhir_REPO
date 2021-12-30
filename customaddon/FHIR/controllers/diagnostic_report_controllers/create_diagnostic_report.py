@@ -78,9 +78,11 @@ class DiagnosticReport(http.Controller):
                     if key == "specimen":
                         values_for_diagnostic_report["specimen"].append((0, 0, inp_for_specimen
                                                                        ))
-
+        print("this is new change")
         new_diagnostic_report = request.env['diagnostic.report'].sudo().create(values_for_diagnostic_report)
 
         args = {'success': True, 'message': 'Success', 'id': new_diagnostic_report.id}
 
         return args
+
+
