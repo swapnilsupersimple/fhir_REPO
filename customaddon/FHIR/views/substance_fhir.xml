@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+
+      <record model="ir.ui.view" id="substance_tree_view">
+        <field name="name">substance.tree.view</field>
+        <field name="model">substance</field>
+        <field name="priority" eval="16"/>
+        <field name="arch" type="xml">
+            <tree string="Substance Tree view">
+                <field name="substance_status"/>
+            </tree>
+        </field>
+    </record>
+
+    <record model="ir.ui.view" id="substance_form_view">
+        <field name="name">substance.form</field>
+        <field name="model">substance</field>
+        <field name="arch" type="xml">
+            <form string="Substance Form">
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="substance_status"/>
+                            <field name="substance_category"/>
+                            <field name="substance_code"/>
+                            <field name="substance_description"/>
+                            <field name="substance_instance_expiry" />
+                            <field name="substance_instance_quantity"/>
+<!--                            <field name="practitioner_contact"/>-->
+<!--                            <field name="practitioner_address"/>-->
+                        </group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+
+
+    <record model="ir.actions.act_window" id="action_substance">
+        <field name="name">Substance</field>
+        <field name="res_model">substance</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">Create
+            </p>
+        </field>
+    </record>
+    <menuitem id="FHIR_root" name="FHIR"/>
+    <menuitem id="FHIR_substance" name="Substance" parent="FHIR_root" action="action_substance"/>
+
+
+
+    <record model="ir.ui.view" id="substance_category_form_view">
+        <field name="name">substance.category.form</field>
+        <field name="model">substance.category</field>
+        <field name="arch" type="xml">
+            <form string="Substance Category form">
+                <sheet>
+                    <group>
+                        <field name="display"/>
+                         <field name="code"/>
+                         <field name="definition"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record model="ir.actions.act_window" id="action_substance_category">
+        <field name="name">Substance Category</field>
+        <field name="res_model">substance.category</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">Create
+            </p>
+        </field>
+    </record>
+
+    <menuitem id="FHIR_root" name="FHIR"/>
+    <menuitem id="FHIR_substance_category"
+              name="Substance Category" parent="FHIR_root"
+              action="action_substance_category"/>
+    <delete model="ir.ui.menu" id="FHIR_substance_category"></delete>
+
+
+     <record model="ir.ui.view" id="substance_code_form_view">
+        <field name="name">substance.code.form</field>
+        <field name="model">substance.code</field>
+        <field name="arch" type="xml">
+            <form string="Substance Code form">
+                <sheet>
+                    <group>
+                        <field name="display"/>
+                         <field name="code"/>
+                         <field name="definition"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record model="ir.actions.act_window" id="action_substance_code">
+        <field name="name">Substance Code</field>
+        <field name="res_model">substance.code</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">Create
+            </p>
+        </field>
+    </record>
+
+    <menuitem id="FHIR_root" name="FHIR"/>
+    <menuitem id="FHIR_substance_code"
+              name="Substance Code" parent="FHIR_root"
+              action="action_substance_code"/>
+    <delete model="ir.ui.menu" id="FHIR_substance_code"></delete>
+
+</odoo>
+
+<!--substance.code-->
+
+<!--substance_code-->
+
+<!--Substance Code-->
+
+

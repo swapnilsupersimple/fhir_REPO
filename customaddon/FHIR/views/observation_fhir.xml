@@ -1,0 +1,263 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+
+    <record model="ir.ui.view" id="observation_tree_view">
+        <field name="name">observation.tree.view</field>
+        <field name="model">observation</field>
+        <field name="priority" eval="16"/>
+        <field name="arch" type="xml">
+            <tree string="Observation Tree view">
+                <field name="observation_status"/>
+            </tree>
+        </field>
+    </record>
+
+    <record model="ir.ui.view" id="observation_form_view">
+        <field name="name">observation.form</field>
+        <field name="model">observation</field>
+        <field name="arch" type="xml">
+            <form string="Observation Form">
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="observation_status"/>
+                            <!--                            <field name="is_practitioner_active" widget="boolean_toggle"/>-->
+                            <field name="observation_category" widget="many2many_tags"/>
+                            <field name="observation_code"/>
+                            <field name="observation_subject"/>
+                            <field name="observation_encounter"/>
+                            <field name="observation_issued"/>
+                            <field name="observation_performer"/>
+                            <field name="observation_dataAbsentReason"/>
+                            <field name="observation_interpretation" widget="many2many_tags"/>
+                            <field name="observation_bodySite"/>
+                            <field name="observation_method"/>
+                            <field name="observation_device"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Reference Range:">
+                            <group>
+                                <field name="observation_referenceRange_type"/>
+                                <field name="observation_referenceRange_appliesTo" widget="many2many_tags"/>
+                                <field name="observation_referenceRange_text"/>
+                            </group>
+                        </page>
+                        <page string="Component:">
+                            <group>
+                                <field name="observation_component_code"/>
+<!--                                <field name="observation_referenceRange_appliesTo" widget="many2many_tags"/>-->
+<!--                                <field name="observation_referenceRange_text"/>-->
+                            </group>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+
+    <record model="ir.actions.act_window" id="action_observation">
+        <field name="name">Observation</field>
+        <field name="res_model">observation</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">Create
+            </p>
+        </field>
+    </record>
+    <menuitem id="FHIR_root" name="FHIR"/>
+    <menuitem id="FHIR_observation" name="Observation" parent="FHIR_root" action="action_observation"/>
+
+    <record model="ir.ui.view" id="observation_code_form_view">
+        <field name="name">observation.code.form</field>
+        <field name="model">observation.code</field>
+        <field name="arch" type="xml">
+            <form string="Observation Code form">
+                <sheet>
+                    <group>
+                        <field name="display"/>
+                        <field name="code"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record model="ir.actions.act_window" id="action_observation_code">
+        <field name="name">Observation Code</field>
+        <field name="res_model">observation.code</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">Create
+            </p>
+        </field>
+    </record>
+
+    <menuitem id="FHIR_root" name="FHIR"/>
+    <menuitem id="FHIR_observation_code" name="Observation Code" parent="FHIR_root"
+              action="action_observation_code"/>
+    <delete model="ir.ui.menu" id="FHIR_observation_code"></delete>
+
+
+    <record model="ir.ui.view" id="observation_category_form_view">
+        <field name="name">observation.category.form</field>
+        <field name="model">observation.category</field>
+        <field name="arch" type="xml">
+            <form string="Observation Category form">
+                <sheet>
+                    <group>
+                        <field name="display"/>
+                        <field name="code"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record model="ir.actions.act_window" id="action_observation_category">
+        <field name="name">Observation Category</field>
+        <field name="res_model">observation.category</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">Create
+            </p>
+        </field>
+    </record>
+
+    <menuitem id="FHIR_root" name="FHIR"/>
+    <menuitem id="FHIR_observation_category" name="Observation Category" parent="FHIR_root"
+              action="action_observation_category"/>
+    <delete model="ir.ui.menu" id="FHIR_observation_category"></delete>
+
+
+    <record model="ir.ui.view" id="oobservation_data_absent_reason_form_view">
+        <field name="name">observation.data.absent.reason.form</field>
+        <field name="model">observation.data.absent.reason</field>
+        <field name="arch" type="xml">
+            <form string="Observation Data Absent Reason form">
+                <sheet>
+                    <group>
+                        <field name="display"/>
+                        <field name="code"/>
+                        <field name="defination"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record model="ir.actions.act_window" id="action_observation_data_absent_reason">
+        <field name="name">Observation Data Absent Reason</field>
+        <field name="res_model">observation.data.absent.reason</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">Create
+            </p>
+        </field>
+    </record>
+
+    <menuitem id="FHIR_root" name="FHIR"/>
+    <menuitem id="FHIR_observation_data_absent_reason" name="Observation Data Absent Reason" parent="FHIR_root"
+              action="action_observation_data_absent_reason"/>
+    <delete model="ir.ui.menu" id="FHIR_observation_data_absent_reason"></delete>
+
+
+    <record model="ir.ui.view" id="observation_method_form_view">
+        <field name="name">observation.method.form</field>
+        <field name="model">observation.method</field>
+        <field name="arch" type="xml">
+            <form string="Observation Method form">
+                <sheet>
+                    <group>
+                        <field name="display"/>
+                        <field name="code"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record model="ir.actions.act_window" id="action_observation_method">
+        <field name="name">Observation Method</field>
+        <field name="res_model">observation.method</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">Create
+            </p>
+        </field>
+    </record>
+
+    <menuitem id="FHIR_root" name="FHIR"/>
+    <menuitem id="FHIR_observation_method" name="Observation Method" parent="FHIR_root"
+              action="action_observation_method"/>
+    <delete model="ir.ui.menu" id="FHIR_observation_method"></delete>
+
+
+    <record model="ir.ui.view" id="observation_reference_range_type_form_view">
+        <field name="name">observation.reference.range.type.form</field>
+        <field name="model">observation.reference.range.type</field>
+        <field name="arch" type="xml">
+            <form string="Observation Reference Range Type form">
+                <sheet>
+                    <group>
+                        <field name="display"/>
+                        <field name="code"/>
+                        <field name="defination"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record model="ir.actions.act_window" id="action_observation_reference_range_type">
+        <field name="name">Observation Reference Range Type</field>
+        <field name="res_model">observation.reference.range.type</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">Create
+            </p>
+        </field>
+    </record>
+
+    <menuitem id="FHIR_root" name="FHIR"/>
+    <menuitem id="FHIR_observation_reference_range_type" name="Observation Method" parent="FHIR_root"
+              action="action_observation_reference_range_type"/>
+    <delete model="ir.ui.menu" id="FHIR_observation_reference_range_type"></delete>
+
+
+    <record model="ir.ui.view" id="observation_component_code_form_view">
+        <field name="name">observation.component.code.type.form</field>
+        <field name="model">observation.component.code</field>
+        <field name="arch" type="xml">
+            <form string="Observation Component Code Type form">
+                <sheet>
+                    <group>
+                        <field name="display"/>
+                        <field name="code"/>
+
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record model="ir.actions.act_window" id="action_observation_component_code">
+        <field name="name">Observation Component Code</field>
+        <field name="res_model">observation.component.code</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">Create
+            </p>
+        </field>
+    </record>
+
+    <menuitem id="FHIR_root" name="FHIR"/>
+    <menuitem id="FHIR_observation_component_code" name="Observation Component Code"
+              parent="FHIR_root"
+              action="action_observation_component_code"/>
+    <delete model="ir.ui.menu" id="FHIR_observation_component_code"></delete>
+
+
+</odoo>
+

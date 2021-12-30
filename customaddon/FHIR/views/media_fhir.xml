@@ -1,0 +1,206 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+
+    <record model="ir.ui.view" id="media_tree_view">
+        <field name="name">media.tree.view</field>
+        <field name="model">media</field>
+        <field name="priority" eval="16"/>
+        <field name="arch" type="xml">
+            <tree string="media Tree view">
+                <field name="media_status"/>
+            </tree>
+        </field>
+    </record>
+
+    <record model="ir.ui.view" id="media_form_view">
+        <field name="name">media.form</field>
+        <field name="model">media</field>
+        <field name="arch" type="xml">
+            <form string="media Form">
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="media_status"/>
+                            <!--                            <field name="is_practitioner_active" widget="boolean_toggle"/>-->
+                            <field name="media_type"/>
+                            <field name="media_modality"/>
+                            <field name="media_view"/>
+                            <field name="media_subject"/>
+                            <field name="media_encounter"/>
+                            <field name="media_created"/>
+                            <field name="media_issued"/>
+                            <field name="media_operator"/>
+                            <field name="media_reason_code" widget="many2many_tags"/>
+                            <field name="media_body_site"/>
+                            <field name="media_duration"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Recording Device Info:">
+                            <group>
+                                <field name="media_device_Name"/>
+                                <field name="media_device_used"/>
+                            </group>
+                        </page>
+                        <page string="Media Extra Info:">
+                            <group>
+                                <field name="media_height"/>
+                                <field name="media_width"/>
+                                <field name="media_frames"/>
+                                <field name="media_duration"/>
+                            </group>
+                        </page>
+                        <page string="Note:">
+                            <group>
+                                <field name="media_annotaion"/>
+                                <!--                                <field name="media_width"/>-->
+                                <!--                                <field name="media_frames"/>-->
+                                <!--                                <field name="media_duration"/>-->
+                            </group>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+
+    <record model="ir.actions.act_window" id="action_media">
+        <field name="name">Media</field>
+        <field name="res_model">media</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">Create
+            </p>
+        </field>
+    </record>
+    <menuitem id="FHIR_root" name="FHIR"/>
+    <menuitem id="FHIR_media" name="Media" parent="FHIR_root" action="action_media"/>
+
+
+    <record model="ir.ui.view" id="media_type_form_view">
+        <field name="name">media.type.form</field>
+        <field name="model">media.type</field>
+        <field name="arch" type="xml">
+            <form string="Media Type form">
+                <sheet>
+                    <group>
+                        <field name="display"/>
+                        <field name="code"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record model="ir.actions.act_window" id="action_media_type">
+        <field name="name">Media Type</field>
+        <field name="res_model">media.type</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">Create
+            </p>
+        </field>
+    </record>
+
+    <menuitem id="FHIR_root" name="FHIR"/>
+    <menuitem id="FHIR_media_type" name="Media Type" parent="FHIR_root"
+              action="action_media_type"/>
+    <delete model="ir.ui.menu" id="FHIR_media_type"></delete>
+
+
+    <record model="ir.ui.view" id="media_modality_form_view">
+        <field name="name">media.modality.form</field>
+        <field name="model">media.modality</field>
+        <field name="arch" type="xml">
+            <form string="Media Modality form">
+                <sheet>
+                    <group>
+                        <field name="display"/>
+                        <field name="code"/>
+                        <field name="defination"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record model="ir.actions.act_window" id="action_media_modality">
+        <field name="name">Media Modality</field>
+        <field name="res_model">media.modality</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">Create
+            </p>
+        </field>
+    </record>
+
+    <menuitem id="FHIR_root" name="FHIR"/>
+    <menuitem id="FHIR_media_modality" name="Media Modality" parent="FHIR_root"
+              action="action_media_modality"/>
+    <delete model="ir.ui.menu" id="FHIR_media_modality"></delete>
+
+
+    <record model="ir.ui.view" id="media_reason_code_form_view">
+        <field name="name">media.reason.code.form</field>
+        <field name="model">media.reason.code</field>
+        <field name="arch" type="xml">
+            <form string="Media Reason Code form">
+                <sheet>
+                    <group>
+                        <field name="display"/>
+                        <field name="code"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record model="ir.actions.act_window" id="action_media_reason_code">
+        <field name="name">Media Reason Code</field>
+        <field name="res_model">media.reason.code</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">Create
+            </p>
+        </field>
+    </record>
+
+    <menuitem id="FHIR_root" name="FHIR"/>
+    <menuitem id="FHIR_media_reason_code" name="Media Reason Code" parent="FHIR_root"
+              action="action_media_reason_code"/>
+    <delete model="ir.ui.menu" id="FHIR_media_reason_code"></delete>
+
+
+    <record model="ir.ui.view" id="media_body_site_form_view">
+        <field name="name">media.body.site.form</field>
+        <field name="model">media.body.site</field>
+        <field name="arch" type="xml">
+            <form string="Media Body Site form">
+                <sheet>
+                    <group>
+                        <field name="display"/>
+                        <field name="code"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record model="ir.actions.act_window" id="action_media_body_site">
+        <field name="name">Media Body Site</field>
+        <field name="res_model">media.body.site</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">Create
+            </p>
+        </field>
+    </record>
+
+    <menuitem id="FHIR_root" name="FHIR"/>
+    <menuitem id="FHIR_media_body_site" name="Media Body Site" parent="FHIR_root"
+              action="action_media_body_site"/>
+    <delete model="ir.ui.menu" id="FHIR_media_body_site"></delete>
+
+</odoo>
+

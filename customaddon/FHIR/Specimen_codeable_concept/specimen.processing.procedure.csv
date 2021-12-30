@@ -1,0 +1,9 @@
+id,code,display
+1,"ACID","Acidification"
+2,"ALK","Alkalization"
+3,"DEFB","Defibrination"
+4,"FILT","Filtration"
+5,"LDLP","LDL Precipitation"
+6,"NEUT","Neutralization"
+7,"RECA","Recalification"
+8,"UFIL","Ultrafiltration"

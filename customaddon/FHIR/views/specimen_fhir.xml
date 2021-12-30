@@ -1,0 +1,182 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+
+    <record model="ir.ui.view" id="specimen_tree_view">
+        <field name="name">specimen.tree.view</field>
+        <field name="model">specimen</field>
+        <field name="priority" eval="16"/>
+        <field name="arch" type="xml">
+            <tree string="Specimen Tree view">
+                <field name="specimen_status"/>
+            </tree>
+        </field>
+    </record>
+
+    <record model="ir.ui.view" id="specimen_form_view">
+        <field name="name">specimen.form</field>
+        <field name="model">specimen</field>
+        <field name="arch" type="xml">
+            <form string="Specimen Form">
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="specimen_status"/>
+                            <!--                            <field name="is_practitioner_active" widget="boolean_toggle"/>-->
+                            <field name="specimen_type"/>
+                            <field name="specimen_subject"/>
+                            <field name="specimen_receivedTime"/>
+                            <field name="specimen_condition" widget="many2many_tags"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Specimen Collection">
+                            <group>
+                                <field name="specimen_collection_collector"/>
+                                <field name="specimen_collection_collected"/>
+                                <field name="specimen_collection_quantity"/>
+                                <field name="specimen_collection_method"/>
+                                <field name="specimen_collection_bodySite"/>
+                                <field name="specimen_collection_fastingStatus"/>
+                            </group>
+                        </page>
+
+                        <page string="Specimen Collection">
+                            <group>
+                                <field name="specimen_processing_description"/>
+                                <field name="specimen_processing_procedure"/>
+                                <field name="specimen_processing_time"/>
+                            </group>
+                        </page>
+                        <page string="Specimen Container">
+                            <group>
+                                <field name="specimen_container_description"/>
+                                <field name="specimen_container_type"/>
+                                <field name="specimen_container_capacity"/>
+                                <field name="specimen_container_specimenQuantity"/>
+                                <field name="specimen_container_additive"/>
+                            </group>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+
+    <record model="ir.actions.act_window" id="action_specimen">
+        <field name="name">Specimen</field>
+        <field name="res_model">specimen</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">Create
+            </p>
+        </field>
+    </record>
+    <menuitem id="FHIR_root" name="FHIR"/>
+    <menuitem id="FHIR_specimen" name="Specimen" parent="FHIR_root" action="action_specimen"/>
+
+
+    <record model="ir.ui.view" id="specimen_collection_method_form_view">
+        <field name="name">specimen.collection.method.form</field>
+        <field name="model">specimen.collection.method</field>
+        <field name="arch" type="xml">
+            <form string="Specimen Collection Method form">
+                <sheet>
+                    <group>
+                        <field name="display"/>
+                        <field name="code"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record model="ir.actions.act_window" id="action_specimen_collection_method">
+        <field name="name">Specimen Collection Method</field>
+        <field name="res_model">specimen.collection.method</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">Create
+            </p>
+        </field>
+    </record>
+
+    <menuitem id="FHIR_root" name="FHIR"/>
+    <menuitem id="FHIR_specimen_collection_method" name="Specimen Collection Method"
+              parent="FHIR_root"
+              action="action_specimen_collection_method"/>
+    <delete model="ir.ui.menu" id="FHIR_specimen_collection_method"></delete>
+
+
+    <record model="ir.ui.view" id="specimen_collection_body_site_form_view">
+        <field name="name">specimen.collection.body.site.form</field>
+        <field name="model">specimen.collection.body.site</field>
+        <field name="arch" type="xml">
+            <form string="Specimen Collection Body Site  form">
+                <sheet>
+                    <group>
+                        <field name="display"/>
+                        <field name="code"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record model="ir.actions.act_window" id="action_specimen_collection_body_site">
+        <field name="name">Specimen Collection Body Site</field>
+        <field name="res_model">specimen.collection.body.site</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">Create
+            </p>
+        </field>
+    </record>
+
+    <menuitem id="FHIR_root" name="FHIR"/>
+    <menuitem id="FHIR_specimen_collection_body_site" name="Specimen Collection Body Site"
+              parent="FHIR_root"
+              action="action_specimen_collection_method"/>
+    <delete model="ir.ui.menu" id="FHIR_specimen_collection_body_site"></delete>
+
+
+    <record model="ir.ui.view" id="specimen_condition_form_view">
+        <field name="name">specimen.condition.form</field>
+        <field name="model">specimen.condition</field>
+        <field name="arch" type="xml">
+            <form string="Specimen Condition form">
+                <sheet>
+                    <group>
+                        <field name="display"/>
+                        <field name="code"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record model="ir.actions.act_window" id="action_specimen_condition">
+        <field name="name">Specimen Condition</field>
+        <field name="res_model">specimen.condition</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">Create
+            </p>
+        </field>
+    </record>
+
+    <menuitem id="FHIR_root" name="FHIR"/>
+    <menuitem id="FHIR_specimen_condition" name="Specimen Condition"
+              parent="FHIR_root"
+              action="action_specimen_condition"/>
+    <delete model="ir.ui.menu" id="FHIR_specimen_condition"></delete>
+
+
+</odoo>
+
+
+<!--specimen_condition-->
+
+<!--specimen.condition-->
+
+<!--Specimen Condition-->

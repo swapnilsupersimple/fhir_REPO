@@ -1,0 +1,9 @@
+id,code,display,defination
+1,"diagram","Diagram","A diagram. Often used in diagnostic reports"
+2,"fax","Fax","A digital record of a fax document"
+3,"scan","Scanned Document","A digital scan of a document. This is reserved for when there is not enough metadata to create a document reference"
+4,"retina","Retina Scan","A retinal image used for identification purposes"
+5,"fingerprint","Fingerprint","A finger print scan used for identification purposes"
+6,"iris","Iris Scan","An iris scan used for identification purposes"
+7,"palm","Palm Scan","A palm scan used for identification purposes"
+8,"face","Face Scan","A face scan used for identification purposes"

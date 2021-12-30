@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+
+      <record model="ir.ui.view" id="practitioner_tree_view">
+        <field name="name">CodeableConcept.tree.view</field>
+        <field name="model">codeable.concept</field>
+        <field name="priority" eval="16"/>
+        <field name="arch" type="xml">
+            <tree string="codeable concept Tree view">
+                <field name="practitioner_name"/>
+                <field name="practitioner_name"/>
+            </tree>
+        </field>
+    </record>
+
+    <record model="ir.ui.view" id="practitioner_form_view">
+        <field name="name">CodeableConcept.form</field>
+        <field name="model">codeable.concept</field>
+        <field name="arch" type="xml">
+            <form string="codeable concept Form">
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="practitioner_name"/>
+                            <field name="is_practitioner_active" widget="boolean_toggle"/>
+                        </group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+
+
+    <record model="ir.actions.act_window" id="action_codeable_concept">
+        <field name="name">Codeable Concept</field>
+        <field name="res_model">practitioner.fhir</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">Create the Practitioner
+            </p>
+        </field>
+    </record>
+    <menuitem id="FHIR_root" name="FHIR"/>
+    <menuitem id="FHIR_codeable_concept" name="Codeable Concept" parent="FHIR_root" action="action_codeable_concept"/>
+</odoo>
+

@@ -1,0 +1,243 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+
+    <record model="ir.ui.view" id="procedure_fhir_tree_view">
+        <field name="name">procedure.fhir.tree.view</field>
+        <field name="model">procedure.fhir</field>
+        <field name="priority" eval="16"/>
+        <field name="arch" type="xml">
+            <tree string="Procedure Tree view">
+                <field name="procedure_status"/>
+            </tree>
+        </field>
+    </record>
+
+    <record model="ir.ui.view" id="procedure_fhir_form_view">
+        <field name="name">procedure.fhir.form</field>
+        <field name="model">procedure.fhir</field>
+        <field name="arch" type="xml">
+            <form string="Procedure Form">
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="procedure_status"/>
+                            <!--                            <field name="is_practitioner_active" widget="boolean_toggle"/>-->
+                            <field name="procedure_status_Reason"/>
+                            <field name="procedure_category"/>
+                            <field name="procedure_code"/>
+                            <field name="procedure_subject"/>
+                            <field name="procedure_encounter"/>
+                            <field name="procedure_recorder"/>
+                            <field name="procedure_asserter"/>
+                            <field name="procedure_location"/>
+                            <field name="procedure_reasonCode" widget="many2many_tags"/>
+                            <field name="procedure_reasonReference"/>
+                            <field name="procedure_bodySite" widget="many2many_tags"/>
+                            <field name="procedure_outcome"/>
+                            <field name="procedure_complicationDetail"/>
+                            <field name="procedure_followUp" widget="many2many_tags"/>
+                            <field name="procedure_note"/>
+                            <field name="procedure_usedCode" widget="many2many_tags"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Performer">
+                            <group>
+                                <field name="procedure_performer_function"/>
+                                <field name="procedure_performer_actor"/>
+                                <field name="procedure_performer_onBehalfOf"/>
+                            </group>
+                        </page>
+                        <page string="Complication">
+                        <group>
+                            <field name="procedure_complicationDetail"/>
+                            <field name="procedure_complication"/>
+
+                        </group>
+                        </page>
+                              <page string="Focal Device">
+                        <group>
+                            <field name="procedure_focalDevice_action"/>
+                            <field name="procedure_focalDevice_manipulated"/>
+                        </group>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+
+    <record model="ir.actions.act_window" id="action_procedure_fhir">
+        <field name="name">Procedure</field>
+        <field name="res_model">procedure.fhir</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">Create the Practitioner
+            </p>
+        </field>
+    </record>
+    <menuitem id="FHIR_root" name="FHIR"/>
+    <menuitem id="FHIR_procedure_fhir" name="Procedure" parent="FHIR_root" action="action_procedure_fhir"/>
+
+
+    <record model="ir.ui.view" id="procedure_code_form_view">
+        <field name="name">procedure.code.form</field>
+        <field name="model">procedure.code</field>
+        <field name="arch" type="xml">
+            <form string="Procedure Code form">
+                <sheet>
+                    <group>
+                        <field name="display"/>
+                        <field name="code"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record model="ir.actions.act_window" id="action_procedure_code">
+        <field name="name">Procedure Code</field>
+        <field name="res_model">procedure.code</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">Create
+            </p>
+        </field>
+    </record>
+
+    <menuitem id="FHIR_root" name="FHIR"/>
+    <menuitem id="FHIR_procedure_code" name="Procedure Code" parent="FHIR_root"
+              action="action_procedure_code"/>
+    <delete model="ir.ui.menu" id="FHIR_procedure_code"></delete>
+
+
+    <record model="ir.ui.view" id="procedure_performer_function_form_view">
+        <field name="name">procedure.performer.function.form</field>
+        <field name="model">procedure.performer.function</field>
+        <field name="arch" type="xml">
+            <form string="PProcedure Performer Function form">
+                <sheet>
+                    <group>
+                        <field name="display"/>
+                        <field name="code"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record model="ir.actions.act_window" id="action_procedure_performer_function">
+        <field name="name">Procedure Performer Function</field>
+        <field name="res_model">procedure.performer.function</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">Create
+            </p>
+        </field>
+    </record>
+
+    <menuitem id="FHIR_root" name="FHIR"/>
+    <menuitem id="FHIR_procedure_performer_function" name="Procedure Performer Function" parent="FHIR_root"
+              action="action_procedure_performer_function"/>
+    <delete model="ir.ui.menu" id="FHIR_procedure_performer_function"></delete>
+
+
+    <record model="ir.ui.view" id="procedure_body_site_form_view">
+        <field name="name">procedure.body.site.form</field>
+        <field name="model">procedure.body.site</field>
+        <field name="arch" type="xml">
+            <form string="Procedure Body Site form">
+                <sheet>
+                    <group>
+                        <field name="display"/>
+                        <field name="code"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record model="ir.actions.act_window" id="action_procedure_body_site">
+        <field name="name">Procedure Body Site</field>
+        <field name="res_model">procedure.body.site</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">Create
+            </p>
+        </field>
+    </record>
+
+    <menuitem id="FHIR_root" name="FHIR"/>
+    <menuitem id="FHIR_procedure_body_site" name="Procedure Body Site" parent="FHIR_root"
+              action="action_procedure_body_site"/>
+    <delete model="ir.ui.menu" id="FHIR_procedure_body_site"></delete>
+
+    <record model="ir.ui.view" id="procedure_focal_device_action_form_view">
+        <field name="name">procedure.focal.device.action.form</field>
+        <field name="model">procedure.focal.device.action</field>
+        <field name="arch" type="xml">
+            <form string="Procedure Focal Device Action form">
+                <sheet>
+                    <group>
+                        <field name="display"/>
+                        <field name="code"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record model="ir.actions.act_window" id="action_procedure_focal_device_action">
+        <field name="name">Procedure Focal Device Action</field>
+        <field name="res_model">procedure.focal.device.action</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">Create
+            </p>
+        </field>
+    </record>
+
+    <menuitem id="FHIR_root" name="FHIR"/>
+    <menuitem id="FHIR_procedure_focal_device_action" name="Procedure Focal Device Action" parent="FHIR_root"
+              action="action_procedure_focal_device_action"/>
+    <delete model="ir.ui.menu" id="FHIR_procedure_focal_device_action"></delete>
+
+
+    <record model="ir.ui.view" id="procedure_used_code_form_view">
+        <field name="name">procedure.used.code.form</field>
+        <field name="model">procedure.used.code</field>
+        <field name="arch" type="xml">
+            <form string="Procedure Used Code form">
+                <sheet>
+                    <group>
+                        <field name="display"/>
+                        <field name="code"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record model="ir.actions.act_window" id="action_procedure_used_code">
+        <field name="name">Procedure Used Code</field>
+        <field name="res_model">procedure.used.code</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">Create
+            </p>
+        </field>
+    </record>
+
+    <menuitem id="FHIR_root" name="FHIR"/>
+    <menuitem id="FHIR_procedure_used_code" name="Procedure Used Code" parent="FHIR_root"
+              action="action_procedure_used_code"/>
+    <delete model="ir.ui.menu" id="FHIR_procedure_used_code"></delete>
+
+</odoo>
+
+<!--procedure.used.code-->
+
+<!--procedure_used_code-->
+
+<!--Procedure Used Code-->

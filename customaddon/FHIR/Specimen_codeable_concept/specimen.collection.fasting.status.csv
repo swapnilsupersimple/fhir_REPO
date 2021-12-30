@@ -1,0 +1,5 @@
+id,code,display
+1,"F","Patient was fasting prior to the procedure."
+2,"FNA","Fasting not asked of the patient at time of procedure."
+3,"NF","The patient indicated they did not fast prior to the procedure."
+4,"NG","Not Given - Patient was not asked at the time of the procedure."

@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+
+      <record model="ir.ui.view" id="appointment_response_tree_view">
+        <field name="name">appointment.response.tree.view</field>
+        <field name="model">appointment.response</field>
+        <field name="priority" eval="16"/>
+        <field name="arch" type="xml">
+            <tree string="Appointment Response Tree view">
+                <field name="appointmentResponse_participantStatus"/>
+            </tree>
+        </field>
+    </record>
+
+    <record model="ir.ui.view" id="appointment_response_form_view">
+        <field name="name">appointment.response.form</field>
+        <field name="model">appointment.response</field>
+        <field name="arch" type="xml">
+            <form string="Appointment Response Form">
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="appointmentResponse_start"/>
+                            <field name="appointmentResponse_end" />
+                            <field name="appointmentResponse_participantStatus"/>
+                            <field name="appointmentResponse_comment"/>
+                            <field name="appointment_participant_actor"/>
+                            <field name="Appointment_Participant" widget="many2many_tags"/>
+                        </group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+
+
+    <record model="ir.actions.act_window" id="action_appointment_response">
+        <field name="name">Appointment Response</field>
+        <field name="res_model">appointment.response</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">Create the
+            </p>
+        </field>
+    </record>
+    <menuitem id="FHIR_root" name="FHIR"/>
+    <menuitem id="FHIR_appointment_response" name="Appointment Response" parent="FHIR_root" action="action_appointment_response"/>
+
+
+     <record model="ir.ui.view" id="appointment_participant_type_form_view">
+        <field name="name">appointment.participant.type.form</field>
+        <field name="model">appointment.participant.type</field>
+        <field name="arch" type="xml">
+            <form string="Appointment Participant Type form">
+                <sheet>
+                    <group>
+                        <field name="display"/>
+                        <field name="code"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record model="ir.actions.act_window" id="action_appointment_participant_type">
+        <field name="name">Appointment Participant Type</field>
+        <field name="res_model">appointment.participant.type</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">Create
+            </p>
+        </field>
+    </record>
+
+    <menuitem id="FHIR_root" name="FHIR"/>
+    <menuitem id="FHIR_appointment_participant_type" name="Appointment Ccancelation.reason" parent="FHIR_root"
+              action="action_appointment_participant_type"/>
+    <delete model="ir.ui.menu" id="FHIR_appointment_participant_type"></delete>
+
+</odoo>
+

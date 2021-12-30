@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+
+    <record model="ir.ui.view" id="care_plan_tree_view">
+        <field name="name">care.plan.tree.view</field>
+        <field name="model">care.plan</field>
+        <field name="priority" eval="16"/>
+        <field name="arch" type="xml">
+            <tree string="Care Plan Tree view">
+                <field name="carePlan_title"/>
+            </tree>
+        </field>
+    </record>
+
+    <record model="ir.ui.view" id="care_plan_form_view">
+        <field name="name">care.plan.form</field>
+        <field name="model">care.plan</field>
+        <field name="arch" type="xml">
+            <form string="Care Plan Form">
+                <sheet>
+                    <group>
+                        <div>
+                            <h4>
+                                <separator string="Name:"/>
+                                <field name="carePlan_title"/>
+                            </h4>
+                        </div>
+                    </group>
+                    <group>
+                        <group>
+                            <field name="carePlan_created"/>
+                            <field name="carePlan_status"/>
+                            <!--                            <field name="is_practitioner_active" widget="boolean_toggle"/>-->
+                            <field name="carePlan_intent"/>
+                            <field name="carePlan_description"/>
+                            <field name="carePlan_period_start"/>
+                            <field name="carePlan_period_end"/>
+                        </group>
+                    </group>
+                     <notebook>
+                        <page string="Subject:">
+                            <group>
+                                <field name="carePlan_subject" placeholder="Who the care plan is for"/>
+                                <field name="carePlan_author" placeholder="Who is the designated responsible party"/>
+                                <field name="carePlan_contributor" placeholder="Who provided the content of the care plan
+"/>
+                            </group>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+
+    <record model="ir.actions.act_window" id="action_care_plan">
+        <field name="name">Care Plan</field>
+        <field name="res_model">care.plan</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">Create</p>
+        </field>
+    </record>
+    <menuitem id="FHIR_root" name="FHIR"/>
+    <menuitem id="FHIR_care_plan" name="Care Plan" parent="FHIR_root" action="action_care_plan"/>
+</odoo>

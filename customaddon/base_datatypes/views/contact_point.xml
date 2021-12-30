@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+
+    <record model="ir.ui.view" id="contact_point_tree_view">
+        <field name="name">contact.point.tree.view</field>
+        <field name="model">contact.point</field>
+        <field name="priority" eval="16"/>
+        <field name="arch" type="xml">
+            <tree string="Contact Point Tree view">
+                <field name="system"/>
+                <field name="value"/>
+                <!--                <field name="phone_contact"/>-->
+            </tree>
+        </field>
+    </record>
+
+    <record model="ir.ui.view" id="contact_point_form_view">
+        <field name="name">contact.point.form</field>
+        <field name="model">contact.point</field>
+        <field name="arch" type="xml">
+            <form string="Contact Point Form">
+                <sheet>
+                    <group>
+                        <field name="use"/>
+                        <field name="system"/>
+                        <field name="value"/>
+                        <field name="rank"/>
+                        <field name="start"/>
+                        <field name="end"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record model="ir.actions.act_window" id="action_contact_point">
+        <field name="name">Contact Point</field>
+        <field name="res_model">contact.point</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">Create the Contact Point
+            </p>
+        </field>
+    </record>
+
+    <menuitem id="FHIR_contact_point" name="Contact Point" parent="FHIR_base_datatype" action="action_contact_point"/>
+</odoo>

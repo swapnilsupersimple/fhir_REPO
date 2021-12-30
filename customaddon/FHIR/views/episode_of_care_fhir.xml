@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+
+    <record model="ir.ui.view" id="episode_of_care_tree_view">
+        <field name="name">episode.of.care.tree.view</field>
+        <field name="model">episode.of.care</field>
+        <field name="priority" eval="16"/>
+        <field name="arch" type="xml">
+            <tree string="Episode of Care Tree view">
+                <field name="episode_Of_Care_status"/>
+            </tree>
+        </field>
+    </record>
+
+    <record model="ir.ui.view" id="episode_of_care_form_view">
+        <field name="name">episode.of.care.form</field>
+        <field name="model">episode.of.care</field>
+        <field name="arch" type="xml">
+            <form string="Episode of Care Form">
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="episode_Of_Care_status"/>
+                            <field name="episode_Of_Care_type" widget="many2many_tags"/>
+                            <field name="episodeOfCare_patient"/>
+                            <field name="episodeOfCare_managingOrganization"/>
+                            <field name="episodeOfCare_careManager"/>
+                            <field name="episodeOfCare_team"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Status History">
+                            <group>
+                                <field name="episode_Of_Care_statusHistory_status"/>
+                                <field name="EpisodeOfCare_statusHistory_period_start"/>
+                                <field name="EpisodeOfCare_statusHistory_period_end"/>
+                            </group>
+                        </page>
+                        <page string="Diagnosis">
+                            <group>
+
+                                <field name="episodeOfCare_diagnosis_role"/>
+                                <field name="episodeOfCare_diagnosis_rank"/>
+                                <field name="episodeOfCare_diagnosis_condition"/>
+                            </group>
+                        </page>
+                        <page string="Period">
+                            <group>
+                                <field name="episodeOfCare_period_start"/>
+                                <field name="episodeOfCare_period_end"/>
+                            </group>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+
+    <record model="ir.actions.act_window" id="action_episode_of_care">
+        <field name="name">Episode of Care</field>
+        <field name="res_model">episode.of.care</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">Create
+            </p>
+        </field>
+    </record>
+    <menuitem id="FHIR_root" name="FHIR"/>
+    <menuitem id="FHIR_episode_of_care" name="Episode of Care" parent="FHIR_root" action="action_episode_of_care"/>
+
+    <record model="ir.ui.view" id="episode_of_care_type_form_view">
+        <field name="name">episode.of.care.type.form</field>
+        <field name="model">episode.of.care.type</field>
+        <field name="arch" type="xml">
+            <form string="Episode of Care Type form">
+                <sheet>
+                    <group>
+                        <field name="display"/>
+                        <field name="code"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record model="ir.actions.act_window" id="action_episode_of_care_type">
+        <field name="name">Episode of Care Type</field>
+        <field name="res_model">episode.of.care.type</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">Create
+            </p>
+        </field>
+    </record>
+
+    <menuitem id="FHIR_root" name="FHIR"/>
+    <menuitem id="FHIR_episode_of_care_type"
+              name="Episode of Care Type" parent="FHIR_root"
+              action="action_episode_of_care_type"/>
+    <delete model="ir.ui.menu" id="FHIR_episode_of_care_type"></delete>
+
+
+    <record model="ir.ui.view" id="episode_of_care_diagnosis_role_form_view">
+        <field name="name">episode.of.care.diagnosis.role.form</field>
+        <field name="model">episode.of.care.diagnosis.role</field>
+        <field name="arch" type="xml">
+            <form string="Episode of Care Diagnosis Role">
+                <sheet>
+                    <group>
+                        <field name="display"/>
+                        <field name="code"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record model="ir.actions.act_window" id="action_episode_of_care_diagnosis_role">
+        <field name="name">Episode of Care Diagnosis Role</field>
+        <field name="res_model">episode.of.care.diagnosis.role</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">Create
+            </p>
+        </field>
+    </record>
+
+    <menuitem id="FHIR_root" name="FHIR"/>
+    <menuitem id="FHIR_episode_of_care_diagnosis_role"
+              name="Episode of Care Diagnosis Role" parent="FHIR_root"
+              action="action_episode_of_care_diagnosis_role"/>
+    <delete model="ir.ui.menu" id="FHIR_episode_of_care_diagnosis_role"></delete>
+
+
+</odoo>
+
+
+
+

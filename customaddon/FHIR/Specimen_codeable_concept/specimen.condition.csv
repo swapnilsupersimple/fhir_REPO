@@ -1,0 +1,11 @@
+id,code,display
+1,"AUT","Autolyzed"
+2,"CFU","Centrifuged"
+3,"CLOT","Clotted"
+4,"CON","Contaminated"
+5,"COOL","Cool"
+6,"FROZ","Frozen"
+7,"HEM","Hemolyzed"
+8,"LIVE","Live"
+9,"ROOM","Room temperature"
+10,"SNR","Sample not received"

@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+
+    <record model="ir.ui.view" id="imaging_study_tree_view">
+        <field name="name">imaging.study.tree.view</field>
+        <field name="model">imaging.study</field>
+        <field name="priority" eval="16"/>
+        <field name="arch" type="xml">
+            <tree string="Imaging Study Tree view">
+                <field name="imagingStudy_status"/>
+            </tree>
+        </field>
+    </record>
+
+    <record model="ir.ui.view" id="imaging_study_form_view">
+        <field name="name">imaging.study.form</field>
+        <field name="model">imaging.study</field>
+        <field name="arch" type="xml">
+            <form string="Imaging Study Form">
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="imagingStudy_status"/>
+                            <!--                            <field name="is_practitioner_active" widget="boolean_toggle"/>-->
+                            <field name="imagingStudy_subject"/>
+                            <field name="imagingStudy_encounter"/>
+                            <field name="imagingStudy_started"/>
+                            <field name="imagingStudy_basedOn"/>
+
+                            <field name="imagingStudy_referrer"/>
+                            <field name="imagingStudy_interpreter"/>
+                            <field name="imagingStudy_endpoint"/>
+                            <field name="imagingStudy_numberOfSeries"/>
+                            <field name="imagingStudy_numberOfInstances"/>
+                            <field name="imagingStudy_procedureReference"/>
+                            <field name="imagingStudy_location"/>
+                            <field name="imagingStudy_reasonReference"/>
+                            <field name="imagingStudy_note"/>
+                            <field name="imagingStudy_description"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Series">
+                            <group>
+                                <field name="imagingStudy_series_number"/>
+                                <field name="imagingStudy_series_description"/>
+                                <field name="imagingStudy_series_numberOfInstances"/>
+                                <field name="imagingStudy_series_endpoint"/>
+                                <field name="imagingStudy_series_bodySite"/>
+                                <field name="imagingStudy_series_specimen"/>
+                                <field name="imagingStudy_series_started"/>
+                            </group>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+
+    <record model="ir.actions.act_window" id="action_imaging_study">
+        <field name="name">Imaging Study</field>
+        <field name="res_model">imaging.study</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">Create
+            </p>
+        </field>
+    </record>
+    <menuitem id="FHIR_root" name="FHIR"/>
+    <menuitem id="FHIR_imaging_study" name="Imaging Study" parent="FHIR_root" action="action_imaging_study"/>
+
+
+    <record model="ir.ui.view" id="imaging_study_series_body_site_form_view">
+        <field name="name">imaging.study.series.body.site</field>
+        <field name="model">imaging.study.series.body.site</field>
+        <field name="arch" type="xml">
+            <form string="Imaging Study Series Body Site form">
+                <sheet>
+                    <group>
+                        <field name="code"/>
+                        <field name="display"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record model="ir.actions.act_window" id="action_imaging_study_series_body_site">
+        <field name="name">Imaging Study Series Body Site</field>
+        <field name="res_model">imaging.study.series.body.site</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">Create
+            </p>
+        </field>
+    </record>
+
+    <menuitem id="FHIR_root" name="FHIR"/>
+    <menuitem id="FHIR_imaging_study_series_body_site"
+              name="Imaging Study Series Body Site" parent="FHIR_root"
+              action="action_imaging_study_series_body_site"/>
+    <delete model="ir.ui.menu" id="FHIR_imaging_study_series_body_site"></delete>
+
+</odoo>
+
+
+        <!--imaging.study.series.body.site-->
+
+        <!--imaging_study_series_body_site-->
+
+        <!--Imaging Study Series Body Site-->

@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+
+    <record model="ir.ui.view" id="group_tree_view">
+        <field name="name">group.tree.view</field>
+        <field name="model">group</field>
+        <field name="priority" eval="16"/>
+        <field name="arch" type="xml">
+            <tree string="Group Tree view">
+                <field name="group_active"/>
+            </tree>
+        </field>
+    </record>
+
+    <record model="ir.ui.view" id="group_form_view">
+        <field name="name">group.form</field>
+        <field name="model">group</field>
+        <field name="arch" type="xml">
+            <form string="Group Form">
+                <sheet>
+                    <div class="oe_title">
+                        <h4>
+                            <separator string="Group name:"/>
+                            <field name="group_name"/>
+                        </h4>
+                    </div>
+                    <group>
+                        <group>
+                            <field name="group_active" widget="boolean_toggle"/>
+                            <field name="group_type"/>
+                            <field name="group_actual"/>
+                            <field name="group_quantity"/>
+                            <!--                            <field name="practitioner_contact"/>-->
+                            <!--                            <field name="practitioner_address"/>-->
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Group Member info">
+                            <group>
+                                <field name="group_member_entity"/>
+                                <field name="group_member_inactive" widget="boolean_toggle"/>
+                                <field name="group_member_period_start"/>
+                                <field name="group_member_period_end"/>
+                            </group>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+
+    <record model="ir.actions.act_window" id="action_group">
+        <field name="name">Group</field>
+        <field name="res_model">group</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">Create
+            </p>
+        </field>
+    </record>
+    <menuitem id="FHIR_root" name="FHIR"/>
+    <menuitem id="FHIR_group" name="Group" parent="FHIR_root" action="action_group"/>
+</odoo>
+

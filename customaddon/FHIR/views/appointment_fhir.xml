@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+
+    <record model="ir.ui.view" id="appointment_tree_view">
+        <field name="name">appointment.tree.view</field>
+        <field name="model">appointment</field>
+        <field name="priority" eval="16"/>
+        <field name="arch" type="xml">
+            <tree string="Appointment Tree view">
+                <field name="appointment_status"/>
+            </tree>
+        </field>
+    </record>
+
+    <record model="ir.ui.view" id="appointment_form_view">
+        <field name="name">appointment.form</field>
+        <field name="model">appointment</field>
+        <field name="arch" type="xml">
+            <form string="Appointment Form">
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="appointment_status"/>
+                            <field name="appointment_priority"
+                                   placeholder="0 as undefined, 1 as highest, 9 as lowest priority" widget="char"
+                            />
+
+                            <field name="appointment_description" style="margin-bottom: 10px"/>
+
+
+                            <field name="appointment_start"
+                                   placeholder="Date/Time that the appointment is to take place." style="margin-bottom: 10px"/>
+
+
+                            <field name="appointment_end"
+                                   placeholder="Date/Time that the appointment is to conclude"/>
+
+                            <field name="appointment_minutesDuration" widget="char"
+                                   placeholder="Number of minutes that the appointment is to take"/>
+
+                        </group>
+                        <group>
+                            <field name="appointment_minutesDuration" widget="char"
+                                   placeholder="Number of minutes that the appointment is to take"/>
+                            <field name="appointment_created"/>
+                            <field name="appointment_cancelationReason"/>
+                            <field name="appointment_patientInstruction"
+                                   placeholder="e.g. please bring your referral or fast from 8pm night before."/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Appointment Supporting Information:">
+                            <group>
+                                <field name="appointment_display_text"/>
+                                <field name="appointment_comment"/>
+                            </group>
+                        </page>
+                        <page string="Appointment Requested Period">
+                            <group>
+                                <field name="appointment_requestedPeriod_start"
+                                       placeholder="A date range (potentially including times) that the appointment is preferred to be scheduled within."/>
+                                <field name="appointment_requestedPeriod_end"
+                                       placeholder="A date range (potentially including times) that the appointment is preferred to be scheduled within."/>
+                            </group>
+                        </page>
+                        <page string="Participant Information">
+                            <group>
+                                <field name="Appointment_Participant" widget="many2many_tags"/>
+                                <field name="appointment_participant_actor"/>
+                                <field name="appointment_participant_required"/>
+                                <field name="appointment_participant_status"/>
+                            </group>
+                            <group>
+                                <field name="participant_Period_start"/>
+                                <field name="participant_Period_end"/>
+
+                            </group>
+                        </page>
+                    </notebook>
+
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+
+    <record model="ir.actions.act_window" id="action_appointment">
+        <field name="name">Appointment</field>
+        <field name="res_model">appointment</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">Create the Appointment
+            </p>
+        </field>
+    </record>
+    <menuitem id="FHIR_root" name="FHIR"/>
+    <menuitem id="FHIR_appointment" name="Appointment" parent="FHIR_root" action="action_appointment"/>
+
+
+    <record model="ir.ui.view" id="appointment_cancelation_reason_form_view">
+        <field name="name">Appointment.cancelation.reason.form</field>
+        <field name="model">appointment.cancelation.reason</field>
+        <field name="arch" type="xml">
+            <form string="Appointment Cancelation Reason form">
+                <sheet>
+                    <group>
+                        <field name="display"/>
+                        <field name="code"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record model="ir.actions.act_window" id="action_appointment_cancelation_reason">
+        <field name="name">Appointment Cancelation Reason</field>
+        <field name="res_model">appointment.cancelation.reason</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">Create
+            </p>
+        </field>
+    </record>
+
+    <menuitem id="FHIR_root" name="FHIR"/>
+    <menuitem id="FHIR_appointment_cancelation_reason" name="Appointment Cancelation Reason" parent="FHIR_root"
+              action="action_appointment_cancelation_reason"/>
+    <delete model="ir.ui.menu" id="FHIR_appointment_cancelation_reason"></delete>
+
+
+    <record model="ir.ui.view" id="appointment_participant_type_form_view">
+        <field name="name">appointment.participant.type.form</field>
+        <field name="model">appointment.participant.type</field>
+        <field name="arch" type="xml">
+            <form string="Appointment Participant Type form">
+                <sheet>
+                    <group>
+                        <field name="display"/>
+                        <field name="code"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record model="ir.actions.act_window" id="action_appointment_participant_type">
+        <field name="name">Appointment Participant Type</field>
+        <field name="res_model">appointment.participant.type</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">Create
+            </p>
+        </field>
+    </record>
+
+    <menuitem id="FHIR_root" name="FHIR"/>
+    <menuitem id="FHIR_appointment_participant_type" name="Appointment Ccancelation.reason" parent="FHIR_root"
+              action="action_appointment_participant_type"/>
+    <delete model="ir.ui.menu" id="FHIR_appointment_participant_type"></delete>
+
+</odoo>

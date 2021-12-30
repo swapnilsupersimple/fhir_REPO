@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+
+    <record model="ir.ui.view" id="slot_tree_view">
+        <field name="name">slot.tree.view</field>
+        <field name="model">slot</field>
+        <field name="priority" eval="16"/>
+        <field name="arch" type="xml">
+            <tree string="Slot Tree view">
+                <field name="slot_status"/>
+            </tree>
+        </field>
+    </record>
+
+    <record model="ir.ui.view" id="slot_form_view">
+        <field name="name">slot.form</field>
+        <field name="model">slot</field>
+        <field name="arch" type="xml">
+            <form string="Slot Form">
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="slot_status"/>
+                            <field name="slot_start"/>
+                            <field name="slot_end"/>
+                            <field name="slot_comment"/>
+                            <field name="slot_overbooked" widget="boolean_toggle"/>
+                        </group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+
+    <record model="ir.actions.act_window" id="action_slot">
+        <field name="name">Slot</field>
+        <field name="res_model">slot</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">Create
+            </p>
+        </field>
+    </record>
+    <menuitem id="FHIR_root" name="FHIR"/>
+    <menuitem id="FHIR_slot" name="Slot" parent="FHIR_root" action="action_slot"/>
+</odoo>

@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+
+    <record model="ir.ui.view" id="organization_tree_view">
+        <field name="name">organization.tree.view</field>
+        <field name="model">organization</field>
+        <field name="priority" eval="16"/>
+        <field name="arch" type="xml">
+            <tree string="organization Tree view">
+                <field name="organization_name"/>
+            </tree>
+        </field>
+    </record>
+
+    <record model="ir.ui.view" id="organization_form_view">
+        <field name="name">organization.form</field>
+        <field name="model">organization</field>
+        <field name="arch" type="xml">
+            <form string="Organization Form">
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="organization_name"/>
+                            <field name="is_organization_active" widget="boolean_toggle"/>
+                            <field name="organization_alias_ids"/>
+                            <field name="organization_telecom"/>
+                            <field name="organization_address"/>
+                        </group>
+                        <group>
+                            <h3>
+                                Contact with Organization:
+                            </h3>
+                            <field name="organization_contact_name"/>
+                            <field name="organization_contact_telecom"/>
+                            <field name="organization_contact_address"/>
+                        </group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record model="ir.actions.act_window" id="action_organization">
+        <field name="name">Organization</field>
+        <field name="res_model">organization</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">Create the organization
+            </p>
+        </field>
+    </record>
+
+    <menuitem id="FHIR_root" name="FHIR"/>
+    <menuitem id="FHIR_organization" name="Organization" parent="FHIR_root" action="action_organization"/>
+
+
+    <record model="ir.ui.view" id="organization_alias_form_view">
+        <field name="name">organization.alias.form</field>
+        <field name="model">organization.alias</field>
+        <field name="arch" type="xml">
+            <form string="Organization Alias form">
+                <sheet>
+                    <group>
+                        <field name="organization_alias_new"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record model="ir.actions.act_window" id="action_organization_alias">
+        <field name="name">Organization alias </field>
+        <field name="res_model">organization.alias</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">Create the Organization Alias
+            </p>
+        </field>
+    </record>
+
+     <menuitem id="FHIR_root" name="FHIR"/>
+     <menuitem id="FHIR_organization_alias" name="Organization Alias" parent="FHIR_root" action="action_organization_alias"/>
+    <delete model="ir.ui.menu" id="FHIR_organization_alias"></delete>
+</odoo>
+
+

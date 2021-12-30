@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+
+    <record model="ir.ui.view" id="practitioner_role_tree_view">
+        <field name="name">practitioner.role.tree.view</field>
+        <field name="model">practitioner.role.fhir</field>
+        <field name="priority" eval="16"/>
+        <field name="arch" type="xml">
+            <tree string="Practitioner Role Tree view">
+                <field name="practitioner_role_practitioner"/>
+            </tree>
+        </field>
+    </record>
+
+    <record model="ir.ui.view" id="practitioner_role_form_view">
+        <field name="name">practitioner.role.form</field>
+        <field name="model">practitioner.role.fhir</field>
+        <field name="arch" type="xml">
+            <form string="Practitioner Role Form">
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="is_practitioner_role_active" widget="boolean_toggle"/>
+                            <field name="practitioner_role_telecom" placeholder="Contact details"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Reference">
+                            <group>
+                                <field name="practitioner_role_practitioner" placeholder="Practitioner that is able to provide the defined services for the organization."/>
+                                <field name="practitioner_role_organization" placeholder="The organization where the Practitioner performs the roles associated."/>
+                            </group>
+                        </page>
+                        <page string="Practitioner Available Time:">
+                            <group>
+                                <field name="practitioner_days_Of_week" widget="many2many_tags"/>
+                                <field name="practitioner_availableTime_allDay" widget="boolean_toggle"/>
+                                <field name="practitioner_availableTime_availableStartTime"
+                                       attrs="{'invisible': [('practitioner_availableTime_allDay', '=', True)]}"/>
+                                <field name="practitioner_role_availableTime_availableEndTime"
+                                       attrs="{'invisible': [('practitioner_availableTime_allDay', '=', True)]}"/>
+                            </group>
+                        </page>
+                        <page string=" Practitioner Not Avialable? :">
+                            <group>
+
+                                <field name="practitioner_role_not_available_description"
+                                       placeholder="The reason that can be presented to the user as to why this time is not available."
+                                 style="margin-bottom:40px;"/>
+
+                                <field name="practitioner_role_availability_Exceptions"
+                                       placeholder="A description of site availability exceptions, e.g. public holiday availability."
+                                 style="margin-bottom:40px;"/>
+
+                                <field name="practitioner_role_notAvailable_during_start" style="margin-bottom:40px;"/>
+
+                                <field name="practitioner_role_notAvailable_during_end" style="margin-bottom:40px;"/>
+                            </group>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+
+    <record model="ir.actions.act_window" id="action_practitioner_role">
+        <field name="name">Practitioner Role</field>
+        <field name="res_model">practitioner.role.fhir</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">Create the Practitioner Role
+            </p>
+        </field>
+    </record>
+    <menuitem id="FHIR_root" name="FHIR"/>
+    <menuitem id="FHIR_practitioner_role" name="Practitioner Role" parent="FHIR_root"
+              action="action_practitioner_role"/>
+
+    <record model="ir.ui.view" id="Practitioner_days_week_tree_view">
+        <field name="name">practitioner.days.week.tree.view</field>
+        <field name="model">days.week</field>
+        <field name="priority" eval="16"/>
+        <field name="arch" type="xml">
+            <tree string="Practitioner Days Week Tree view">
+                <field name="days_of_week"/>
+            </tree>
+        </field>
+    </record>
+
+
+    <record model="ir.ui.view" id="Practitioner_days_week_form_view">
+        <field name="name">Practitioner.days.week.form</field>
+        <field name="model">days.week</field>
+        <field name="arch" type="xml">
+            <form string="Practitioner days of week form">
+                <sheet>
+                    <group>
+                        <field name="days_of_week"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record model="ir.actions.act_window" id="action_Practitioner_days_week">
+        <field name="name">Practitioner days week</field>
+        <field name="res_model">days.week</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">Create
+            </p>
+        </field>
+    </record>
+
+    <menuitem id="FHIR_root" name="FHIR"/>
+    <menuitem id="FHIR_practitioner_days_of_week" name="Practitioner days of week" parent="FHIR_root"
+              action="action_Practitioner_days_week"/>
+    <delete model="ir.ui.menu" id="FHIR_practitioner_days_of_week"></delete>
+</odoo>

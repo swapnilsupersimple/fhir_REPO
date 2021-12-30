@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+
+      <record model="ir.ui.view" id="medication_tree_view">
+        <field name="name">medication.tree.view</field>
+        <field name="model">medication</field>
+        <field name="priority" eval="16"/>
+        <field name="arch" type="xml">
+            <tree string="Medication Tree view">
+                <field name="medication_status"/>
+            </tree>
+        </field>
+    </record>
+
+    <record model="ir.ui.view" id="medication_form_view">
+        <field name="name">medication.form</field>
+        <field name="model">medication</field>
+        <field name="arch" type="xml">
+            <form string="Medication Form">
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="medication_code"/>
+                            <field name="medication_status"/>
+                            <field name="medication_manufacturer"/>
+                            <field name="medication_batch_lotNumber" />
+                            <field name="medication_batch_expirationDate"/>
+<!--                            <field name="practitioner_contact"/>-->
+<!--                            <field name="practitioner_address"/>-->
+                        </group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+
+
+    <record model="ir.actions.act_window" id="action_medication">
+        <field name="name">Medication</field>
+        <field name="res_model">medication</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">Create
+            </p>
+        </field>
+    </record>
+    <menuitem id="FHIR_root" name="FHIR"/>
+    <menuitem id="FHIR_medication" name="Medication" parent="FHIR_root" action="action_medication"/>
+
+
+    <record model="ir.ui.view" id="medication_code_form_view">
+        <field name="name">medication.code.form</field>
+        <field name="model">medication.code</field>
+        <field name="arch" type="xml">
+            <form string="Medication Code form">
+                <sheet>
+                    <group>
+                        <field name="code"/>
+                        <field name="display"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record model="ir.actions.act_window" id="action_medication_code">
+        <field name="name">Medication Code</field>
+        <field name="res_model">medication.code</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">Create
+            </p>
+        </field>
+    </record>
+
+    <menuitem id="FHIR_root" name="FHIR"/>
+    <menuitem id="FHIR_medication_code"
+              name="Medication Code" parent="FHIR_root"
+              action="action_medication_code"/>
+    <delete model="ir.ui.menu" id="FHIR_medication_code"></delete>
+
+
+
+</odoo>
+
+
+<!--medication.code-->
+
+<!--medication_code-->
+
+<!--Medication Code-->
+
+

@@ -1,0 +1,13 @@
+id,code,display
+1,"ADM","admitter"
+2,"ATND","attender"
+3,"CALLBCK","callback contact"
+4,"CON","consultant"
+5,"DIS","discharger"
+6,"ESC","escort"
+7,"REF","referrer"
+8,"SPRF","secondary performer"
+9,"PPRF","primary performer"
+10,"PART","Participation"
+11,"translator","Translator"
+12,"emergency","Emergency"

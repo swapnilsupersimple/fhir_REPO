@@ -1,0 +1,8 @@
+id,code,display,defination
+1,"vegetarian","Vegetarian",""Food without meat  poultry or seafood.""
+2,"dairy-free","Dairy Free","Excludes dairy products."
+3,"nut-free","Nut Free","Excludes ingredients containing nuts."
+4,"gluten-free","Gluten Free","Excludes ingredients containing gluten."
+5,"vegan","Vegan","Food without meat  poultry or seafood , eggs, dairy products and other animal-derived substances."
+6,"halal","Halal","Foods that conform to Islamic law."
+7,"kosher","Kosher","Foods that conform to Jewish dietary law."

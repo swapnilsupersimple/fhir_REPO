@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+
+    <record model="ir.ui.view" id="related_person_tree_view">
+        <field name="name">related.person.tree.view</field>
+        <field name="model">related.person</field>
+        <field name="priority" eval="16"/>
+        <field name="arch" type="xml">
+            <tree string="Related Person Tree view">
+                <field name="relatedPerson_name" widget="many2many_tags"/>
+            </tree>
+        </field>
+    </record>
+
+    <record model="ir.ui.view" id="related_person_form_view">
+        <field name="name">related.person.form</field>
+        <field name="model">related.person</field>
+        <field name="arch" type="xml">
+            <form string="Related Person Form">
+                <sheet>
+                    <field name="relatedPerson_photo" widget="image" class="oe_avatar"/>
+                    <div class="oe_title">
+                        <h4>
+                            <separator string="Name:"/>
+                            <field name="relatedPerson_name"/>
+                        </h4>
+                    </div>
+                    <group>
+                        <group>
+                            <field name="relatedPerson_active" widget="boolean_toggle"/>
+                            <field name="related_person_contact_point" widget="many2many_tags"/>
+                        </group>
+                        <!--                        <group>-->
+                        <!--                            <field name="relatedPerson_photo" widget="image"/>-->
+                        <!--                        </group>-->
+                    </group>
+                    <notebook>
+                        <page string="Extra Info">
+                            <group>
+                                <field name="related_Person_birthDate"/>
+                                <field name="related_Person_gender"/>
+                                <field name="relatedPerson_address" widget="many2many_tags"/>
+                                <field name="relatedPerson_communication_language" widget="many2many_tags"/>
+                            </group>
+                        </page>
+                        <page string="Reference">
+                            <group>
+                                <field name="relatedPerson_patient"/>
+                            </group>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+
+    <record model="ir.actions.act_window" id="action_related_person">
+        <field name="name">Related Person</field>
+        <field name="res_model">related.person</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">Create the Related Person
+            </p>
+        </field>
+    </record>
+    <menuitem id="FHIR_root" name="FHIR"/>
+    <menuitem id="FHIR_related_person" name="Realated Person" parent="FHIR_root" action="action_related_person"/>
+
+
+    <record model="ir.ui.view" id="related_person_human_name_form_view">
+        <field name="name">Related.Person.Human.Name</field>
+        <field name="model">related.person.human.name</field>
+        <field name="arch" type="xml">
+            <form string="Related Person Human Name form">
+                <sheet>
+                    <group>
+                        <field name="related_personHumanName"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record model="ir.actions.act_window" id="action_related_person_human_name">
+        <field name="name">Releated person Name</field>
+        <field name="res_model">related.person.human.name</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">Create
+            </p>
+        </field>
+    </record>
+
+    <menuitem id="FHIR_root" name="FHIR"/>
+    <menuitem id="FHIR_related_person_human_name" name="Related Person Human Name" parent="FHIR_root"
+              action="action_related_person_human_name"/>
+    <delete model="ir.ui.menu" id="FHIR_related_person_human_name"></delete>
+
+
+    <record model="ir.ui.view" id="related_person_contact_point_form_view">
+        <field name="name">Related.Person.Contact.Point</field>
+        <field name="model">related.person.telecom</field>
+        <field name="arch" type="xml">
+            <form string="Related Person Contact Point form">
+                <sheet>
+                    <group>
+                        <field name="related_personContact_point"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record model="ir.actions.act_window" id="action_related_person_contact_point">
+        <field name="name">Releated contact point</field>
+        <field name="res_model">related.person.telecom</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">Create
+            </p>
+        </field>
+    </record>
+
+    <menuitem id="FHIR_root" name="FHIR"/>
+    <menuitem id="FHIR_related_contact_point" name="Related Person Contact Point" parent="FHIR_root"
+              action="action_related_person_contact_point"/>
+    <delete model="ir.ui.menu" id="FHIR_related_contact_point"></delete>
+
+
+    <record model="ir.ui.view" id="related_person_address_form_view">
+        <field name="name">Related.Person.Address</field>
+        <field name="model">related.person.address</field>
+        <field name="arch" type="xml">
+            <form string="Related Person Address form">
+                <sheet>
+                    <group>
+                        <field name="new_relatedPerson_address"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record model="ir.actions.act_window" id="action_related_person_address">
+        <field name="name">Releated Person Address</field>
+        <field name="res_model">related.person.address</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">Create
+            </p>
+        </field>
+    </record>
+
+    <menuitem id="FHIR_root" name="FHIR"/>
+    <menuitem id="FHIR_related_address" name="Related Person Address" parent="FHIR_root"
+              action="action_related_person_address"/>
+    <delete model="ir.ui.menu" id="FHIR_related_address"></delete>
+
+</odoo>

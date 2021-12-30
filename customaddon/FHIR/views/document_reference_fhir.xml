@@ -1,0 +1,201 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+
+      <record model="ir.ui.view" id="document_reference_tree_view">
+        <field name="name">document.reference.tree.view</field>
+        <field name="model">document.reference</field>
+        <field name="priority" eval="16"/>
+        <field name="arch" type="xml">
+            <tree string="Document Reference Tree view">
+                <field name="document_Reference"/>
+            </tree>
+        </field>
+    </record>
+
+    <record model="ir.ui.view" id="document_reference_form_view">
+        <field name="name">document.reference.form</field>
+        <field name="model">document.reference</field>
+        <field name="arch" type="xml">
+            <form string="Document Reference Form">
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="document_Reference"/>
+<!--                            <field name="is_practitioner_active" widget="boolean_toggle"/>-->
+                            <field name="document_Reference_docStatus" />
+                            <field name="document_Reference_type"/>
+                            <field name="document_reference_category" widget="many2many_tags"/>
+                            <field name="document_reference_subject"/>
+                            <field name="document_Reference_date"/>
+                            <field name="document_Reference_author"/>
+                            <field name="document_Reference_custodian"/>
+                            <field name="document_Reference_relatesTo_code"/>
+                            <field name="document_Reference_description"/>
+                            <field name="document_reference_security_label" widget="many2many_tags"/>
+                        </group>
+                    </group>
+                     <notebook>
+                        <page string="Context:">
+                            <group>
+                                <field name="document_reference_context_event" widget="many2many_tags"/>
+                                <field name="document_reference_context_facility_type"/>
+                                <field name="document_reference_context_practice_setting"/>
+                                <field name="document_reference_context_source_patient_info"/>
+                                <field name="document_reference_context_period_start"/>
+                                <field name="document_reference_context_period_end"/>
+                            </group>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+
+
+    <record model="ir.actions.act_window" id="action_document_reference">
+        <field name="name">Document Reference</field>
+        <field name="res_model">document.reference</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">Create
+            </p>
+        </field>
+    </record>
+    <menuitem id="FHIR_root" name="FHIR"/>
+    <menuitem id="FHIR_document_reference" name="Document Reference" parent="FHIR_root" action="action_document_reference"/>
+
+
+
+    <record model="ir.ui.view" id="document_reference_type_form_view">
+        <field name="name">document.reference.type.form</field>
+        <field name="model">document.reference.type</field>
+        <field name="arch" type="xml">
+            <form string="Document Reference Type form">
+                <sheet>
+                    <group>
+                        <field name="display"/>
+                        <field name="code"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record model="ir.actions.act_window" id="action_document_reference_type">
+        <field name="name">Document Reference Type</field>
+        <field name="res_model">document.reference.type</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">Create
+            </p>
+        </field>
+    </record>
+
+    <menuitem id="FHIR_root" name="FHIR"/>
+    <menuitem id="FHIR_document_reference_type" name="Document Reference Type" parent="FHIR_root"
+              action="action_document_reference_type"/>
+    <delete model="ir.ui.menu" id="FHIR_document_reference_type"></delete>
+
+
+     <record model="ir.ui.view" id="document_reference_category_form_view">
+        <field name="name">document.reference.category.form</field>
+        <field name="model">document.reference.category</field>
+        <field name="arch" type="xml">
+            <form string="Document Reference Category form">
+                <sheet>
+                    <group>
+                        <field name="display"/>
+                        <field name="code"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record model="ir.actions.act_window" id="action_document_reference_category">
+        <field name="name">Document Reference Category</field>
+        <field name="res_model">document.reference.category</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">Create
+            </p>
+        </field>
+    </record>
+
+    <menuitem id="FHIR_root" name="FHIR"/>
+    <menuitem id="FHIR_document_reference_category" name="Document Reference Category" parent="FHIR_root"
+              action="action_document_reference_category"/>
+    <delete model="ir.ui.menu" id="FHIR_document_reference_category"></delete>
+
+
+    <record model="ir.ui.view" id="document_reference_context_facility_type_form_view">
+        <field name="name">document.reference.context.facility.type.form</field>
+        <field name="model">document.reference.context.facility.type</field>
+        <field name="arch" type="xml">
+            <form string="Document Reference Context Facility Type">
+                <sheet>
+                    <group>
+                        <field name="display"/>
+                        <field name="code"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record model="ir.actions.act_window" id="action_document_reference_context_facility_type">
+        <field name="name">Document Reference Context Facility Type</field>
+        <field name="res_model">document.reference.context.facility.type</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">Create
+            </p>
+        </field>
+    </record>
+
+    <menuitem id="FHIR_root" name="FHIR"/>
+    <menuitem id="FHIR_document_reference_context_facility_type" name="Document Reference Context Facility Type" parent="FHIR_root"
+              action="action_document_reference_context_facility_type"/>
+    <delete model="ir.ui.menu" id="FHIR_document_reference_context_facility_type"></delete>
+
+
+    <record model="ir.ui.view" id="document_reference_context_practice_setting_form_view">
+        <field name="name">document.reference.context.practice.setting.form</field>
+        <field name="model">document.reference.context.practice.setting</field>
+        <field name="arch" type="xml">
+            <form string="Document Reference Context Practice Setting">
+                <sheet>
+                    <group>
+                        <field name="display"/>
+                        <field name="code"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record model="ir.actions.act_window" id="action_document_reference_context_practice_setting">
+        <field name="name">Document Reference Context Practice Setting</field>
+        <field name="res_model">document.reference.context.practice.setting</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">Create
+            </p>
+        </field>
+    </record>
+
+    <menuitem id="FHIR_root" name="FHIR"/>
+    <menuitem id="FHIR_document_reference_context_practice_setting" name="Document Reference Context Practice Setting" parent="FHIR_root"
+              action="action_document_reference_context_practice_setting"/>
+    <delete model="ir.ui.menu" id="FHIR_document_reference_context_practice_setting"></delete>
+
+
+</odoo>
+
+
+<!--document.reference.context.practice.setting-->
+
+<!--document_reference_context_practice_setting-->
+
+<!--Document Reference Context Practice Setting-->

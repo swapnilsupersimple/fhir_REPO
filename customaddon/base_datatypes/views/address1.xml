@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+
+    <record model="ir.ui.view" id="address_tree_view">
+        <field name="name">address.tree.view</field>
+        <field name="model">address.fhir</field>
+        <field name="priority" eval="16"/>
+        <field name="arch" type="xml">
+            <tree string="Contact Point Tree view">
+                <field name="use"/>
+                <field name="type"/>
+                <field name="country"/>
+                <field name="state"/>
+                <field name="district"/>
+            </tree>
+        </field>
+    </record>
+
+    <record model="ir.ui.view" id="address_form_view">
+        <field name="name">address.form</field>
+        <field name="model">address.fhir</field>
+        <field name="arch" type="xml">
+            <form string="Human Name Form">
+                <sheet>
+                    <group>
+                        <field name="use"/>
+                        <field name="type"/>
+                        <field name="text"/>
+                        <field name="country"/>
+                        <field name="state"/>
+                        <field name="district"/>
+                        <field name="city"/>
+                        <field name="line"/>
+                        <field name="postalCode"/>
+                        <field name="start"/>
+                        <field name="end"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record model="ir.actions.act_window" id="action_address">
+        <field name="name">Address</field>
+        <field name="res_model">address.fhir</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">Create
+            </p>
+        </field>
+    </record>
+
+    <menuitem id="FHIR_address" name="Address" parent="FHIR_base_datatype" action="action_address"/>
+
+    <record model="ir.ui.view" id="address_new_tree_view">
+        <field name="name">address.new.tree</field>
+        <field name="model">address</field>
+        <field name="priority" eval="16"/>
+        <field name="arch" type="xml">
+            <tree string="Address new Tree">
+                <field name="lines"/>
+            </tree>
+        </field>
+    </record>
+
+    <record model="ir.ui.view" id="address_new_form_view">
+        <field name="name">address.new.form</field>
+        <field name="model">address</field>
+        <field name="arch" type="xml">
+            <form string="address form">
+                <sheet>
+                    <group>
+                        <field name="lines"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record model="ir.actions.act_window" id="action_address_new">
+        <field name="name">address_new</field>
+        <field name="res_model">address</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">Create the Address
+            </p>
+        </field>
+    </record>
+
+    <menuitem id="FHIR_base_datatype" name="Base Datatype"/>
+    <menuitem id="FHIR_address_new" name="Address" parent="FHIR_base_datatype" action="action_address_new"/>
+    <delete model="ir.ui.menu" id="FHIR_address_new"></delete>
+
+</odoo>

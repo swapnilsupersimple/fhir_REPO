@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+
+      <record model="ir.ui.view" id="condition_tree_view">
+        <field name="name">condition.tree.view</field>
+        <field name="model">condition</field>
+        <field name="priority" eval="16"/>
+        <field name="arch" type="xml">
+            <tree string="Condition Tree view">
+                  <field name="condition_clinical_Status"/>
+            </tree>
+        </field>
+    </record>
+
+    <record model="ir.ui.view" id="condition_form_view">
+        <field name="name">condition.form</field>
+        <field name="model">condition</field>
+        <field name="arch" type="xml">
+            <form string="condition Form">
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="condition_clinical_Status"/>
+<!--                            <field name="is_practitioner_active" widget="boolean_toggle"/>-->
+                            <field name="condition_verificationStatus" />
+                            <field name="condition_category"/>
+                            <field name="condition_severity"/>
+                            <field name="condition_subject"/>
+                            <field name="code_condition"/>
+                            <field name="condition_recordedDate"/>
+                            <field name="condition_recorder"/>
+                            <field name="condition_asserter"/>
+                        </group>
+                    </group>
+
+                    <notebook>
+                        <page string="OnSet">
+                            <group>
+<!--                                <field name="device_manufacturer"/>-->
+<!--                                <field name="device_manufacture_Date"/>-->
+                            </group>
+                        </page>
+                        <page string="Additional Notes">
+                            <group>
+                                <field name="condition_note"/>
+<!--                                <field name="device_manufacture_Date"/>-->
+                            </group>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+
+
+    <record model="ir.actions.act_window" id="action_condition">
+        <field name="name">Condtion</field>
+        <field name="res_model">condition</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">Create
+            </p>
+        </field>
+    </record>
+    <menuitem id="FHIR_root" name="FHIR"/>
+    <menuitem id="FHIR_condition" name="Condition" parent="FHIR_root" action="action_condition"/>
+
+        <record model="ir.ui.view" id="condition_code_form_view">
+        <field name="name">condtion.code.form.given</field>
+        <field name="model">condition.code</field>
+        <field name="arch" type="xml">
+            <form string="Condition Code Given form">
+                <sheet>
+                    <group>
+                        <field name="code"/>
+                        <field name="display"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record model="ir.actions.act_window" id="action_condition_code">
+        <field name="name">Condition Code</field>
+        <field name="res_model">condition.code</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">Create
+            </p>
+        </field>
+    </record>
+
+    <menuitem id="FHIR_root" name="FHIR"/>
+    <menuitem id="FHIR_condition_code" name="Condition Code" parent="FHIR_root" action="action_condition_code"/>
+    <delete model="ir.ui.menu" id="FHIR_condition_code"></delete>
+</odoo>

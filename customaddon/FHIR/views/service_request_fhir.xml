@@ -1,0 +1,258 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+
+    <record model="ir.ui.view" id="service_request_tree_view">
+        <field name="name">service.request.tree.view</field>
+        <field name="model">service.request</field>
+        <field name="priority" eval="16"/>
+        <field name="arch" type="xml">
+            <tree string="Service Request Tree view">
+                <field name="serviceRequest_status"/>
+            </tree>
+        </field>
+    </record>
+
+    <record model="ir.ui.view" id="service_request_form_view">
+        <field name="name">practitioner.form</field>
+        <field name="model">service.request</field>
+        <field name="arch" type="xml">
+            <form string="Service Request Form">
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="serviceRequest_status"/>
+                            <field name="serviceRequest_intent"/>
+                            <field name="serviceRequest_category" widget="many2many_tags"/>
+                            <field name="serviceRequest_priority"/>
+                            <field name="serviceRequest_doNotPerform" widget="boolean_toggle"/>
+                            <field name="serviceRequest_code"/>
+                            <field name="serviceRequest_OrderDetail"  widget="many2many_tags"/>
+                            <field name="serviceRequest_quantity"/>
+                            <field name="serviceRequest_authoredOn"/>
+                            <field name="serviceRequest_requester"/>
+                            <field name="serviceRequest_performer"/>
+                            <field name="serviceRequest_locationReference"/>
+                            <field name="serviceRequest_locationCode" widget="many2many_tags"/>
+                            <field name="ServiceRequest_reasonReference"/>
+                            <field name="serviceRequest_specimen"/>
+                            <field name="serviceRequest_patientInstruction"/>
+                            <field name="serviceRequest_bodySite" widget="many2many_tags"/>
+                            <field name="serviceRequest_reasonCode" widget="many2many_tags"/>
+                        </group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+
+    <record model="ir.actions.act_window" id="action_service_request">
+        <field name="name">Service Request</field>
+        <field name="res_model">service.request</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">Create
+            </p>
+        </field>
+    </record>
+    <menuitem id="FHIR_root" name="FHIR"/>
+    <menuitem id="FHIR_service_request" name="Service Request" parent="FHIR_root" action="action_service_request"/>
+
+    <record model="ir.ui.view" id="service_request_category_form_view">
+        <field name="name">service.request.category.form</field>
+        <field name="model">service.request.category</field>
+        <field name="arch" type="xml">
+            <form string="Service Request Category form">
+                <sheet>
+                    <group>
+                        <field name="display"/>
+                        <field name="code"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record model="ir.actions.act_window" id="action_service_request_category">
+        <field name="name">Service Request Category</field>
+        <field name="res_model">service.request.category</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">Create
+            </p>
+        </field>
+    </record>
+
+    <menuitem id="FHIR_root" name="FHIR"/>
+    <menuitem id="FHIR_service_request_category" name="Service Request Category"
+              parent="FHIR_root"
+              action="action_service_request_category"/>
+    <delete model="ir.ui.menu" id="FHIR_service_request_category"></delete>
+
+
+
+    <record model="ir.ui.view" id="service_request_code_form_view">
+        <field name="name">service.request.code.form</field>
+        <field name="model">service.request.code</field>
+        <field name="arch" type="xml">
+            <form string="Service Request Code form">
+                <sheet>
+                    <group>
+                        <field name="display"/>
+                        <field name="code"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record model="ir.actions.act_window" id="action_service_request_code">
+        <field name="name">Service Request Code</field>
+        <field name="res_model">service.request.code</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">Create
+            </p>
+        </field>
+    </record>
+
+    <menuitem id="FHIR_root" name="FHIR"/>
+    <menuitem id="FHIR_service_request_code" name="Service Request Code"
+              parent="FHIR_root"
+              action="action_service_request_code"/>
+    <delete model="ir.ui.menu" id="FHIR_service_request_code"></delete>
+
+
+
+     <record model="ir.ui.view" id="service_request_order_detail_form_view">
+        <field name="name">service.request.order.detail.form</field>
+        <field name="model">service.request.order.detail</field>
+        <field name="arch" type="xml">
+            <form string="Service Request Order Detail form">
+                <sheet>
+                    <group>
+                        <field name="display"/>
+                        <field name="code"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record model="ir.actions.act_window" id="action_service_request_order_detail">
+        <field name="name">Service Request Order Detail</field>
+        <field name="res_model">service.request.order.detail</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">Create
+            </p>
+        </field>
+    </record>
+
+    <menuitem id="FHIR_root" name="FHIR"/>
+    <menuitem id="FHIR_service_request_order_detail" name="Order Detail"
+              parent="FHIR_root"
+              action="action_service_request_order_detail"/>
+    <delete model="ir.ui.menu" id="FHIR_service_request_order_detail"></delete>
+
+
+    <record model="ir.ui.view" id="service_request_body_site_form_view">
+        <field name="name">service.request.body.site.form</field>
+        <field name="model">service.request.body.site</field>
+        <field name="arch" type="xml">
+            <form string="Service Request Body Site form">
+                <sheet>
+                    <group>
+                        <field name="display"/>
+                        <field name="code"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record model="ir.actions.act_window" id="action_service_request_body_site">
+        <field name="name">Service Request Body Site</field>
+        <field name="res_model">service.request.body.site</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">Create
+            </p>
+        </field>
+    </record>
+
+    <menuitem id="FHIR_root" name="FHIR"/>
+    <menuitem id="FHIR_service_request_body_site" name="Service Request Body Site"
+              parent="FHIR_root"
+              action="action_service_request_body_site"/>
+    <delete model="ir.ui.menu" id="FHIR_service_request_body_site"></delete>
+
+
+     <record model="ir.ui.view" id="service_request_reason_code_form_view">
+        <field name="name">service.request.reason.code.form</field>
+        <field name="model">service.request.reason.code</field>
+        <field name="arch" type="xml">
+            <form string="Service Request Reason Code form">
+                <sheet>
+                    <group>
+                        <field name="display"/>
+                        <field name="code"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record model="ir.actions.act_window" id="action_service_request_reason_code">
+        <field name="name">Service Request Body Site</field>
+        <field name="res_model">service.request.reason.code</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">Create
+            </p>
+        </field>
+    </record>
+
+    <menuitem id="FHIR_root" name="FHIR"/>
+    <menuitem id="FHIR_service_request_reason_code" name="Reason Code"
+              parent="FHIR_root"
+              action="action_service_request_reason_code"/>
+    <delete model="ir.ui.menu" id="FHIR_service_request_reason_code"></delete>
+
+
+     <record model="ir.ui.view" id="service_request_location_code_form_view">
+        <field name="name">service.request.location.code.form</field>
+        <field name="model">service.request.location.code</field>
+        <field name="arch" type="xml">
+            <form string="Service Request Location Code form">
+                <sheet>
+                    <group>
+                        <field name="display"/>
+                        <field name="code"/>
+                        <field name="defination"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record model="ir.actions.act_window" id="action_service_request_location_code">
+        <field name="name">Service Request Location Code</field>
+        <field name="res_model">service.request.location.code</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">Create
+            </p>
+        </field>
+    </record>
+
+    <menuitem id="FHIR_root" name="FHIR"/>
+    <menuitem id="FHIR_service_request_location_code" name="Location Code"
+              parent="FHIR_root"
+              action="action_service_request_location_code"/>
+    <delete model="ir.ui.menu" id="FHIR_service_request_location_code"></delete>
+
+</odoo>
+
+
+

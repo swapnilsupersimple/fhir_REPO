@@ -1,0 +1,951 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+
+    <record model="ir.ui.view" id="diagnostic_report_tree_view">
+        <field name="name">diagnostic.report.tree.view</field>
+        <field name="model">diagnostic.report</field>
+        <field name="priority" eval="16"/>
+        <field name="arch" type="xml">
+            <tree string="Diagnostic Report Tree view">
+                <field name="status"/>
+            </tree>
+        </field>
+    </record>
+
+    <record model="ir.ui.view" id="diagnostic_report_form_view">
+        <field name="name">diagnostic.report.form</field>
+        <field name="model">diagnostic.report</field>
+        <field name="arch" type="xml">
+            <form string="Diagnostic Report Form">
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="status"/>
+                            <field name="category" widget="many2many_tags"/>
+                            <field name="code"/>
+                            <field name="subject"/>
+                            <field name="encounter"/>
+                            <field name="effectiveDateTime"/>
+                            <field name="issued"/>
+                            <field name="performer"/>
+                            <field name="resultsInterpreter"/>
+                            <field name="specimen"/>
+                            <field name="result"/>
+                            <field name="imagingStudy"/>
+                            <field name="conclusionCode" widget="many2many_tags"/>
+                            <field name="conclusion"/>
+                            <field name="start"/>
+                            <field name="end"/>
+                            <field name="presentedForm"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Media">
+                            <group>
+                                <field name="media"/>
+                            </group>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+
+    <record model="ir.actions.act_window" id="action_diagnostic_report">
+        <field name="name">Diagnostic Report</field>
+        <field name="res_model">diagnostic.report</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">Create
+            </p>
+        </field>
+    </record>
+    <menuitem id="FHIR_root" name="FHIR"/>
+    <menuitem id="FHIR_diagnostic_report" name="Diagnostic Report" parent="FHIR_root"
+              action="action_diagnostic_report"/>
+
+
+    <record model="ir.ui.view" id="diagnostic_report_category_tree_view">
+        <field name="name">diagnostic.report.category.tree</field>
+        <field name="model">diagnostic.report.category</field>
+        <field name="arch" type="xml">
+            <form string="Diagnostic Report Category tree">
+                <sheet>
+                    <group>
+                        <field name="display"/>
+                        <field name="code"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+
+    <!--    <record model="ir.ui.view" id="diagnostic_report_category_form_view">-->
+    <!--        <field name="name">diagnostic.report.category.form</field>-->
+    <!--        <field name="model">diagnostic.report.category</field>-->
+    <!--        <field name="arch" type="xml">-->
+    <!--            <form string="Diagnostic Report Category form">-->
+    <!--                <sheet>-->
+    <!--                    <group>-->
+    <!--                        <field name="display"/>-->
+    <!--                        <field name="code"/>-->
+    <!--                    </group>-->
+    <!--                </sheet>-->
+    <!--            </form>-->
+    <!--        </field>-->
+    <!--    </record>-->
+
+    <record model="ir.actions.act_window" id="action_diagnostic_report_category">
+        <field name="name">Diagnostic Report Category</field>
+        <field name="res_model">diagnostic.report.category</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">Create
+            </p>
+        </field>
+    </record>
+
+    <menuitem id="FHIR_root" name="FHIR"/>
+    <menuitem id="FHIR_diagnostic_report_category" name="Diagnostic Report Category" parent="FHIR_root"
+              action="action_diagnostic_report_category"/>
+    <delete model="ir.ui.menu" id="FHIR_diagnostic_report_category"></delete>
+
+
+    <record model="ir.ui.view" id="diagnostic_report_conclusion_code_form_view">
+        <field name="name">diagnostic.report.conclusion.code.form</field>
+        <field name="model">diagnostic.report.conclusion.code</field>
+        <field name="arch" type="xml">
+            <form string="Diagnostic Report Conclusion Code form">
+                <sheet>
+                    <group>
+                        <field name="display"/>
+                        <field name="code"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record model="ir.actions.act_window" id="action_diagnostic_report_conclusion_code">
+        <field name="name">Diagnostic Report Conclusion Code</field>
+        <field name="res_model">diagnostic.report.conclusion.code</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">Create
+            </p>
+        </field>
+    </record>
+
+    <menuitem id="FHIR_root" name="FHIR"/>
+    <menuitem id="FHIR_diagnostic_report_conclusion_code" name="Conclusion Code" parent="FHIR_root"
+              action="action_diagnostic_report_conclusion_code"/>
+    <delete model="ir.ui.menu" id="FHIR_diagnostic_report_conclusion_code"></delete>
+
+
+    <record model="ir.ui.view" id="attachment_tree_view">
+        <field name="name">attachment.tree</field>
+        <field name="model">attachment.model</field>
+        <field name="priority" eval="16"/>
+        <field name="arch" type="xml">
+            <tree string="Attachment view">
+
+                <field name="size"/>
+                <field name="title"/>
+
+
+            </tree>
+        </field>
+    </record>
+
+
+    <record model="ir.ui.view" id="attachment_form_view">
+        <field name="name">Attachment Form</field>
+        <field name="model">attachment.model</field>
+        <field name="arch" type="xml">
+            <form string="Attachment form">
+                <sheet>
+                    <group>
+                        <!--                        <field name="language"/>-->
+                        <field name="data"/>
+                        <field name="url"/>
+                        <field name="size"/>
+                        <field name="title"/>
+                        <field name="creation"/>
+
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record model="ir.actions.act_window" id="action_attachment">
+        <field name="name">Attachment</field>
+        <field name="res_model">attachment.model</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">Create the attachment
+            </p>
+        </field>
+    </record>
+
+    <menuitem id="FHIR_root" name="FHIR"/>
+    <menuitem id="FHIR_attachment" name="Attachment" parent="FHIR_root"
+              action="action_attachment"/>
+    <delete model="ir.ui.menu" id="FHIR_attachment"></delete>
+
+
+    <!-- START_FOR_CODE_OBSERVATION-->
+
+    <record model="ir.ui.view" id="observation_tree_view">
+        <field name="name">observation</field>
+        <field name="model">observation</field>
+        <field name="priority" eval="16"/>
+        <field name="arch" type="xml">
+            <tree string="observation view">
+
+
+                <field name="observation_status"/>
+
+
+            </tree>
+        </field>
+    </record>
+
+
+    <record model="ir.ui.view" id="observation_form_view">
+        <field name="name">observation Form</field>
+        <field name="model">observation</field>
+        <field name="arch" type="xml">
+            <form string="observation form">
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="observation_status"/>
+                            <!--                            <field name="is_practitioner_active" widget="boolean_toggle"/>-->
+                            <field name="observation_category" widget="many2many_tags"/>
+                            <field name="observation_code"/>
+                            <field name="observation_subject"/>
+                            <field name="observation_encounter"/>
+                            <field name="observation_issued"/>
+                            <field name="observation_performer"/>
+                            <field name="observation_dataAbsentReason"/>
+                            <field name="observation_interpretation" widget="many2many_tags"/>
+                            <field name="observation_bodySite"/>
+                            <field name="observation_method"/>
+                            <field name="observation_device"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Reference Range:">
+                            <group>
+                                <field name="observation_referenceRange_type"/>
+                                <field name="observation_referenceRange_appliesTo" widget="many2many_tags"/>
+                                <field name="observation_referenceRange_text"/>
+                            </group>
+                        </page>
+                        <page string="Component:">
+                            <group>
+                                <field name="observation_component_code"/>
+                                <!--                                <field name="observation_referenceRange_appliesTo" widget="many2many_tags"/>-->
+                                <!--                                <field name="observation_referenceRange_text"/>-->
+                            </group>
+                        </page>
+                    </notebook>
+
+                </sheet>
+            </form>
+        </field>
+    </record>
+    <record model="ir.ui.view" id="observation_code_form_view">
+        <field name="name">observation.code.form</field>
+        <field name="model">observation.code</field>
+        <field name="arch" type="xml">
+            <form string="Observation Code form">
+                <sheet>
+                    <group>
+                        <field name="display"/>
+                        <field name="code"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record model="ir.actions.act_window" id="action_observation_code">
+        <field name="name">Observation Code</field>
+        <field name="res_model">observation.code</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">Create
+            </p>
+        </field>
+    </record>
+
+    <menuitem id="FHIR_root" name="FHIR"/>
+    <menuitem id="FHIR_observation_code" name="Observation Code" parent="FHIR_root"
+              action="action_observation_code"/>
+    <delete model="ir.ui.menu" id="FHIR_observation_code"></delete>
+
+
+    <record model="ir.ui.view" id="observation_category_form_view">
+        <field name="name">observation.category.form</field>
+        <field name="model">observation.category</field>
+        <field name="arch" type="xml">
+            <form string="Observation Category form">
+                <sheet>
+                    <group>
+                        <field name="display"/>
+                        <field name="code"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record model="ir.actions.act_window" id="action_observation_category">
+        <field name="name">Observation Category</field>
+        <field name="res_model">observation.category</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">Create
+            </p>
+        </field>
+    </record>
+
+    <menuitem id="FHIR_root" name="FHIR"/>
+    <menuitem id="FHIR_observation_category" name="Observation Category" parent="FHIR_root"
+              action="action_observation_category"/>
+    <delete model="ir.ui.menu" id="FHIR_observation_category"></delete>
+
+
+    <record model="ir.ui.view" id="oobservation_data_absent_reason_form_view">
+        <field name="name">observation.data.absent.reason.form</field>
+        <field name="model">observation.data.absent.reason</field>
+        <field name="arch" type="xml">
+            <form string="Observation Data Absent Reason form">
+                <sheet>
+                    <group>
+                        <field name="display"/>
+                        <field name="code"/>
+                        <field name="defination"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record model="ir.actions.act_window" id="action_observation_data_absent_reason">
+        <field name="name">Observation Data Absent Reason</field>
+        <field name="res_model">observation.data.absent.reason</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">Create
+            </p>
+        </field>
+    </record>
+
+    <menuitem id="FHIR_root" name="FHIR"/>
+    <menuitem id="FHIR_observation_data_absent_reason" name="Observation Data Absent Reason" parent="FHIR_root"
+              action="action_observation_data_absent_reason"/>
+    <delete model="ir.ui.menu" id="FHIR_observation_data_absent_reason"></delete>
+
+
+    <record model="ir.ui.view" id="observation_method_form_view">
+        <field name="name">observation.method.form</field>
+        <field name="model">observation.method</field>
+        <field name="arch" type="xml">
+            <form string="Observation Method form">
+                <sheet>
+                    <group>
+                        <field name="display"/>
+                        <field name="code"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record model="ir.actions.act_window" id="action_observation_method">
+        <field name="name">Observation Method</field>
+        <field name="res_model">observation.method</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">Create
+            </p>
+        </field>
+    </record>
+
+    <menuitem id="FHIR_root" name="FHIR"/>
+    <menuitem id="FHIR_observation_method" name="Observation Method" parent="FHIR_root"
+              action="action_observation_method"/>
+    <delete model="ir.ui.menu" id="FHIR_observation_method"></delete>
+
+
+    <record model="ir.ui.view" id="observation_reference_range_type_form_view">
+        <field name="name">observation.reference.range.type.form</field>
+        <field name="model">observation.reference.range.type</field>
+        <field name="arch" type="xml">
+            <form string="Observation Reference Range Type form">
+                <sheet>
+                    <group>
+                        <field name="display"/>
+                        <field name="code"/>
+                        <field name="defination"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record model="ir.actions.act_window" id="action_observation_reference_range_type">
+        <field name="name">Observation Reference Range Type</field>
+        <field name="res_model">observation.reference.range.type</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">Create
+            </p>
+        </field>
+    </record>
+
+    <menuitem id="FHIR_root" name="FHIR"/>
+    <menuitem id="FHIR_observation_reference_range_type" name="Observation Method" parent="FHIR_root"
+              action="action_observation_reference_range_type"/>
+    <delete model="ir.ui.menu" id="FHIR_observation_reference_range_type"></delete>
+
+
+    <record model="ir.ui.view" id="observation_component_code_form_view">
+        <field name="name">observation.component.code.type.form</field>
+        <field name="model">observation.component.code</field>
+        <field name="arch" type="xml">
+            <form string="Observation Component Code Type form">
+                <sheet>
+                    <group>
+                        <field name="display"/>
+                        <field name="code"/>
+
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record model="ir.actions.act_window" id="action_observation_component_code">
+        <field name="name">Observation Component Code</field>
+        <field name="res_model">observation.component.code</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">Create
+            </p>
+        </field>
+    </record>
+
+    <menuitem id="FHIR_root" name="FHIR"/>
+    <menuitem id="FHIR_observation_component_code" name="Observation Component Code"
+              parent="FHIR_root"
+              action="action_observation_component_code"/>
+    <delete model="ir.ui.menu" id="FHIR_observation_component_code"></delete>
+
+
+    <record model="ir.actions.act_window" id="action_observation">
+        <field name="name">observation</field>
+        <field name="res_model">observation</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">Create the observation
+            </p>
+        </field>
+    </record>
+
+    <menuitem id="FHIR_root" name="FHIR"/>
+    <menuitem id="FHIR_observation" name="observation" parent="FHIR_root"
+              action="action_observation"/>
+    <delete model="ir.ui.menu" id="FHIR_observation"></delete>
+
+
+    <!--    END_OF_CODE_OBSERVATION-->
+
+    <!--START_FOR_CODE_SPECIMEN    -->
+
+    <record model="ir.ui.view" id="specimen_tree_view">
+        <field name="name">specimen</field>
+        <field name="model">specimen</field>
+        <field name="priority" eval="16"/>
+        <field name="arch" type="xml">
+            <tree string="specimen view">
+
+                <field name="specimen_status"/>
+                <field name="specimen_type"/>
+
+
+            </tree>
+        </field>
+    </record>
+
+
+    <record model="ir.ui.view" id="sepcimen_form_view">
+        <field name="name">specimen Form</field>
+        <field name="model">specimen</field>
+        <field name="arch" type="xml">
+            <form string="specimen form">
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="specimen_status"/>
+                            <!--                            <field name="is_practitioner_active" widget="boolean_toggle"/>-->
+                            <field name="specimen_type"/>
+                            <field name="specimen_subject"/>
+                            <field name="specimen_receivedTime"/>
+                            <field name="specimen_condition" widget="many2many_tags"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Specimen Collection">
+                            <group>
+                                <field name="specimen_collection_collector"/>
+                                <field name="specimen_collection_collected"/>
+                                <field name="specimen_collection_quantity"/>
+                                <field name="specimen_collection_method"/>
+                                <field name="specimen_collection_bodySite"/>
+                                <field name="specimen_collection_fastingStatus"/>
+                            </group>
+                        </page>
+
+                        <page string="Specimen Collection">
+                            <group>
+                                <field name="specimen_processing_description"/>
+                                <field name="specimen_processing_procedure"/>
+                                <field name="specimen_processing_time"/>
+                            </group>
+                        </page>
+                        <page string="Specimen Container">
+                            <group>
+                                <field name="specimen_container_description"/>
+                                <field name="specimen_container_type"/>
+                                <field name="specimen_container_capacity"/>
+                                <field name="specimen_container_specimenQuantity"/>
+                                <field name="specimen_container_additive"/>
+                            </group>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record model="ir.ui.view" id="specimen_collection_method_form_view">
+        <field name="name">specimen.collection.method.form</field>
+        <field name="model">specimen.collection.method</field>
+        <field name="arch" type="xml">
+            <form string="Specimen Collection Method form">
+                <sheet>
+                    <group>
+                        <field name="display"/>
+                        <field name="code"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record model="ir.actions.act_window" id="action_specimen_collection_method">
+        <field name="name">Specimen Collection Method</field>
+        <field name="res_model">specimen.collection.method</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">Create
+            </p>
+        </field>
+    </record>
+
+    <menuitem id="FHIR_root" name="FHIR"/>
+    <menuitem id="FHIR_specimen_collection_method" name="Specimen Collection Method"
+              parent="FHIR_root"
+              action="action_specimen_collection_method"/>
+    <delete model="ir.ui.menu" id="FHIR_specimen_collection_method"></delete>
+
+
+    <record model="ir.ui.view" id="specimen_collection_body_site_form_view">
+        <field name="name">specimen.collection.body.site.form</field>
+        <field name="model">specimen.collection.body.site</field>
+        <field name="arch" type="xml">
+            <form string="Specimen Collection Body Site  form">
+                <sheet>
+                    <group>
+                        <field name="display"/>
+                        <field name="code"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record model="ir.actions.act_window" id="action_specimen_collection_body_site">
+        <field name="name">Specimen Collection Body Site</field>
+        <field name="res_model">specimen.collection.body.site</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">Create
+            </p>
+        </field>
+    </record>
+
+    <menuitem id="FHIR_root" name="FHIR"/>
+    <menuitem id="FHIR_specimen_collection_body_site" name="Specimen Collection Body Site"
+              parent="FHIR_root"
+              action="action_specimen_collection_method"/>
+    <delete model="ir.ui.menu" id="FHIR_specimen_collection_body_site"></delete>
+
+
+    <record model="ir.ui.view" id="specimen_condition_form_view">
+        <field name="name">specimen.condition.form</field>
+        <field name="model">specimen.condition</field>
+        <field name="arch" type="xml">
+            <form string="Specimen Condition form">
+                <sheet>
+                    <group>
+                        <field name="display"/>
+                        <field name="code"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record model="ir.actions.act_window" id="action_specimen_condition">
+        <field name="name">Specimen Condition</field>
+        <field name="res_model">specimen.condition</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">Create
+            </p>
+        </field>
+    </record>
+
+    <menuitem id="FHIR_root" name="FHIR"/>
+    <menuitem id="FHIR_specimen_condition" name="Specimen Condition"
+              parent="FHIR_root"
+              action="action_specimen_condition"/>
+    <delete model="ir.ui.menu" id="FHIR_specimen_condition"></delete>
+
+
+    <record model="ir.actions.act_window" id="action_specimen">
+        <field name="name">specimen</field>
+        <field name="res_model">specimen</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">Create the specimen
+            </p>
+        </field>
+    </record>
+
+    <menuitem id="FHIR_root" name="FHIR"/>
+    <menuitem id="FHIR_specimen" name="specimen" parent="FHIR_root"
+              action="action_specimen"/>
+    <delete model="ir.ui.menu" id="FHIR_specimen"></delete>
+
+    <!--END_FOR_CODE_SPECIMEN    -->
+
+
+    <!--start_FOR_CODE_imaginingStudy    -->
+
+
+    <record model="ir.ui.view" id="imaging_study_tree_view">
+        <field name="name">imaging.study</field>
+        <field name="model">imaging.study</field>
+        <field name="priority" eval="16"/>
+        <field name="arch" type="xml">
+            <tree string="Imaging Study view">
+
+                <field name="imagingStudy_description"/>
+
+
+            </tree>
+        </field>
+    </record>
+
+
+    <record model="ir.ui.view" id="imaging_study_form_view">
+        <field name="name">Imaging Study Form</field>
+        <field name="model">imaging.study</field>
+        <field name="arch" type="xml">
+            <form string="Imaging Study form">
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="imagingStudy_status"/>
+                            <!--                            <field name="is_practitioner_active" widget="boolean_toggle"/>-->
+                            <field name="imagingStudy_subject"/>
+                            <field name="imagingStudy_encounter"/>
+                            <field name="imagingStudy_started"/>
+                            <field name="imagingStudy_basedOn"/>
+
+                            <field name="imagingStudy_referrer"/>
+                            <field name="imagingStudy_interpreter"/>
+                            <field name="imagingStudy_endpoint"/>
+                            <field name="imagingStudy_numberOfSeries"/>
+                            <field name="imagingStudy_numberOfInstances"/>
+                            <field name="imagingStudy_procedureReference"/>
+                            <field name="imagingStudy_location"/>
+                            <field name="imagingStudy_reasonReference"/>
+                            <field name="imagingStudy_note"/>
+                            <field name="imagingStudy_description"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Series">
+                            <group>
+                                <field name="imagingStudy_series_number"/>
+                                <field name="imagingStudy_series_description"/>
+                                <field name="imagingStudy_series_numberOfInstances"/>
+                                <field name="imagingStudy_series_endpoint"/>
+                                <field name="imagingStudy_series_bodySite"/>
+                                <field name="imagingStudy_series_specimen"/>
+                                <field name="imagingStudy_series_started"/>
+                            </group>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record model="ir.actions.act_window" id="action_imaging_study">
+        <field name="name">Attachment</field>
+        <field name="res_model">imaging.study</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">Create the Imaging Study
+            </p>
+        </field>
+    </record>
+
+    <menuitem id="FHIR_root" name="FHIR"/>
+    <menuitem id="FHIR_imaging_study" name="Imaging Study" parent="FHIR_root"
+              action="action_imaging_study"/>
+    <delete model="ir.ui.menu" id="FHIR_imaging_study"></delete>
+
+
+    <!--end_FOR_CODE_imaginingStudy    -->
+
+    <!--start_FOR_CODE_media    -->
+
+    <record model="ir.ui.view" id="media_tree_view">
+        <field name="name">media</field>
+        <field name="model">media</field>
+        <field name="priority" eval="16"/>
+        <field name="arch" type="xml">
+            <tree string="Media view">
+
+                <field name="media_type"/>
+                <field name="media_comment"/>
+
+
+            </tree>
+        </field>
+    </record>
+
+
+    <record model="ir.ui.view" id="media_form_view">
+        <field name="name">Media Form</field>
+        <field name="model">media</field>
+        <field name="arch" type="xml">
+            <form string="media form">
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="media_status"/>
+                            <field name="media_comment"/>
+                            <!--                            <field name="is_practitioner_active" widget="boolean_toggle"/>-->
+                            <field name="media_type"/>
+                            <field name="media_modality"/>
+                            <field name="media_view"/>
+                            <field name="media_subject"/>
+                            <field name="media_encounter"/>
+                            <field name="media_created"/>
+                            <field name="media_issued"/>
+                            <field name="media_operator"/>
+                            <field name="media_reason_code" widget="many2many_tags"/>
+                            <field name="media_body_site"/>
+                            <field name="media_duration"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Recording Device Info:">
+                            <group>
+                                <field name="media_device_Name"/>
+                                <field name="media_device_used"/>
+                            </group>
+                        </page>
+                        <page string="Media Extra Info:">
+                            <group>
+                                <field name="media_height"/>
+                                <field name="media_width"/>
+                                <field name="media_frames"/>
+                                <field name="media_duration"/>
+                            </group>
+                        </page>
+                        <page string="Note:">
+                            <group>
+                                <field name="media_annotaion"/>
+                                <!--                                <field name="media_width"/>-->
+                                <!--                                <field name="media_frames"/>-->
+                                <!--                                <field name="media_duration"/>-->
+                            </group>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+
+    <record model="ir.ui.view" id="media_type_form_view">
+        <field name="name">media.type.form</field>
+        <field name="model">media.type</field>
+        <field name="arch" type="xml">
+            <form string="Media Type form">
+                <sheet>
+                    <group>
+                        <field name="display"/>
+                        <field name="code"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record model="ir.actions.act_window" id="action_media_type">
+        <field name="name">Media Type</field>
+        <field name="res_model">media.type</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">Create
+            </p>
+        </field>
+    </record>
+
+    <menuitem id="FHIR_root" name="FHIR"/>
+    <menuitem id="FHIR_media_type" name="Media Type" parent="FHIR_root"
+              action="action_media_type"/>
+    <delete model="ir.ui.menu" id="FHIR_media_type"></delete>
+
+
+    <record model="ir.ui.view" id="media_modality_form_view">
+        <field name="name">media.modality.form</field>
+        <field name="model">media.modality</field>
+        <field name="arch" type="xml">
+            <form string="Media Modality form">
+                <sheet>
+                    <group>
+                        <field name="display"/>
+                        <field name="code"/>
+                        <field name="defination"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record model="ir.actions.act_window" id="action_media_modality">
+        <field name="name">Media Modality</field>
+        <field name="res_model">media.modality</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">Create
+            </p>
+        </field>
+    </record>
+
+    <menuitem id="FHIR_root" name="FHIR"/>
+    <menuitem id="FHIR_media_modality" name="Media Modality" parent="FHIR_root"
+              action="action_media_modality"/>
+    <delete model="ir.ui.menu" id="FHIR_media_modality"></delete>
+
+
+    <record model="ir.ui.view" id="media_reason_code_form_view">
+        <field name="name">media.reason.code.form</field>
+        <field name="model">media.reason.code</field>
+        <field name="arch" type="xml">
+            <form string="Media Reason Code form">
+                <sheet>
+                    <group>
+                        <field name="display"/>
+                        <field name="code"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record model="ir.actions.act_window" id="action_media_reason_code">
+        <field name="name">Media Reason Code</field>
+        <field name="res_model">media.reason.code</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">Create
+            </p>
+        </field>
+    </record>
+
+    <menuitem id="FHIR_root" name="FHIR"/>
+    <menuitem id="FHIR_media_reason_code" name="Media Reason Code" parent="FHIR_root"
+              action="action_media_reason_code"/>
+    <delete model="ir.ui.menu" id="FHIR_media_reason_code"></delete>
+
+
+    <record model="ir.ui.view" id="media_body_site_form_view">
+        <field name="name">media.body.site.form</field>
+        <field name="model">media.body.site</field>
+        <field name="arch" type="xml">
+            <form string="Media Body Site form">
+                <sheet>
+                    <group>
+                        <field name="display"/>
+                        <field name="code"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record model="ir.actions.act_window" id="action_media_body_site">
+        <field name="name">Media Body Site</field>
+        <field name="res_model">media.body.site</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">Create
+            </p>
+        </field>
+    </record>
+
+    <menuitem id="FHIR_root" name="FHIR"/>
+    <menuitem id="FHIR_media_body_site" name="Media Body Site" parent="FHIR_root"
+              action="action_media_body_site"/>
+    <delete model="ir.ui.menu" id="FHIR_media_body_site"></delete>
+
+
+    <record model="ir.actions.act_window" id="action_media">
+        <field name="name">Media</field>
+        <field name="res_model">media</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">Create the media
+            </p>
+        </field>
+    </record>
+
+    <menuitem id="FHIR_root" name="FHIR"/>
+    <menuitem id="FHIR_media" name="Media" parent="FHIR_root"
+              action="action_media"/>
+    <delete model="ir.ui.menu" id="FHIR_media"></delete>
+
+    <!--end_FOR_CODE_media    -->
+
+
+</odoo>
+
+
+
+

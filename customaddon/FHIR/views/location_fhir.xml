@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+
+    <record model="ir.ui.view" id="location_tree_view">
+        <field name="name">location.tree.view</field>
+        <field name="model">location.fhir</field>
+        <field name="priority" eval="16"/>
+        <field name="arch" type="xml">
+            <tree string="Location Tree view">
+                <field name="location_status"/>
+            </tree>
+        </field>
+    </record>
+
+    <record model="ir.ui.view" id="location_form_view">
+        <field name="name">location.form</field>
+        <field name="model">location.fhir</field>
+        <field name="arch" type="xml">
+            <form string="Location Form">
+                <sheet>
+                    <div class="oe_title">
+                        <h4>
+                            <separator string="Name Of Location : "/>
+                            <field name="location_name"/>
+                        </h4>
+                    </div>
+
+                    <group>
+                        <group>
+                            <field name="location_status"/>
+                            <field name="location_alias"/>
+                            <field name="location_description"/>
+                            <field name="location_mode"/>
+                            <field name="location_availabilityExceptions"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Hours Of Operation">
+                            <group>
+                                <field name="location_hoursOfOperation_daysOfWeek" widget="many2many_tags"/>
+                                <field name="Location_hoursOfOperation_allDay" widget="boolean_toggle"/>
+                                <field name="location_hoursOfOperation_openingTime" widget="float_time"
+                                       placeholder="Enter the time in 24HR format"/>
+                                <field name="location_hoursOfOperation_closingTime" widget="float_time"
+                                       placeholder="Enter the time in 24HR format"/>
+                            </group>
+                        </page>
+
+                        <page string="Location Position">
+                            <group>
+                                <field name="location_position_longitude"/>
+                                <field name="location_position_latitude"/>
+                                <field name="location_position_altitude"/>
+<!--                                <field name="location_hoursOfOperation_closingTime" widget="float_time"-->
+<!--                                       placeholder="Enter the time in 24HR format"/>-->
+                            </group>
+                        </page>
+                         <page string="Extra Info:">
+                            <group>
+                                <field name="location_telecom"/>
+                                <field name="location_address"/>
+<!--                                <field name="location_position_altitude"/>-->
+<!--                                <field name="location_hoursOfOperation_closingTime" widget="float_time"-->
+<!--                                       placeholder="Enter the time in 24HR format"/>-->
+                            </group>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+
+    <record model="ir.actions.act_window" id="action_location">
+        <field name="name">Location</field>
+        <field name="res_model">location.fhir</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">Create
+            </p>
+        </field>
+    </record>
+    <menuitem id="FHIR_root" name="FHIR"/>
+    <menuitem id="FHIR_location" name="Location" parent="FHIR_root" action="action_location"/>
+</odoo>

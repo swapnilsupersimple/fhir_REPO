@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+
+    <record model="ir.ui.view" id="task_tree_view">
+        <field name="name">task.tree.view</field>
+        <field name="model">task</field>
+        <field name="priority" eval="16"/>
+        <field name="arch" type="xml">
+            <tree string="Task Tree view">
+                <field name="task_status"/>
+            </tree>
+        </field>
+    </record>
+
+    <record model="ir.ui.view" id="task_form_view">
+        <field name="name">task.form</field>
+        <field name="model">task</field>
+        <field name="arch" type="xml">
+            <form string="Task Form">
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="task_status"/>
+                            <!--                            <field name="is_practitioner_active" widget="boolean_toggle"/>-->
+                            <field name="task_intent"/>
+                            <field name="task_priority"/>
+                            <field name="task_code"/>
+                            <field name="task_description"/>
+                            <field name="task_authoredOn"/>
+                            <field name="Task_lastModified"/>
+                            <field name="task_performer_type"/>
+                            <field name="task_requester"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Task execution period:">
+                            <group>
+                                <field name="task_execution_start"/>
+                                <field name="task_execution_end"/>
+                            </group>
+                        </page>
+                        <page string="Task Restriction:">
+                            <group>
+                                <field name="task_restriction_repetitions"/>
+                                <field name="task_restriction_start_time"/>
+                                <field name="task_restriction_end_time"/>
+                                <field name="task_restriction_recipient"/>
+                            </group>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+
+    <record model="ir.actions.act_window" id="action_task">
+        <field name="name">Task</field>
+        <field name="res_model">task</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">Create
+            </p>
+        </field>
+    </record>
+    <menuitem id="FHIR_root" name="FHIR"/>
+    <menuitem id="FHIR_task" name="Task" parent="FHIR_root" action="action_task"/>
+
+
+    <record model="ir.ui.view" id="task_code_form_view">
+        <field name="name">task.code.form</field>
+        <field name="model">task.code</field>
+        <field name="arch" type="xml">
+            <form string="Task Code form">
+                <sheet>
+                    <group>
+                        <field name="display"/>
+                        <field name="code"/>
+                        <field name="definition"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record model="ir.actions.act_window" id="action_task_code">
+        <field name="name">Task Code</field>
+        <field name="res_model">task.code</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">Create
+            </p>
+        </field>
+    </record>
+
+    <menuitem id="FHIR_root" name="FHIR"/>
+    <menuitem id="FHIR_task_code"
+              name="Task Code" parent="FHIR_root"
+              action="action_task_code"/>
+    <delete model="ir.ui.menu" id="FHIR_task_code"></delete>
+
+    <record model="ir.ui.view" id="task_performer_type_form_view">
+        <field name="name">task.performer.type.form</field>
+        <field name="model">task.performer.type</field>
+        <field name="arch" type="xml">
+            <form string="Task Performer Type form">
+                <sheet>
+                    <group>
+                        <field name="display"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record model="ir.actions.act_window" id="action_task_performer_type">
+        <field name="name">Task Performer Type</field>
+        <field name="res_model">task.performer.type</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">Create
+            </p>
+        </field>
+    </record>
+
+    <menuitem id="FHIR_root" name="FHIR"/>
+    <menuitem id="FHIR_task_performer_type"
+              name="Task Performer Type" parent="FHIR_root"
+              action="action_task_performer_type"/>
+    <delete model="ir.ui.menu" id="FHIR_task_performer_type"></delete>
+
+
+</odoo>
+
+

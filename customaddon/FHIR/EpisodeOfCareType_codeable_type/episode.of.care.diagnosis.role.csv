@@ -1,0 +1,8 @@
+id,code,display
+1,"AD","Admission diagnosis"
+2,"DD","Discharge diagnosis"
+3,"CC","Chief complaint"
+4,"CM","Comorbidity diagnosis"
+5,"pre-op","pre-op diagnosis"
+6,"post-op","post-op diagnosis"
+7,"billing","Billing"

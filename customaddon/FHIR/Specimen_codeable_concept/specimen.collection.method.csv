@@ -1,0 +1,11 @@
+id,code,display
+1,"129316008","Aspiration - action"
+2,"129314006","Biopsy - action"
+3,"129300006","Puncture - action"
+4,"129304002","Excision - action"
+5,"129323009","Scraping - action"
+6,"73416001","Urine specimen collection, clean catch"
+7,"225113003","Timed urine collection"
+8,"70777001","Urine specimen collection, catheterized"
+9,"386089008","Collection of coughed sputum"
+10,"278450005","Finger-prick sampling"

@@ -1,0 +1,377 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+
+    <record model="ir.ui.view" id="encounter_tree_view">
+        <field name="name">encounter.tree.view</field>
+        <field name="model">encounter</field>
+        <field name="priority" eval="16"/>
+        <field name="arch" type="xml">
+            <tree string="Encounter Tree view">
+                <field name="encounter_status"/>
+            </tree>
+        </field>
+    </record>
+
+    <record model="ir.ui.view" id="encounter_form_view">
+        <field name="name">encounter.form</field>
+        <field name="model">encounter</field>
+        <field name="arch" type="xml">
+            <form string="Encounter Form">
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="encounter_status"/>
+                            <!--                            <field name="is_practitioner_active" widget="boolean_toggle"/>-->
+                            <field name="encounter_type" widget="many2many_tags"/>
+                            <field name="encounter__service_type"/>
+                            <field name="encounter_priority"/>
+                            <field name="encounter_subject"/>
+                            <field name="encounter_service_provider"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Participant:">
+                            <group>
+                                <!--                                <field name="appointment_display_text"/>-->
+                                <field name="encounter_participant_type"/>
+                                <field name="encounter_requestedPeriod_start"/>
+                                <field name="encounter_requestedPeriod_end"/>
+                            </group>
+                        </page>
+
+                        <page string="Hospitalization:">
+                            <group>
+                                <field name="Encounter_Hospitalization_Diet_Preference" widget="many2many_tags"/>
+                                <field name="Encounter_Hospitalization_Admit_Source" widget="many2many_tags"/>
+                                <field name="encounter_hospitalization_special_courtesy" widget="many2many_tags"/>
+                                <field name="encounter_Hospitalization_special_arrangement" widget="many2many_tags"/>
+                                <field name="encounter_hospitalization_discharge_disposition" widget="many2many_tags"/>
+                                <field name="encounter_hospitalization_destination"
+                                       placeholder="Location/organization to which the patient is discharged."/>
+                            </group>
+                        </page>
+
+                        <page string="Location:">
+                            <group>
+                                <field name="encounter_location_location"/>
+                                <field name="encounter_location_status"/>
+                                <field name="encounter_location_physical_type"/>
+                                <field name="encounter_location_period_start"/>
+                                <field name="encounter_location_period_end"/>
+<!--                                <field name="encounter_hospitalization_destination"-->
+<!--                                       placeholder="Location/organization to which the patient is discharged."/>-->
+                            </group>
+                        </page>
+
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+
+    <record model="ir.actions.act_window" id="action_encounter">
+        <field name="name">Encounter</field>
+        <field name="res_model">encounter</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">Create
+            </p>
+        </field>
+    </record>
+    <menuitem id="FHIR_root" name="FHIR"/>
+    <menuitem id="FHIR_encounter" name="Encounter" parent="FHIR_root" action="action_encounter"/>
+
+    <record model="ir.ui.view" id="encounter_type_form_view">
+        <field name="name">encounter.type.form</field>
+        <field name="model">encounter.type</field>
+        <field name="arch" type="xml">
+            <form string="Encounter Type form">
+                <sheet>
+                    <group>
+                        <field name="display"/>
+                        <field name="code"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record model="ir.actions.act_window" id="action_encounter_type">
+        <field name="name">Encounter Type</field>
+        <field name="res_model">encounter.type</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">Create
+            </p>
+        </field>
+    </record>
+
+    <menuitem id="FHIR_root" name="FHIR"/>
+    <menuitem id="FHIR_encounter_type" name="Encounter type" parent="FHIR_root"
+              action="action_encounter_type"/>
+    <delete model="ir.ui.menu" id="FHIR_encounter_type"></delete>
+
+    <record model="ir.ui.view" id="encounter_service_type_form_view">
+        <field name="name">encounter.service.type.form</field>
+        <field name="model">encounter.service.type</field>
+        <field name="arch" type="xml">
+            <form string="Encounter Service Type form">
+                <sheet>
+                    <group>
+                        <field name="display"/>
+                        <field name="code"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record model="ir.actions.act_window" id="action_encounter_service_type">
+        <field name="name">Encounter Service Type</field>
+        <field name="res_model">encounter.service.type</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">Create
+            </p>
+        </field>
+    </record>
+
+    <menuitem id="FHIR_root" name="FHIR"/>
+    <menuitem id="FHIR_encounter_service_type" name="Encounter Service type" parent="FHIR_root"
+              action="action_encounter_service_type"/>
+    <delete model="ir.ui.menu" id="FHIR_encounter_service_type"></delete>
+
+
+    <record model="ir.ui.view" id="encounter_priority_form_view">
+        <field name="name">encounter.priority.form</field>
+        <field name="model">encounter.priority</field>
+        <field name="arch" type="xml">
+            <form string="Encounter Service Type form">
+                <sheet>
+                    <group>
+                        <field name="display"/>
+                        <field name="code"/>
+                        <field name="defination"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record model="ir.actions.act_window" id="action_encounter_priority">
+        <field name="name">Encounter Priority</field>
+        <field name="res_model">encounter.priority</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">Create
+            </p>
+        </field>
+    </record>
+
+    <menuitem id="FHIR_root" name="FHIR"/>
+    <menuitem id="FHIR_encounter_priority" name="Encounter Priority" parent="FHIR_root"
+              action="action_encounter_priority"/>
+    <delete model="ir.ui.menu" id="FHIR_encounter_priority"></delete>
+
+    <record model="ir.ui.view" id="encounter_participant_type_form_view">
+        <field name="name">encounter.participant.type .form</field>
+        <field name="model">encounter.participant.type</field>
+        <field name="arch" type="xml">
+            <form string="Encounter Service Type form">
+                <sheet>
+                    <group>
+                        <field name="display"/>
+                        <field name="code"/>
+                        <field name="defination"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record model="ir.actions.act_window" id="action_encounter_participant_type">
+        <field name="name">Encounter participant type</field>
+        <field name="res_model">encounter.participant.type</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">Create
+            </p>
+        </field>
+    </record>
+
+    <menuitem id="FHIR_root" name="FHIR"/>
+    <menuitem id="FHIR_encounter_participant_type" name="Encounter participant type" parent="FHIR_root"
+              action="action_encounter_participant_type"/>
+    <delete model="ir.ui.menu" id="FHIR_encounter_participant_type"></delete>
+
+    <record model="ir.ui.view" id="encounter_hospitalization_admit_source_form_view">
+        <field name="name">encounter.hospitalization.admit.source.form</field>
+        <field name="model">encounter.hospitalization.admit.source</field>
+        <field name="arch" type="xml">
+            <form string="Encounter Hospitalization Admit Source form">
+                <sheet>
+                    <group>
+                        <field name="display"/>
+                        <field name="code"/>
+                        <field name="defination"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record model="ir.actions.act_window" id="action_encounter_hospitalization_admit_source">
+        <field name="name">Encounter Hospitalization Admit Source</field>
+        <field name="res_model">encounter.hospitalization.admit.source</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">Create
+            </p>
+        </field>
+    </record>
+
+    <menuitem id="FHIR_root" name="FHIR"/>
+    <menuitem id="FHIR_encounter_hospitalization_admit_source" name="Encounter Hospitalization Admit Source"
+              parent="FHIR_root"
+              action="action_encounter_hospitalization_admit_source"/>
+    <delete model="ir.ui.menu" id="FHIR_encounter_hospitalization_admit_source"></delete>
+
+
+    <record model="ir.ui.view" id="Encounter_hospitalization_diet_preference_form_view">
+        <field name="name">Encounter.hospitalization.diet.preference.form</field>
+        <field name="model">encounter.hospitalization.diet.preference</field>
+        <field name="arch" type="xml">
+            <form string="Encounter Hospitalization Diet Preference form">
+                <sheet>
+                    <group>
+                        <field name="display"/>
+                        <field name="code"/>
+                        <field name="defination"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record model="ir.actions.act_window" id="action_Encounter_hospitalization_diet_preference">
+        <field name="name">Encounter Hospitalization Diet Preference</field>
+        <field name="res_model">encounter.hospitalization.diet.preference</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">Create
+            </p>
+        </field>
+    </record>
+
+    <menuitem id="FHIR_root" name="FHIR"/>
+    <menuitem id="FHIR_Encounter_hospitalization_diet_preference" name="Encounter Hospitalization Diet Preference"
+              parent="FHIR_root"
+              action="action_Encounter_hospitalization_diet_preference"/>
+    <delete model="ir.ui.menu" id="FHIR_Encounter_hospitalization_diet_preference"></delete>
+
+
+    <record model="ir.ui.view" id="encounter_hospitalization_special_arrangement_form_view">
+        <field name="name">encounter.hospitalization.special.arrangement.form</field>
+        <field name="model">encounter.hospitalization.special.arrangement</field>
+        <field name="arch" type="xml">
+            <form string="Encounter Hospitalization Special Arrangement form">
+                <sheet>
+                    <group>
+                        <field name="display"/>
+                        <field name="code"/>
+                        <field name="defination"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record model="ir.actions.act_window" id="action_encounter_hospitalization_special_arrangement">
+        <field name="name">Encounter Hospitalization Special Arrangement</field>
+        <field name="res_model">encounter.hospitalization.special.arrangement</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">Create
+            </p>
+        </field>
+    </record>
+
+    <menuitem id="FHIR_root" name="FHIR"/>
+    <menuitem id="FHIR_encounter_hospitalization_special_arrangement"
+              name="Encounter Hospitalization Special Arrangement" parent="FHIR_root"
+              action="action_encounter_hospitalization_special_arrangement"/>
+    <delete model="ir.ui.menu" id="FHIR_encounter_hospitalization_special_arrangement"></delete>
+
+
+    <record model="ir.ui.view" id="encounter_hospitalization_discharge_disposition_form_view">
+        <field name="name">encounter.hospitalization.discharge.disposition.form</field>
+        <field name="model">encounter.hospitalization.discharge.disposition</field>
+        <field name="arch" type="xml">
+            <form string="Encounter Hospitalization Discharge Disposition form">
+                <sheet>
+                    <group>
+                        <field name="display"/>
+                        <field name="code"/>
+                        <field name="defination"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record model="ir.actions.act_window" id="action_encounter_hospitalization_discharge_disposition">
+        <field name="name">Encounter Hospitalization Discharge Disposition</field>
+        <field name="res_model">encounter.hospitalization.discharge.disposition</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">Create
+            </p>
+        </field>
+    </record>
+
+    <menuitem id="FHIR_root" name="FHIR"/>
+    <menuitem id="FHIR_encounter_hospitalization_discharge_disposition"
+              name="Encounter Hospitalization Special Arrangement" parent="FHIR_root"
+              action="action_encounter_hospitalization_discharge_disposition"/>
+    <delete model="ir.ui.menu" id="FHIR_encounter_hospitalization_discharge_disposition"></delete>
+
+
+
+    <record model="ir.ui.view" id="encounter_location_physical_type_form_view">
+        <field name="name">encounter.location.physical.type.form</field>
+        <field name="model">encounter.location.physical.type</field>
+        <field name="arch" type="xml">
+            <form string="Encounter Location Physical Type form">
+                <sheet>
+                    <group>
+                        <field name="display"/>
+                        <field name="code"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record model="ir.actions.act_window" id="action_encounter_location_physical_type">
+        <field name="name">Encounter Location Physical Type</field>
+        <field name="res_model">encounter.location.physical.type</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">Create
+            </p>
+        </field>
+    </record>
+
+    <menuitem id="FHIR_root" name="FHIR"/>
+    <menuitem id="FHIR_encounter_location_physical_type"
+              name="Encounter Location Physical Type" parent="FHIR_root"
+              action="action_encounter_location_physical_type"/>
+    <delete model="ir.ui.menu" id="FHIR_encounter_location_physical_type"></delete>
+
+</odoo>
+
+
+
+
+

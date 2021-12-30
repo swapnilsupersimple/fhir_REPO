@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+
+      <record model="ir.ui.view" id="endpoint_tree_view">
+        <field name="name">endpoint.tree.view</field>
+        <field name="model">endpoint</field>
+        <field name="priority" eval="16"/>
+        <field name="arch" type="xml">
+            <tree string="Endpoint Tree view">
+                <field name="endpoint_status"/>
+            </tree>
+        </field>
+    </record>
+
+    <record model="ir.ui.view" id="endpoint_form_view">
+        <field name="name">endpoint.form</field>
+        <field name="model">endpoint</field>
+        <field name="arch" type="xml">
+            <form string="Practitioner Form">
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="endpoint_status"/>
+<!--                            <field name="is_practitioner_active" widget="boolean_toggle"/>-->
+                            <field name="endpoint_name" />
+                            <field name="endpoint_managing_organization"/>
+                            <field name="endpoint_period_start"/>
+                            <field name="endpoint_period_end"/>
+                            <field name="endpoint_payload_type" widget="many2many_tags"/>
+                            <field name="endpoint_header"/>
+                            <field name="endpoint_address" widget="url"/>
+                            <field name="endpoint_contact"/>
+                        </group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+
+
+    <record model="ir.actions.act_window" id="action_endpoint">
+        <field name="name">Endpoint</field>
+        <field name="res_model">endpoint</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">Create
+            </p>
+        </field>
+    </record>
+    <menuitem id="FHIR_root" name="FHIR"/>
+    <menuitem id="FHIR_endpoint" name="Endpoint" parent="FHIR_root" action="action_endpoint"/>
+
+
+
+    <record model="ir.ui.view" id="endpoint_payload_type_form_view">
+        <field name="name">endpoint.payload.type.form</field>
+        <field name="model">endpoint.payload.type</field>
+        <field name="arch" type="xml">
+            <form string="Endpoint Payload Type Type form">
+                <sheet>
+                    <group>
+                        <field name="display"/>
+                        <field name="code"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record model="ir.actions.act_window" id="action_endpoint_payload_type">
+        <field name="name">Endpoint Payload Type</field>
+        <field name="res_model">endpoint.payload.type</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">Create
+            </p>
+        </field>
+    </record>
+
+    <menuitem id="FHIR_root" name="FHIR"/>
+    <menuitem id="FHIR_endpoint_payload_type"
+              name="Endpoint Payload Type" parent="FHIR_root"
+              action="action_endpoint_payload_type"/>
+    <delete model="ir.ui.menu" id="FHIR_endpoint_payload_type"></delete>
+</odoo>
+
+

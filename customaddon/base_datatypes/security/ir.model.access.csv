@@ -1,0 +1,13 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_human_name,human.name,model_human_name,,1,1,1,1
+access_suffix,hc.human.name.suffix,model_human_name_suffix,,1,1,1,1
+access_given,given,model_human_name_given,,1,1,1,1
+access_contact_point,contact.point,model_contact_point,,1,1,1,1
+access_address_fhir,address.fhir,model_address_fhir,,1,1,1,1
+access_address,address,model_address,,1,1,1,1
+access_period,period,model_period_fhir,,1,1,1,1
+access_annotation,annotation,model_annotation,,1,1,1,1
+access_prefix,hc.human.name.suffix,model_human_name_prefix,,1,1,1,1
+access_identifier,identifier,model_identifier,,1,1,1,1
+
+

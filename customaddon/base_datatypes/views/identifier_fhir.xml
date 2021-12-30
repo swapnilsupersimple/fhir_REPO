@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+
+    <record model="ir.ui.view" id="identifier_tree_view">
+        <field name="name">identifier.tree.view</field>
+        <field name="model">identifier</field>
+        <field name="priority" eval="16"/>
+        <field name="arch" type="xml">
+            <tree string="Identifier Tree view">
+                <field name="use"/>
+                <field name="value"/>
+                <field name="start"/>
+                <field name="end"/>
+                <field name="assigner"/>
+            </tree>
+        </field>
+    </record>
+
+    <record model="ir.ui.view" id="identifier_form_view">
+        <field name="name">identifier.form</field>
+        <field name="model">identifier</field>
+        <field name="arch" type="xml">
+            <form string="Identifier Form View">
+                <sheet>
+                    <group>
+                        <field name="use"/>
+                        <field name="value"/>
+                        <field name="start"/>
+                        <field name="end"/>
+                        <field name="assigner"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record model="ir.actions.act_window" id="action_identifier">
+        <field name="name">Identifier</field>
+        <field name="res_model">identifier</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">Create
+            </p>
+        </field>
+    </record>
+
+    <menuitem id="FHIR_identifier" name="Identifier" parent="FHIR_base_datatype" action="action_identifier"/>
+</odoo>

@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+
+      <record model="ir.ui.view" id="medication_request_tree_view">
+        <field name="name">medication.request.tree.view</field>
+        <field name="model">medication.request</field>
+        <field name="priority" eval="16"/>
+        <field name="arch" type="xml">
+            <tree string="Medication Request Tree view">
+                <field name="medication_Request_status"/>
+            </tree>
+        </field>
+    </record>
+
+    <record model="ir.ui.view" id="medication_request_form_view">
+        <field name="name">medication.request.form</field>
+        <field name="model">medication.request</field>
+        <field name="arch" type="xml">
+            <form string="Medication Request Form">
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="medication_Request_status"/>
+                            <field name="medicationRequest_doNotPerform" widget="boolean_toggle"/>
+                            <field name="medicationRequest_intent" />
+                            <field name="medicationRequest_authoredOn"/>
+                            <field name="MedicationRequest_requester"/>
+                            <field name="medicationRequest_performer"/>
+                        </group>
+                    </group>
+                     <notebook>
+                        <page string="Reported">
+                            <group>
+                                <field name="medicationRequest_reported" widget="boolean_toggle"/>
+                                <field name="medicationRequest_reportedReference"/>
+                            </group>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+
+
+    <record model="ir.actions.act_window" id="action_medication_request">
+        <field name="name">Medication Request</field>
+        <field name="res_model">medication.request</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">Create
+            </p>
+        </field>
+    </record>
+    <menuitem id="FHIR_root" name="FHIR"/>
+    <menuitem id="FHIR_medication_request" name="Medication Request" parent="FHIR_root" action="action_medication_request"/>
+</odoo>
+
+
+<!--medication.request-->
+
+<!--medication_request-->
+
+<!--Medication Request-->

@@ -1,0 +1,189 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+
+    <record model="ir.ui.view" id="human_name_form_view">
+        <field name="name">human.name.form</field>
+        <field name="model">human.name</field>
+        <field name="arch" type="xml">
+            <form string="Human Name Form">
+                <sheet>
+                    <group>
+                        <field name="use"/>
+                        <field name="prefix"/>
+                        <field name="text"/>
+                        <field name="given"/>
+                        <field name="family"/>
+                        <field name="suffix"/>
+                        <field name="start"/>
+                        <field name="end"/>
+                        <!--                        <field name="result"/>-->
+<!--                        <button name="get_data" string="Get data" type="object" class="btn-primary"/>-->
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+
+    <record model="ir.ui.view" id="human_name_tree_view">
+        <field name="name">human.name.tree</field>
+        <field name="model">human.name</field>
+        <field name="priority" eval="16"/>
+        <field name="arch" type="xml">
+            <tree string="Human Name Tree">
+                <field name="use"/>
+                <field name="prefix" widget="many2many_tags"/>
+                <field name="text"/>
+                <field name="given" widget="many2many_tags"/>
+                <field name="family" attrs="{'invisible':[('family', '=', False)]}"/>
+                <field name="suffix" widget="many2many_tags"/>
+                <field name="start"/>
+                <field name="end"/>
+            </tree>
+        </field>
+    </record>
+
+
+    <record model="ir.actions.act_window" id="action_human_name">
+        <field name="name">Human Name</field>
+        <field name="res_model">human.name</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">Create the Human Name
+            </p>
+        </field>
+    </record>
+
+    <menuitem id="FHIR_base_datatype" name="Base Datatype"/>
+    <menuitem id="FHIR_human_name" name="Human Name" parent="FHIR_base_datatype" action="action_human_name"/>
+
+
+    <record model="ir.ui.view" id="human_name_given_tree_view">
+        <field name="name">human.name.given.tree</field>
+        <field name="model">human.name.given</field>
+        <field name="priority" eval="16"/>
+        <field name="arch" type="xml">
+            <tree string="Human Name Given view">
+                <field name="given_name_text"/>
+                <!--                 <field name="given_name_id"/>-->
+            </tree>
+        </field>
+    </record>
+
+    <record model="ir.ui.view" id="human_name_given_form_view">
+        <field name="name">human.name.form.given</field>
+        <field name="model">human.name.given</field>
+        <field name="arch" type="xml">
+            <form string="Human Name Given form">
+                <sheet>
+                    <group>
+                        <field name="given_name_text"/>
+                        <!--                        <field name="given_name_id"/>-->
+                        <!--                                                <button name="get_data" string="Get data" type="object" class="btn-primary"/>-->
+
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record model="ir.actions.act_window" id="action_human_name_given">
+        <field name="name">Human Name Given</field>
+        <field name="res_model">human.name.given</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">Create the Given Name
+            </p>
+        </field>
+    </record>
+
+    <menuitem id="FHIR_base_datatype" name="Base Datatype"/>
+    <menuitem id="FHIR_human_name_given" name="Given" parent="FHIR_base_datatype" action="action_human_name_given"/>
+    <delete model="ir.ui.menu" id="FHIR_human_name_given"></delete>
+
+
+    <record model="ir.ui.view" id="human_name_suffix_tree_view">
+        <field name="name">human.name.suffix.tree</field>
+        <field name="model">human.name.suffix</field>
+        <field name="priority" eval="16"/>
+        <field name="arch" type="xml">
+            <tree string="Human Name Given view">
+                <field name="suffix_name"/>
+                <field name="suffix_title"/>
+
+            </tree>
+        </field>
+    </record>
+
+    <record model="ir.ui.view" id="human_name_suffix_form_view">
+        <field name="name">human.name.form.suffix</field>
+        <field name="model">human.name.suffix</field>
+        <field name="arch" type="xml">
+            <form string="Human Name Suffix form">
+                <sheet>
+                    <group>
+                        <field name="suffix_name"/>
+                        <field name="suffix_title"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record model="ir.actions.act_window" id="action_human_name_suffix">
+        <field name="name">Human Name Suffix</field>
+        <field name="res_model">human.name.suffix</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">Create the Suffix Name
+            </p>
+        </field>
+    </record>
+
+    <menuitem id="FHIR_base_datatype" name="Base Datatype"/>
+    <menuitem id="FHIR_human_name_suffix" name="Suffix" parent="FHIR_base_datatype" action="action_human_name_suffix"/>
+    <delete model="ir.ui.menu" id="FHIR_human_name_suffix"></delete>
+
+    <record model="ir.ui.view" id="human_name_prefix_tree_view">
+        <field name="name">human.name.prefix.tree</field>
+        <field name="model">human.name.prefix</field>
+        <field name="priority" eval="16"/>
+        <field name="arch" type="xml">
+            <tree string="Human Name prefix view">
+                <field name="prefix_name"/>
+                <field name="prefix_title"/>
+
+            </tree>
+        </field>
+    </record>
+
+    <record model="ir.ui.view" id="human_name_prefix_form_view">
+        <field name="name">human.name.form.prefix</field>
+        <field name="model">human.name.prefix</field>
+        <field name="arch" type="xml">
+            <form string="Human Name Prefix form">
+                <sheet>
+                    <group>
+                        <field name="prefix_name"/>
+                        <field name="prefix_title"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record model="ir.actions.act_window" id="action_human_name_prefix">
+        <field name="name">Human Name Prefix</field>
+        <field name="res_model">human.name.prefix</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">Create the Prefix Name
+            </p>
+        </field>
+    </record>
+
+    <menuitem id="FHIR_base_datatype" name="Base Datatype"/>
+    <menuitem id="FHIR_human_name_prefix" name="Prefix" parent="FHIR_base_datatype" action="action_human_name_prefix"/>
+    <delete model="ir.ui.menu" id="FHIR_human_name_prefix"></delete>
+
+</odoo>
