@@ -11,31 +11,37 @@ class DiagnosticReport(http.Controller):
 
         if request.jsonrequest:
 
-
-
             values_for_diagnostic_report = {
                 "status": rec["diagnosticReport_status"],
 
                 "category": [],
 
-                # "code":rec["diagnosticReport_code"],
+                "code": [],
 
                 "effectiveDateTime": rec["diagnosticReport_effectiveDateTime"],
 
                 "issued": rec["diagnosticReport_issued"],
-                "specimen": [],
+                # "specimen": [],
 
                 "conclusionCode": [],
 
                 # "conclusion": rec["diagnosticReport_conclusion"],
-                "imagingStudy":[],
+                # "imagingStudy":[],
 
-                "result":[],
+                # "result":[],
                 "presentedForm": []
 
             }
+            for inp_for_code in rec["code"]["coding"]:
+
+                for key in values_for_diagnostic_report:
+
+                    if key == "code":
+                        values_for_diagnostic_report["code"].append((0, 0, inp_for_code
+                                                                     ))
 
             for inp_conclusionCode in rec["display_name_for_diagnosticReport_conclusionCode"]:
+
                 for key in values_for_diagnostic_report:
 
                     if key == "conclusionCode":
@@ -56,33 +62,31 @@ class DiagnosticReport(http.Controller):
                         values_for_diagnostic_report["presentedForm"].append((0, 0, inp_for_presented_form
                                                                               ))
 
-            for inp_for_imagingStudy in rec["imagingStudy"]:
+            # for inp_for_imagingStudy in rec["imagingStudy"]:
+            #
+            #     for key in values_for_diagnostic_report:
+            #
+            #         if key == "imagingStudy":
+            #             values_for_diagnostic_report["imagingStudy"].append((0, 0, inp_for_imagingStudy
+            #                                                                   ))
+            #
+            # for inp_for_result in rec["result"]:
+            #
+            #     for key in values_for_diagnostic_report:
+            #
+            #         if key == "result":
+            #             values_for_diagnostic_report["result"].append((0, 0, inp_for_result
+            #                                                                  ))
+            # for inp_for_specimen in rec["specimen"]:
+            #
+            #     for key in values_for_diagnostic_report:
+            #
+            #         if key == "specimen":
+            #             values_for_diagnostic_report["specimen"].append((0, 0, inp_for_specimen))
 
-                for key in values_for_diagnostic_report:
-
-                    if key == "imagingStudy":
-                        values_for_diagnostic_report["imagingStudy"].append((0, 0, inp_for_imagingStudy
-                                                                              ))
-
-            for inp_for_result in rec["result"]:
-
-                for key in values_for_diagnostic_report:
-
-                    if key == "result":
-                        values_for_diagnostic_report["result"].append((0, 0, inp_for_result
-                                                                             ))
-            for inp_for_specimen in rec["specimen"]:
-
-                for key in values_for_diagnostic_report:
-
-                    if key == "specimen":
-                        values_for_diagnostic_report["specimen"].append((0, 0, inp_for_specimen
-                                                                       ))
         print("this is new change")
         new_diagnostic_report = request.env['diagnostic.report'].sudo().create(values_for_diagnostic_report)
 
         args = {'success': True, 'message': 'Success', 'id': new_diagnostic_report.id}
 
         return args
-
-

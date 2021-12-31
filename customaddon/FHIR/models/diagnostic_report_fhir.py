@@ -18,7 +18,10 @@ class DiagnosticReport(models.Model):
 
     category = fields.One2many("diagnostic.report.category", "dagnostic_Report_Category_id", string="Category")
 
-    code = fields.Many2one(comodel_name="diagnostic.report.code", string="Code")
+    # code = fields.Many2one(comodel_name="diagnostic.report.code", string="Code")
+
+    code = fields.One2many("diagnostic.report.code", "diagnostic_Report_code_id",string="Code")
+
 
     subject = fields.Reference([('group', 'Group '),
                                 ('patient', 'Patient Name'),
@@ -90,6 +93,8 @@ class DiagnosticReportCode(models.Model):
 
     display = fields.Char("Display")
     code = fields.Char("Code")
+    diagnostic_Report_code_id = fields.Many2one("diagnostic.report", string="DiagnosticReportCode")
+
 
 
 class DiagnosticReportConclusionCode(models.Model):

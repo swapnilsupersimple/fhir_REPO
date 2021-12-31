@@ -42,12 +42,19 @@ class DiagnosticReport(http.Controller):
                     }
                 ],
 
-                "code": [
+                # "code": [
+                #     {
+                #         "coding": rec.code.display
+                #
+                #     }
+                # ],
+
+                "code":
                     {
-                        "coding": rec.code.display
+                        "coding": ""
 
                     }
-                ],
+                ,
 
                 "effectiveDateTime": rec.effectiveDateTime,
 
@@ -103,10 +110,30 @@ class DiagnosticReport(http.Controller):
                 vals["conclusionCode"][0].update({"coding": list_for_conclusionCode})
 
 
+         #code_for_CODEFIELD
+
+        list_for_code = [dict(zip(["display"], [rec.display,])) for rec in
+                                   diagnostic_Report_rec.code]
+
+        print("list_for_code-->",list_for_code)
+
+        for key in vals["code"]:
+
+            if key == "coding":
+                vals["code"].update({"coding": list_for_code})
+
+
+
+
+
+
+
+
+
+
         list_for_attachemnt = [dict(zip(["data","url", "size","title" ,"creation"],
                                         [rec.data,rec.url,rec.size,rec.title,rec.creation]))
                                for rec in diagnostic_Report_rec.presentedForm]
-
 
 
         for key in vals:
