@@ -4,7 +4,7 @@ from datetime import date
 from odoo.tools import DEFAULT_SERVER_DATETIME_FORMAT
 
 
-class DiagnosticReport(http.Controller):
+class ImagingStudy(http.Controller):
 
     @http.route('/get_imaging_study', type='json', auth='user')
     def get_imaging_study(self, **kws):
