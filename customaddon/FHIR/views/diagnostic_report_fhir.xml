@@ -653,7 +653,7 @@
 
     <record model="ir.ui.view" id="imaging_study_tree_view">
         <field name="name">imaging.study</field>
-        <field name="model">imaging.study</field>
+        <field name="model">imaging.study.diagnostic</field>
         <field name="priority" eval="16"/>
         <field name="arch" type="xml">
             <tree string="Imaging Study view">
@@ -668,7 +668,7 @@
 
     <record model="ir.ui.view" id="imaging_study_form_view">
         <field name="name">Imaging Study Form</field>
-        <field name="model">imaging.study</field>
+        <field name="model">imaging.study.diagnostic</field>
         <field name="arch" type="xml">
             <form string="Imaging Study form">
                 <sheet>
@@ -713,7 +713,7 @@
 
     <record model="ir.actions.act_window" id="action_imaging_study">
         <field name="name">Attachment</field>
-        <field name="res_model">imaging.study</field>
+        <field name="res_model">imaging.study.diagnostic</field>
         <field name="view_mode">tree,form</field>
         <field name="help" type="html">
             <p class="o_view_nocontent_smiling_face">Create the Imaging Study

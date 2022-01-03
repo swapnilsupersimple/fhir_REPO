@@ -7,7 +7,7 @@
         <field name="priority" eval="16"/>
         <field name="arch" type="xml">
             <tree string="Imaging Study Tree view">
-                <field name="imagingStudy_status"/>
+                <field name="status"/>
             </tree>
         </field>
     </record>
@@ -20,37 +20,58 @@
                 <sheet>
                     <group>
                         <group>
-                            <field name="imagingStudy_status"/>
-                            <!--                            <field name="is_practitioner_active" widget="boolean_toggle"/>-->
-                            <field name="imagingStudy_subject"/>
-                            <field name="imagingStudy_encounter"/>
-                            <field name="imagingStudy_started"/>
-                            <field name="imagingStudy_basedOn"/>
+                            <field name="status"/>
+                            <field name="subject"/>
+                            <field name="encounter"/>
+                            <field name="started"/>
+                            <field name="basedOn"/>
 
-                            <field name="imagingStudy_referrer"/>
-                            <field name="imagingStudy_interpreter"/>
-                            <field name="imagingStudy_endpoint"/>
-                            <field name="imagingStudy_numberOfSeries"/>
-                            <field name="imagingStudy_numberOfInstances"/>
-                            <field name="imagingStudy_procedureReference"/>
-                            <field name="imagingStudy_location"/>
-                            <field name="imagingStudy_reasonReference"/>
-                            <field name="imagingStudy_note"/>
-                            <field name="imagingStudy_description"/>
+                            <field name="referrer"/>
+                            <field name="interpreter"/>
+                            <field name="endpoint"/>
+                            <field name="numberOfSeries"/>
+                            <field name="numberOfInstances"/>
+                            <field name="procedureReference"/>
+                            <field name="location"/>
+                            <field name="reasonReference"/>
+                            <field name="note"/>
+                            <field name="description"/>
                         </group>
                     </group>
                     <notebook>
                         <page string="Series">
                             <group>
-                                <field name="imagingStudy_series_number"/>
-                                <field name="imagingStudy_series_description"/>
-                                <field name="imagingStudy_series_numberOfInstances"/>
+                                <field name="SeriesInstanceUID"/>
+                                <field name="SeriesNumber"/>
+                                <field name="SeriesDescription"/>
+                                <field name="NumberOfSeriesRelatedInstances"/>
                                 <field name="imagingStudy_series_endpoint"/>
-                                <field name="imagingStudy_series_bodySite"/>
-                                <field name="imagingStudy_series_specimen"/>
-                                <field name="imagingStudy_series_started"/>
+                                <field name="BodyPartExamined"/>
+                                <field name="seriesSpecimen"/>
+                                <field name="seriesStarted"/>
                             </group>
                         </page>
+
+                         <page string="Instance">
+                            <group>
+                                <field name="SOPInstanceUID"/>
+                                <field name="InstanceNumber"/>
+                                <field name="instanceTitle"/>
+<!--                                <field name="NumberOfSeriesRelatedInstances"/>-->
+<!--                                <field name="imagingStudy_series_endpoint"/>-->
+<!--                                <field name="BodyPartExamined"/>-->
+<!--                                <field name="seriesSpecimen"/>-->
+<!--                                <field name="seriesStarted"/>-->
+                            </group>
+                        </page>
+
+
+
+
+
+
+
+
                     </notebook>
                 </sheet>
             </form>

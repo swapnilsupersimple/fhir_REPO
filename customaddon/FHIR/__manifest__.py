@@ -127,7 +127,7 @@
         # 'views/specimen_fhir.xml',
         'views/diagnostic_report_fhir.xml',
         # 'views/service_request_fhir.xml',
-        # 'views/imaging_study_fhir.xml',
+        'views/imaging_study_fhir.xml',
         # 'views/device_metric_fhir.xml',
         # 'views/medication_fhir.xml',
         # 'views/substance_fhir.xml',

@@ -18,7 +18,6 @@ class DiagnosticReport(models.Model):
 
     category = fields.One2many("diagnostic.report.category", "dagnostic_Report_Category_id", string="Category")
 
-    # code = fields.Many2one(comodel_name="diagnostic.report.code", string="Code")
 
     code = fields.One2many("diagnostic.report.code", "diagnostic_Report_code_id",string="Code")
 
@@ -69,7 +68,7 @@ class DiagnosticReport(models.Model):
     end = fields.Date(string="End")
 
 
-    imagingStudy = fields.One2many("imaging.study", "diagnostic_Report_imaging_study", string="imagingStudy" )
+    imagingStudy = fields.One2many("imaging.study.diagnostic", "diagnostic_Report_imaging_study", string="imagingStudy" )
 
 
 
@@ -379,7 +378,7 @@ class Specimen(models.Model):
 
 
 class ImagingStudy(models.Model):
-    _name = "imaging.study"
+    _name = "imaging.study.diagnostic"
     _description = "Details about Imaging Study"
     # _rec_name = "location_name"
 

@@ -29,7 +29,7 @@ access_specimen_processing_procedure,specimen.processing.procedure,model_specime
 access_specimen_container_type,specimen_container_type,model_specimen_container_type,,1,1,1,1
 access_specimen_container_additive,specimen.container.additive,model_specimen_container_additive,,1,1,1,1
 access_specimen_condition,specimen.condition,model_specimen_condition,,1,1,1,1
-access_imaging_study,imaging.study,model_imaging_study,,1,1,1,1
+access_imaging_study_diagnostic,imaging.study.diagnostic,model_imaging_study_diagnostic,,1,1,1,1
 access_imaging_study_series_body_site,imaging.study.series.body.site,model_imaging_study_series_body_site,,1,1,1,1
 access_media,media,model_media,,1,1,1,1
 access_media_type,media.type,model_media_type,,1,1,1,1
@@ -37,6 +37,11 @@ access_media_modality,media.modality,model_media_modality,,1,1,1,1
 access_media_view,media.view,model_media_view,,1,1,1,1
 access_media_reason_code,media.reason.code,model_media_reason_code,,1,1,1,1
 access_media_body_site,media.body.site,model_media_body_site,,1,1,1,1
+
+
+access_imaging_study,imaging.study,model_imaging_study,,1,1,1,1
+access_imaging_study_annotation,imaging.study.annotation,model_imaging_study_annotation,,1,1,1,1
+
 
 
 

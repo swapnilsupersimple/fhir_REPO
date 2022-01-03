@@ -12,15 +12,15 @@ class DiagnosticReport(http.Controller):
         if request.jsonrequest:
 
             values_for_diagnostic_report = {
-                "status": rec["diagnosticReport_status"],
+                "status": rec["status"],
 
                 "category": [],
 
                 "code": [],
 
-                "effectiveDateTime": rec["diagnosticReport_effectiveDateTime"],
+                "effectiveDateTime": rec["effectiveDateTime"],
 
-                "issued": rec["diagnosticReport_issued"],
+                "issued": rec["issued"],
                 # "specimen": [],
 
                 "conclusionCode": [],
@@ -29,9 +29,31 @@ class DiagnosticReport(http.Controller):
                 # "imagingStudy":[],
 
                 # "result":[],
-                "presentedForm": []
+                "presentedForm": [],
+                "media":[]
 
             }
+
+
+            for inp_for_media_comment in rec["media"]:
+                print("inp_for_media_comment-->",inp_for_media_comment)
+                for key in values_for_diagnostic_report:
+
+                    if key == "media":
+                        values_for_diagnostic_report["media"].append((0, 0, inp_for_media_comment
+                                                                     ))
+
+            # for inp_for_presented_form in rec["presentedForm"]:
+            #
+            #     for key in values_for_diagnostic_report:
+            #
+            #         if key == "presentedForm":
+            #             values_for_diagnostic_report["presentedForm"].append((0, 0, inp_for_presented_form
+            #                                                                   ))
+
+
+
+
             for inp_for_code in rec["code"]["coding"]:
 
                 for key in values_for_diagnostic_report:
@@ -40,7 +62,7 @@ class DiagnosticReport(http.Controller):
                         values_for_diagnostic_report["code"].append((0, 0, inp_for_code
                                                                      ))
 
-            for inp_conclusionCode in rec["display_name_for_diagnosticReport_conclusionCode"]:
+            for inp_conclusionCode in rec["conclusionCode"]:
 
                 for key in values_for_diagnostic_report:
 
@@ -48,7 +70,7 @@ class DiagnosticReport(http.Controller):
                         values_for_diagnostic_report["conclusionCode"].append((0, 0, {"display": inp_conclusionCode
                                                                                       }))
 
-            for inp_category in rec["display_name_for_diagnosticReport_category"]:
+            for inp_category in rec["category"]:
                 for key in values_for_diagnostic_report:
 
                     if key == "category":
