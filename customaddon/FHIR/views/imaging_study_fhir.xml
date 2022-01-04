@@ -36,34 +36,9 @@
                             <field name="reasonReference"/>
                             <field name="note"/>
                             <field name="description"/>
+                            <field name="series"/>
                         </group>
                     </group>
-                    <notebook>
-                        <page string="Series">
-                            <group>
-                                <field name="SeriesInstanceUID"/>
-                                <field name="SeriesNumber"/>
-                                <field name="SeriesDescription"/>
-                                <field name="NumberOfSeriesRelatedInstances"/>
-                                <field name="imagingStudy_series_endpoint"/>
-                                <field name="BodyPartExamined"/>
-                                <field name="seriesSpecimen"/>
-                                <field name="seriesStarted"/>
-                            </group>
-                        </page>
-
-                         <page string="Instance">
-                            <group>
-                                <field name="SOPInstanceUID"/>
-                                <field name="InstanceNumber"/>
-                                <field name="instanceTitle"/>
-<!--                                <field name="NumberOfSeriesRelatedInstances"/>-->
-<!--                                <field name="imagingStudy_series_endpoint"/>-->
-<!--                                <field name="BodyPartExamined"/>-->
-<!--                                <field name="seriesSpecimen"/>-->
-<!--                                <field name="seriesStarted"/>-->
-                            </group>
-                        </page>
 
 
 
@@ -71,8 +46,6 @@
 
 
 
-
-                    </notebook>
                 </sheet>
             </form>
         </field>
@@ -123,11 +96,132 @@
               action="action_imaging_study_series_body_site"/>
     <delete model="ir.ui.menu" id="FHIR_imaging_study_series_body_site"></delete>
 
+
+
+
+
+    <record model="ir.ui.view" id="imaging_study_series_tree_view">
+        <field name="name">imaging.study.series.tree</field>
+        <field name="model">imaging.study.series</field>
+        <field name="priority" eval="16"/>
+        <field name="arch" type="xml">
+            <tree string="Imaging study series view">
+
+                 <field name="SeriesDescription"/>
+
+
+            </tree>
+        </field>
+    </record>
+
+
+    <record model="ir.ui.view" id="imaging_study_series_form_view">
+        <field name="name">Imaging Study Series Form</field>
+        <field name="model">imaging.study.series</field>
+        <field name="arch" type="xml">
+            <form string="Imaging Study series form">
+                <sheet>
+                    <group>
+                        <!--                        <field name="language"/>-->
+                        <field name="SeriesInstanceUID"/>
+                        <field name="SeriesNumber"/>
+                        <field name="SeriesDescription"/>
+                        <field name="NumberOfSeriesRelatedInstances"/>
+                        <field name="imagingStudy_series_endpoint"/>
+
+                        <field name="BodyPartExamined" widget="many2many_tags"/>
+                        <field name="seriesSpecimen"/>
+                        <field name="seriesStarted"/>
+
+                         <field name="instance"/>
+
+
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record model="ir.actions.act_window" id="action_imaging_study_series">
+        <field name="name">Imaging Study Series</field>
+        <field name="res_model">imaging.study.series</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">Create the Imaging Study Series
+            </p>
+        </field>
+    </record>
+
+    <menuitem id="FHIR_root" name="FHIR"/>
+    <menuitem id="FHIR_imaging_study_series" name="Imaging Study Series" parent="FHIR_root"
+              action="action_imaging_study_series"/>
+    <delete model="ir.ui.menu" id="FHIR_imaging_study_series"></delete>
+
+
+    <!--     end of code for sop instance series-->
+
+
+<!--     start of code for sop instance series-->
+
+
+    <record model="ir.ui.view" id="sop_instance_series_tree_view">
+        <field name="name">sop.instance.series.tree</field>
+        <field name="model">sop.instance.series</field>
+        <field name="priority" eval="16"/>
+        <field name="arch" type="xml">
+            <tree string="Sop Instance Series view">
+
+              <field name="instanceTitle"/>
+
+
+            </tree>
+        </field>
+    </record>
+
+    <record model="ir.ui.view" id="sop_instance_series_form_view">
+        <field name="name">Sop Instance Series Form</field>
+        <field name="model">sop.instance.series</field>
+        <field name="arch" type="xml">
+            <form string="Sop Instance Series form">
+                <sheet>
+                    <group>
+                        <!--                        <field name="language"/>-->
+                        <field name="SOPInstanceUID"/>
+                        <field name="InstanceNumber"/>
+                        <field name="instanceTitle"/>
+
+
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record model="ir.actions.act_window" id="action_sop_instance_series">
+        <field name="name">Sop Instance Series </field>
+        <field name="res_model">sop.instance.series</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">Create the attachment
+            </p>
+        </field>
+    </record>
+
+    <menuitem id="FHIR_root" name="FHIR"/>
+    <menuitem id="FHIR_sop_instance_series" name="Sop Instance Series" parent="FHIR_root"
+              action="action_sop_instance_series"/>
+    <delete model="ir.ui.menu" id="FHIR_sop_instance_series"></delete>
+
+    <!--     end of code for sop instance series-->
+
+
+
+
+
+sop.instance.series
+sop_instance_series
+
+
 </odoo>
 
 
-        <!--imaging.study.series.body.site-->
-
-        <!--imaging_study_series_body_site-->
-
-        <!--Imaging Study Series Body Site-->

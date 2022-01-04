@@ -66,29 +66,8 @@ class ImagingStudy(models.Model):
 
     description=fields.Char(string="Description")
 
-    SeriesInstanceUID=fields.Integer(string="SeriesInstanceUID")
+    series=fields.One2many("imaging.study.series","ImagingStudy_Series",string="Series")
 
-    SeriesNumber=fields.Integer(string="SeriesNumber")
-
-    SeriesDescription=fields.Char(string="SeriesDescription")
-
-    NumberOfSeriesRelatedInstances=fields.Integer(string="NumberOfSeriesRelatedInstances")
-
-    imagingStudy_series_endpoint=fields.Reference([('endpoint', 'Endpoint')
-                                              ],
-                                             string="Endpoint")
-
-    BodyPartExamined=fields.One2many("imaging.study.series.body.site","ImagingStudy_BodySite",string="BodyPartExamined")
-
-    seriesSpecimen=fields.Reference([('specimen','Specimen')],string="Specimen")
-
-    seriesStarted=fields.Datetime(string="Series Started")
-
-    SOPInstanceUID=fields.Integer(string="SeriesInstanceUID")
-
-    InstanceNumber=fields.Integer(string="InstanceNumber")
-
-    instanceTitle=fields.Char(string="instanceTitle")
 
 
     class Annotation(models.Model):
@@ -105,13 +84,57 @@ class ImagingStudy(models.Model):
 
 
 
-class ImagingStudySeriesBodySite(models.Model):
-    _name = "imaging.study.series.body.site"
-    _rec_name = "display"
 
-    display = fields.Char("Display")
-    code = fields.Char("Code")
-    ImagingStudy_BodySite = fields.Many2one("imaging.study", string="ImagingStudy_BodySite")
+
+
+class Series(models.Model):
+    _name = "imaging.study.series"
+
+    ImagingStudy_Series = fields.Many2one("imaging.study", string="ImagingStudy_series")
+
+
+    SeriesInstanceUID = fields.Integer(string="SeriesInstanceUID")
+
+    SeriesNumber = fields.Integer(string="SeriesNumber")
+
+    SeriesDescription = fields.Char(string="SeriesDescription")
+
+    NumberOfSeriesRelatedInstances = fields.Integer(string="NumberOfSeriesRelatedInstances")
+
+    imagingStudy_series_endpoint = fields.Reference([('endpoint', 'Endpoint')
+                                                     ],
+                                                    string="Endpoint")
+
+    BodyPartExamined = fields.One2many("imaging.study.series.body.site", "ImagingStudy_BodySite",
+                                       string="BodyPartExamined")
+
+    seriesSpecimen = fields.Reference([('specimen', 'Specimen')], string="Specimen")
+
+    seriesStarted = fields.Datetime(string="Series Started")
+
+    instance=fields.One2many("sop.instance.series","ImagingStudy_SOP_instance_series",string="Instance")
+
+
+    class Instance(models.Model):
+        _name = "sop.instance.series"
+
+        ImagingStudy_SOP_instance_series = fields.Many2one("imaging.study.series", string="ImagingStudy_SOP_instance_series")
+
+        SOPInstanceUID = fields.Integer(string="SeriesInstanceUID")
+
+        InstanceNumber = fields.Integer(string="InstanceNumber")
+
+        instanceTitle = fields.Char(string="instanceTitle")
+
+
+    class ImagingStudySeriesBodySite(models.Model):
+        _name = "imaging.study.series.body.site"
+        _rec_name = "display"
+
+        display = fields.Char("Display")
+        code = fields.Char("Code")
+        ImagingStudy_BodySite = fields.Many2one("imaging.study.series", string="ImagingStudy_BodySite", invisible=1)
+
 
 
 

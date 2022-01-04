@@ -92,7 +92,7 @@
         # 'ServiceRequest_codeable_concept/service.request.body.site.csv',
         # 'ServiceRequest_codeable_concept/service.request.reason.code.csv',
         # 'ServiceRequest_codeable_concept/service.request.location.code.csv',
-        # 'ImagingStudy_codeable_concept/imaging.study.series.body.site.csv',
+        'ImagingStudy_codeable_concept/imaging.study.series.body.site.csv',
         # # 'DeviceMetric_codeabale_cocept/device.metric.type.csv',
         # 'Medication_codeable_concept/medication.code.csv',
         # 'Substance_codebale_concept/substance.category.csv',
@@ -101,7 +101,7 @@
         # 'data/appointment.service.type.csv',
         'security/ir.model.access.csv',
         # 'views/views.xml',
-        # 'views/templates.xml',
+        # 'views/templates.xml',`
         # 'views/patient.xml',
         'views/organization_fhir.xml',
         # 'views/practitioner_fhir.xml',

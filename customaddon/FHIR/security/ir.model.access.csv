@@ -41,6 +41,8 @@ access_media_body_site,media.body.site,model_media_body_site,,1,1,1,1
 
 access_imaging_study,imaging.study,model_imaging_study,,1,1,1,1
 access_imaging_study_annotation,imaging.study.annotation,model_imaging_study_annotation,,1,1,1,1
+access_imaging_study_series,imaging_study_series,model_imaging_study_series,,1,1,1,1
+access_sop_instance_series,sop_instance_series,model_sop_instance_series,,1,1,1,1
 
 
 
