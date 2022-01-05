@@ -43,8 +43,11 @@ access_imaging_study,imaging.study,model_imaging_study,,1,1,1,1
 access_imaging_study_annotation,imaging.study.annotation,model_imaging_study_annotation,,1,1,1,1
 access_imaging_study_series,imaging_study_series,model_imaging_study_series,,1,1,1,1
 access_sop_instance_series,sop_instance_series,model_sop_instance_series,,1,1,1,1
-
-
+access_imaging_study_series_laterality,imaging.study.series.laterality,model_imaging_study_series_laterality,,1,1,1,1
+access_sop_instance_series_sop_class_uid,sop.instance.series.sop.class.uid,model_sop_instance_series_sop_class_uid,,1,1,1,1
+access_imaging_study_reasoncode,imaging.study.reasoncode,model_imaging_study_reasoncode,,1,1,1,1
+access_imaging_study_modality,imaging.study.modality,model_imaging_study_modality,,1,1,1,1
+access_imaging_study_series_modality,imaging.study.series.modality,model_imaging_study_series_modality,,1,1,1,1
 
 
 

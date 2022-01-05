@@ -93,6 +93,7 @@
         # 'ServiceRequest_codeable_concept/service.request.reason.code.csv',
         # 'ServiceRequest_codeable_concept/service.request.location.code.csv',
         'ImagingStudy_codeable_concept/imaging.study.series.body.site.csv',
+        'ImagingStudy_codeable_concept/imaging.study.series.laterality.csv',
         # # 'DeviceMetric_codeabale_cocept/device.metric.type.csv',
         # 'Medication_codeable_concept/medication.code.csv',
         # 'Substance_codebale_concept/substance.category.csv',

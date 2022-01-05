@@ -37,6 +37,8 @@
                             <field name="note"/>
                             <field name="description"/>
                             <field name="series"/>
+                            <field name="reasonCode"/>
+                            <field name="modality"/>
                         </group>
                     </group>
 
@@ -107,7 +109,7 @@
         <field name="arch" type="xml">
             <tree string="Imaging study series view">
 
-                 <field name="SeriesDescription"/>
+                 <field name="description"/>
 
 
             </tree>
@@ -123,17 +125,19 @@
                 <sheet>
                     <group>
                         <!--                        <field name="language"/>-->
-                        <field name="SeriesInstanceUID"/>
-                        <field name="SeriesNumber"/>
-                        <field name="SeriesDescription"/>
-                        <field name="NumberOfSeriesRelatedInstances"/>
-                        <field name="imagingStudy_series_endpoint"/>
+                        <field name="uid"/>
+                        <field name="number"/>
+                        <field name="description"/>
+                        <field name="numberOfInstances"/>
+                        <field name="endpoint"/>
 
-                        <field name="BodyPartExamined" widget="many2many_tags"/>
-                        <field name="seriesSpecimen"/>
-                        <field name="seriesStarted"/>
+                        <field name="bodySite" widget="many2many_tags"/>
+                        <field name="specimen"/>
+                        <field name="started"/>
 
                          <field name="instance"/>
+                        <field name="laterality" widget="many2many_tags"/>
+                        <field name="modality"/>
 
 
                     </group>
@@ -189,6 +193,7 @@
                         <field name="SOPInstanceUID"/>
                         <field name="InstanceNumber"/>
                         <field name="instanceTitle"/>
+                        <field name="SOPClassUID" />
 
 
                     </group>
@@ -214,14 +219,63 @@
 
     <!--     end of code for sop instance series-->
 
+      <!--     start of code for sop instance series sop class uid -->
+    <record model="ir.ui.view" id="sop_instance_series_sop_class_uid_tree_view">
+        <field name="name">sop.instance.series.sop.class.uid .tree</field>
+        <field name="model">sop.instance.series.sop.class.uid</field>
+        <field name="priority" eval="16"/>
+        <field name="arch" type="xml">
+            <tree string="sop_instance_series_sop_class_uid view">
+
+              <field name="system"/>
+              <field name="code"/>
 
 
+            </tree>
+        </field>
+    </record>
+
+    <record model="ir.ui.view" id="sop_instance_series_sop_class_uid_form_view">
+        <field name="name">SOP Instance Series sop class uid Form</field>
+        <field name="model">sop.instance.series.sop.class.uid</field>
+        <field name="arch" type="xml">
+            <form string="SOP Instance Series sop class uid form">
+                <sheet>
+                    <group>
+                        <field name="system"/>
+                       <field name="code"/>
+
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record model="ir.actions.act_window" id="action_sop_instance_series_sop_class_uid">
+        <field name="name">SOP Instance Series sop class uid</field>
+        <field name="res_model">sop.instance.series.sop.class.uid</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">Create SOP Instance Series sop class uid
+            </p>
+        </field>
+    </record>
+
+    <menuitem id="FHIR_root" name="FHIR"/>
+    <menuitem id="FHIR_sop_instance_series_sop_class_uid" name="SOP Instance Series sop class uid" parent="FHIR_root"
+              action="action_sop_instance_series_sop_class_uid"/>
+    <delete model="ir.ui.menu" id="FHIR_sop_instance_series_sop_class_uid"></delete>
+
+      <!--     end of code for sop instance series sop class uid-->
 
 
-sop.instance.series
-sop_instance_series
 
 
 </odoo>
 
 
+<!--sop.instance.series.sop.class.uid-->
+
+<!--sop_instance_series_sop_class_uid-->
+
+<!--SOP Instance Series sop class uid-->

@@ -14,6 +14,7 @@ class ImagingStudy(http.Controller):
         for rec in imaging_study_rec:
             vals = {
                 "status": rec.status,
+                "modality": [],
 
                 "started": rec.started,
 
@@ -25,9 +26,15 @@ class ImagingStudy(http.Controller):
 
                 "note": [],
 
-                "series": []
+                "series": [],
 
-                # "series":[]
+                "reasonCode": [
+                    {
+                        "coding": []
+
+                    }
+                ],
+
             }
 
         list_for_note = [dict(zip(["text"], [rec.text])) for rec in imaging_study_rec.note]
@@ -36,30 +43,55 @@ class ImagingStudy(http.Controller):
             if key == "note":
                 vals.update({"note": list_for_note})
 
+
+        list_for_reasoncode = [dict(zip(["system","code","display"], [rec.system,rec.code,rec.display])) for rec in imaging_study_rec.reasonCode]
+
+        print("list_for_reasoncode-->",list_for_reasoncode)
+
+        for key in vals["reasonCode"][0]:
+            print("key-->",key)
+            if key == "coding":
+                vals["reasonCode"][0].update({"coding": list_for_reasoncode})
+
+
+
+
+
         # code_for_series
 
-        for rec in imaging_study_rec.series.BodyPartExamined:
-            BodyPartExamined=dict(zip(["display"], [rec.display]))
+        for rec in imaging_study_rec.series.bodySite:
+            bodySite=dict(zip(["display","code"], [rec.display,rec.code]))
+
+        for rec in imaging_study_rec.series.laterality:
+            laterality = dict(zip(["display", "code"], [rec.display, rec.code]))
+
+        for rec in imaging_study_rec.series.instance.SOPClassUID:
+            SOPClassUID=dict(zip(["system", "code"], [rec.system, rec.code]))
+
+        for rec in imaging_study_rec.series.modality:
+            series_modality=dict(zip(["system", "code"], [rec.system, rec.code]))
+            print("series_modality-->",series_modality)
+
+            list_for_instance = [dict(zip(["uid","number","title","sopClass"], [rec.SOPInstanceUID,rec.InstanceNumber,rec.instanceTitle,SOPClassUID])) for rec in imaging_study_rec.series.instance]
 
 
-
-
-        # list_for_BodyPartExamined=[dict(zip(["display"], [rec.display])) for rec in imaging_study_rec.series.BodyPartExamined]
-
-        # print("list_for_BodyPartExamined-->",list_for_BodyPartExamined)
-
-        list_for_instance = [dict(zip(["uid","number","title"], [rec.SOPInstanceUID,rec.InstanceNumber,rec.instanceTitle])) for rec in imaging_study_rec.series.instance]
-
-        list_for_series = [dict(zip(["uid", "number", "description", "numberOfInstances", "started","instance","bodySite"],
-                                    [rec.SeriesInstanceUID, rec.SeriesNumber, rec.SeriesDescription,
-                                     rec.NumberOfSeriesRelatedInstances,
-                                     rec.seriesStarted,list_for_instance,BodyPartExamined])) for rec in imaging_study_rec.series]
-
+        list_for_series = [dict(zip(["uid", "number","modality", "description", "numberOfInstances", "started","instance","bodySite","laterality"],
+                                    [rec.uid, rec.number,series_modality, rec.description,
+                                     rec.numberOfInstances,
+                                     rec.started,list_for_instance,rec.bodySite,laterality])) for rec in imaging_study_rec.series]
 
         for key in vals:
             if key == "series":
                 vals.update({"series": list_for_series})
 
+
+        #code_for_modailty
+
+        list_for_modality=[dict(zip(["system","code"], [rec.system,rec.code])) for rec in imaging_study_rec.modality]
+
+        for key in vals:
+            if key == "modality":
+                vals.update({"modality": list_for_modality})
 
 
 
@@ -69,11 +101,3 @@ class ImagingStudy(http.Controller):
         return data
 
 
-  # list_for_instance = [dict(zip(["uid"], [rec.SOPInstanceUID])) for rec in imaging_study_rec.series.instance]
-        # print("list_for_instance-->", list_for_instance)
-        #
-        # for key in vals:
-        #     print("key-->", key)
-        #     if key == "series":
-        #         print("key found")
-        #         vals.update({"series": list_for_instance})
