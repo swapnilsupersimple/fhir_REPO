@@ -56,6 +56,12 @@ class Specimen(models.Model):
 
     specimen_condition=fields.Many2many(comodel_name="specimen.condition",string="Condition")
 
+    diagnostic_Report_specimen = fields.Many2one("diagnostic.report", string="DiagnosticReportSpecimen")
+
+    reference = fields.Char(string="reference")
+    display = fields.Char(string="display")
+
+
 
 class SpecimenType(models.Model):
     _name = "specimen.type"

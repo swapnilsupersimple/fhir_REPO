@@ -123,24 +123,24 @@ class DiagnosticReport(http.Controller):
             if key == "presentedForm":
                 vals.update({"presentedForm": list_for_attachemnt})
 
-        list_for_specimen = [dict(zip(["display"],
-                                      [rec.display]))
-                             for rec in diagnostic_Report_rec.specimen.specimen_type]
+        list_for_specimen = [dict(zip(["reference","display"],
+                                      [rec.reference,rec.display]))
+                             for rec in diagnostic_Report_rec.specimen]
 
         for key in vals:
             if key == "specimen":
                 vals.update({"specimen": list_for_specimen})
 
-        list_for_observation_result = [dict(zip(["reference"],
-                                                [rec.display]))
-                                       for rec in diagnostic_Report_rec.result.observation_code]
+        list_for_observation_result = [dict(zip(["reference","display"],
+                                                [rec.reference,rec.display]))
+                                       for rec in diagnostic_Report_rec.result]
 
         for key in vals:
             if key == "result":
                 vals.update({"result": list_for_observation_result})
 
-        list_for_imaging_study = [dict(zip(["display"],
-                                           [rec.imagingStudy_description]))
+        list_for_imaging_study = [dict(zip(["reference" ,"display"],
+                                           [rec.reference,rec.display]))
                                   for rec in diagnostic_Report_rec.imagingStudy]
 
         print("list_for_imaging_study-->",list_for_imaging_study)
@@ -152,10 +152,10 @@ class DiagnosticReport(http.Controller):
       #code_for_media
 
         for x in diagnostic_Report_rec.media:
-            inp_for_comment=x.media_comment
+            inp_for_comment=x.comment
 
         for rec in diagnostic_Report_rec.media:
-            inp_for_link=dict(zip(["type"], [rec.media_type.display]))
+            inp_for_link=dict(zip(["reference" ,"display"], [rec.reference,rec.display]))
 
             for key in vals:
                 if key == "media":

@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record model="ir.ui.view" id="attachment_tree_view">
+        <field name="name">attachment.tree</field>
+        <field name="model">attachment</field>
+        <field name="priority" eval="16"/>
+        <field name="arch" type="xml">
+            <tree string="Attachment view">
+
+                <field name="size"/>
+                <field name="title"/>
+
+
+            </tree>
+        </field>
+    </record>
+
+
+    <record model="ir.ui.view" id="attachment_form_view">
+        <field name="name">Attachment Form</field>
+        <field name="model">attachment</field>
+        <field name="arch" type="xml">
+            <form string="Attachment form">
+                <sheet>
+                    <group>
+                        <!--                        <field name="language"/>-->
+                        <field name="data"/>
+                        <field name="url"/>
+                        <field name="size"/>
+                        <field name="title"/>
+                        <field name="creation"/>
+
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record model="ir.actions.act_window" id="action_attachment">
+        <field name="name">Attachment</field>
+        <field name="res_model">attachment</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">Create the attachment
+            </p>
+        </field>
+    </record>
+
+    <menuitem id="FHIR_root" name="FHIR"/>
+
+    <menuitem id="FHIR_attachment" name="Attachment" parent="FHIR_root" action="action_attachment"/>
+
+</odoo>

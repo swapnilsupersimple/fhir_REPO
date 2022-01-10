@@ -9,5 +9,7 @@ access_period,period,model_period_fhir,,1,1,1,1
 access_annotation,annotation,model_annotation,,1,1,1,1
 access_prefix,hc.human.name.suffix,model_human_name_prefix,,1,1,1,1
 access_identifier,identifier,model_identifier,,1,1,1,1
+aceess_attachment,attachment,model_attachment,,1,1,1,1
+
 
 

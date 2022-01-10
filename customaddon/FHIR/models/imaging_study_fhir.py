@@ -62,7 +62,7 @@ class ImagingStudy(models.Model):
                                             string="Reason")
 
 
-    note = fields.One2many("imaging.study.annotation","ImagingStudy_annotation",string="note")
+    note = fields.One2many("annotation","ImagingStudy_annotation",string="note")
 
     description=fields.Char(string="Description")
 
@@ -72,18 +72,14 @@ class ImagingStudy(models.Model):
 
     modality=fields.One2many("imaging.study.modality","ImagingStudy_modality",string="modality")
 
+    diagnosticReport_imaging_study_ = fields.Many2one("diagnostic.report", string="DiagnosticReportImagingStudy")
+
+    reference = fields.Char(string="reference")
+    display = fields.Char(string="display")
 
 
-    class Annotation(models.Model):
-            _name="imaging.study.annotation"
-            _rec_name = "text"
-            _description = "Details about Annotation"
 
-            time=fields.Datetime(string="Time")
 
-            text=fields.Text(string="Text")
-
-            ImagingStudy_annotation = fields.Many2one("imaging.study", string="ImagingStudy_annotation")
 
     class ReasonCode(models.Model):
         _name = "imaging.study.reasoncode"

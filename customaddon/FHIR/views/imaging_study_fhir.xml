@@ -39,13 +39,11 @@
                             <field name="series"/>
                             <field name="reasonCode"/>
                             <field name="modality"/>
+                            <field name="reference"/>
+                            <field name="display"/>
+
                         </group>
                     </group>
-
-
-
-
-
 
 
                 </sheet>
@@ -99,9 +97,6 @@
     <delete model="ir.ui.menu" id="FHIR_imaging_study_series_body_site"></delete>
 
 
-
-
-
     <record model="ir.ui.view" id="imaging_study_series_tree_view">
         <field name="name">imaging.study.series.tree</field>
         <field name="model">imaging.study.series</field>
@@ -109,7 +104,7 @@
         <field name="arch" type="xml">
             <tree string="Imaging study series view">
 
-                 <field name="description"/>
+                <field name="description"/>
 
 
             </tree>
@@ -135,7 +130,7 @@
                         <field name="specimen"/>
                         <field name="started"/>
 
-                         <field name="instance"/>
+                        <field name="instance"/>
                         <field name="laterality" widget="many2many_tags"/>
                         <field name="modality"/>
 
@@ -165,7 +160,7 @@
     <!--     end of code for sop instance series-->
 
 
-<!--     start of code for sop instance series-->
+    <!--     start of code for sop instance series-->
 
 
     <record model="ir.ui.view" id="sop_instance_series_tree_view">
@@ -175,7 +170,7 @@
         <field name="arch" type="xml">
             <tree string="Sop Instance Series view">
 
-              <field name="instanceTitle"/>
+                <field name="instanceTitle"/>
 
 
             </tree>
@@ -193,7 +188,7 @@
                         <field name="SOPInstanceUID"/>
                         <field name="InstanceNumber"/>
                         <field name="instanceTitle"/>
-                        <field name="SOPClassUID" />
+                        <field name="SOPClassUID"/>
 
 
                     </group>
@@ -203,7 +198,7 @@
     </record>
 
     <record model="ir.actions.act_window" id="action_sop_instance_series">
-        <field name="name">Sop Instance Series </field>
+        <field name="name">Sop Instance Series</field>
         <field name="res_model">sop.instance.series</field>
         <field name="view_mode">tree,form</field>
         <field name="help" type="html">
@@ -219,7 +214,7 @@
 
     <!--     end of code for sop instance series-->
 
-      <!--     start of code for sop instance series sop class uid -->
+    <!--     start of code for sop instance series sop class uid -->
     <record model="ir.ui.view" id="sop_instance_series_sop_class_uid_tree_view">
         <field name="name">sop.instance.series.sop.class.uid .tree</field>
         <field name="model">sop.instance.series.sop.class.uid</field>
@@ -227,8 +222,8 @@
         <field name="arch" type="xml">
             <tree string="sop_instance_series_sop_class_uid view">
 
-              <field name="system"/>
-              <field name="code"/>
+                <field name="system"/>
+                <field name="code"/>
 
 
             </tree>
@@ -243,7 +238,7 @@
                 <sheet>
                     <group>
                         <field name="system"/>
-                       <field name="code"/>
+                        <field name="code"/>
 
                     </group>
                 </sheet>
@@ -266,16 +261,14 @@
               action="action_sop_instance_series_sop_class_uid"/>
     <delete model="ir.ui.menu" id="FHIR_sop_instance_series_sop_class_uid"></delete>
 
-      <!--     end of code for sop instance series sop class uid-->
-
-
+    <!--     end of code for sop instance series sop class uid-->
 
 
 </odoo>
 
 
-<!--sop.instance.series.sop.class.uid-->
+        <!--sop.instance.series.sop.class.uid-->
 
-<!--sop_instance_series_sop_class_uid-->
+        <!--sop_instance_series_sop_class_uid-->
 
-<!--SOP Instance Series sop class uid-->
+        <!--SOP Instance Series sop class uid-->

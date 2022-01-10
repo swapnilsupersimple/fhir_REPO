@@ -65,6 +65,12 @@ class Media(models.Model):
 
     media_annotaion=fields.Reference([('annotation', 'Note')],string="Annotation")
 
+    diagnostic_Report_media = fields.Many2one("diagnostic.report", string="DiagnosticReportMedia")
+
+    reference = fields.Char(string="reference")
+    display = fields.Char(string="display")
+
+    comment=fields.Char(String="Comment")
 
 
 

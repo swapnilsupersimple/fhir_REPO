@@ -57,6 +57,12 @@ class Observation(models.Model):
 
     observation_component_code=fields.Many2one(comodel_name="observation.component.code",string="Code")
 
+    diagnostic_Report_observation = fields.Many2one("diagnostic.report", string="DiagnosticReportObservation")
+
+    reference = fields.Char(string="reference")
+    display = fields.Char(string="display")
+
+
 
 
 

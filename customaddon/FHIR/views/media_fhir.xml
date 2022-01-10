@@ -33,6 +33,11 @@
                             <field name="media_reason_code" widget="many2many_tags"/>
                             <field name="media_body_site"/>
                             <field name="media_duration"/>
+                              <field name="reference"/>
+                            <field name="display"/>
+                             <field name="comment"/>
+
+
                         </group>
                     </group>
                     <notebook>

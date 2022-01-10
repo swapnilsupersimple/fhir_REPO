@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record model="ir.ui.view" id="annotation_tree_view">
+        <field name="name">annotation.tree</field>
+        <field name="model">annotation</field>
+        <field name="priority" eval="16"/>
+        <field name="arch" type="xml">
+            <tree string="annotation view">
+
+                <field name="time"/>
+                <field name="text"/>
+
+
+            </tree>
+        </field>
+    </record>
+
+
+    <record model="ir.ui.view" id="annotation_form_view">
+        <field name="name">annotation Form</field>
+        <field name="model">annotation</field>
+        <field name="arch" type="xml">
+            <form string="annotation form">
+                <sheet>
+                    <group>
+                        <!--                        <field name="language"/>-->
+                        <field name="time"/>
+                        <field name="text"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record model="ir.actions.act_window" id="action_annotation">
+        <field name="name">annotation</field>
+        <field name="res_model">annotation</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">Create the annotation
+            </p>
+        </field>
+    </record>
+
+    <menuitem id="FHIR_root" name="FHIR"/>
+
+    <menuitem id="FHIR_annotation" name="Annotation" parent="FHIR_root" action="action_annotation"/>
+
+</odoo>

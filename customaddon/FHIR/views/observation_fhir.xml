@@ -33,6 +33,8 @@
                             <field name="observation_bodySite"/>
                             <field name="observation_method"/>
                             <field name="observation_device"/>
+                              <field name="reference"/>
+                            <field name="display"/>
                         </group>
                     </group>
                     <notebook>

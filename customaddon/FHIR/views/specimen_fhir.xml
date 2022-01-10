@@ -26,6 +26,8 @@
                             <field name="specimen_subject"/>
                             <field name="specimen_receivedTime"/>
                             <field name="specimen_condition" widget="many2many_tags"/>
+                              <field name="reference"/>
+                            <field name="display"/>
                         </group>
                     </group>
                     <notebook>

@@ -31,24 +31,26 @@ class ImagingStudy(http.Controller):
             #end_of_code_for_reason_code
 
             # start_of_code_for_series
-            for inp_for_series in rec["series"]:
-                print("inp_for_series-->",inp_for_series)
+            # for inp_for_series in rec["series"]:
+            #     print("inp_for_series-->",inp_for_series)
+            #
+            #     for key in values_for_imaging_study:
+            #
+            #         if key == "series":
+            #             values_for_imaging_study["series"].append((0, 0, inp_for_series))
 
             for key, value in rec["series"][0]["modality"].items():
-                print("inp_for_series_modality-->",key, value)
+                # print("inp_for_series_modality-->",key, value)
                 x=dict(zip(["system","code"], [value,value]))
                 print(x)
 
-                for key in values_for_imaging_study:
 
-                    if key == "series":
-                        values_for_imaging_study["series"].append((0, 0, inp_for_series,x))
+                for key in values_for_imaging_study["series"]:
+                    print(key)
+                    # if key == "modality":
+                    #     print("key found")
+                    #     values_for_imaging_study["series"].append((0, 0, x))
 
-
-                # for key in values_for_imaging_study["series"]:
-                #     if key == "series":
-                #         values_for_imaging_study["series"].append((0, 0, inp_for_series
-                #                                                               ))
 
 
 

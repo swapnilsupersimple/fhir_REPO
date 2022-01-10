@@ -106,3 +106,14 @@ access_substance_category,substance.category,model_substance_category,,1,1,1,1
 access_substance_code,substance.code,model_substance_code,,1,1,1,1
 access_medication_request,medication.request,model_medication_request,,1,1,1,1
 
+
+
+
+access_imaging_study_series,imaging_study_series,model_imaging_study_series,,1,1,1,1
+access_sop_instance_series,sop_instance_series,model_sop_instance_series,,1,1,1,1
+access_imaging_study_series_laterality,imaging.study.series.laterality,model_imaging_study_series_laterality,,1,1,1,1
+access_sop_instance_series_sop_class_uid,sop.instance.series.sop.class.uid,model_sop_instance_series_sop_class_uid,,1,1,1,1
+access_imaging_study_reasoncode,imaging.study.reasoncode,model_imaging_study_reasoncode,,1,1,1,1
+access_imaging_study_modality,imaging.study.modality,model_imaging_study_modality,,1,1,1,1
+access_imaging_study_series_modality,imaging.study.series.modality,model_imaging_study_series_modality,,1,1,1,1
+
