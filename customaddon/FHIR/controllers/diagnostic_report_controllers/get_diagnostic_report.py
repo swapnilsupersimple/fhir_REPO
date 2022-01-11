@@ -143,8 +143,6 @@ class DiagnosticReport(http.Controller):
                                            [rec.reference,rec.display]))
                                   for rec in diagnostic_Report_rec.imagingStudy]
 
-        print("list_for_imaging_study-->",list_for_imaging_study)
-
         for key in vals:
             if key == "imagingStudy":
                 vals.update({"imagingStudy": list_for_imaging_study})

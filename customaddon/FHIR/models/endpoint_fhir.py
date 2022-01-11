@@ -32,6 +32,16 @@ class Endpoint(models.Model):
 
         string="Contact")
 
+    imagingStudy_endpoint= fields.Many2one("imaging.study", string="imagingStudyEndpoint")
+
+    imagingStudySeries_endpoint= fields.Many2one("imaging.study.series", string="imagingStudyEndpoint")
+
+    reference = fields.Char(string="reference")
+    display = fields.Char(string="display")
+
+
+
+
 
 class EndpointPayloadType(models.Model):
     _name = "endpoint.payload.type"

@@ -58,6 +58,8 @@ class Specimen(models.Model):
 
     diagnostic_Report_specimen = fields.Many2one("diagnostic.report", string="DiagnosticReportSpecimen")
 
+    imaging_Study_Series_specimen=fields.Many2one("imaging.study.series",string="imagingStudyseries_specimen")
+
     reference = fields.Char(string="reference")
     display = fields.Char(string="display")
 

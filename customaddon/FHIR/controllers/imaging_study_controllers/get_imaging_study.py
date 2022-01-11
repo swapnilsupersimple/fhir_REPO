@@ -18,6 +18,8 @@ class ImagingStudy(http.Controller):
 
                 "started": rec.started,
 
+                "endpoint":[],
+
                 "numberOfSeries": rec.numberOfSeries,
 
                 "numberOfInstances": rec.numberOfInstances,
@@ -36,6 +38,18 @@ class ImagingStudy(http.Controller):
                 ],
 
             }
+
+        list_for_imaging_Study_endpoint = [dict(zip(["reference"],
+                                                    [rec.reference]))
+                                           for rec in imaging_study_rec.endpoint]
+
+        for key in vals:
+                if key == "endpoint":
+                    vals.update({"endpoint": list_for_imaging_Study_endpoint})
+
+
+
+
 
         list_for_note = [dict(zip(["text"], [rec.text])) for rec in imaging_study_rec.note]
 
@@ -59,11 +73,18 @@ class ImagingStudy(http.Controller):
 
         # code_for_series
 
+        for rec in imaging_study_rec.series.endpoint:
+            endpoint = [dict(zip(["reference"], [rec.reference]))]
+
         for rec in imaging_study_rec.series.bodySite:
             bodySite=dict(zip(["display","code"], [rec.display,rec.code]))
 
         for rec in imaging_study_rec.series.laterality:
             laterality = dict(zip(["display", "code"], [rec.display, rec.code]))
+
+        for rec in imaging_study_rec.series.specimen:
+            specimen = [dict(zip(["reference"], [rec.reference]))]
+
 
         for rec in imaging_study_rec.series.instance.SOPClassUID:
             SOPClassUID=dict(zip(["system", "code"], [rec.system, rec.code]))
@@ -75,10 +96,10 @@ class ImagingStudy(http.Controller):
             list_for_instance = [dict(zip(["uid","number","title","sopClass"], [rec.SOPInstanceUID,rec.InstanceNumber,rec.instanceTitle,SOPClassUID])) for rec in imaging_study_rec.series.instance]
 
 
-        list_for_series = [dict(zip(["uid", "number","modality", "description", "numberOfInstances", "started","instance","bodySite","laterality"],
+        list_for_series = [dict(zip(["uid", "number","modality", "description", "numberOfInstances","endpoint" ,"started","instance","bodySite","laterality","specimen"],
                                     [rec.uid, rec.number,series_modality, rec.description,
-                                     rec.numberOfInstances,
-                                     rec.started,list_for_instance,rec.bodySite,laterality])) for rec in imaging_study_rec.series]
+                                     rec.numberOfInstances,endpoint,
+                                     rec.started,list_for_instance,rec.bodySite,laterality,specimen])) for rec in imaging_study_rec.series]
 
         for key in vals:
             if key == "series":

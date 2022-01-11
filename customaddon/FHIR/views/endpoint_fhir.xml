@@ -29,7 +29,12 @@
                             <field name="endpoint_payload_type" widget="many2many_tags"/>
                             <field name="endpoint_header"/>
                             <field name="endpoint_address" widget="url"/>
-                            <field name="endpoint_contact"/>
+
+
+                             <field name="reference"/>
+                             <field name="display"/>
+
+
                         </group>
                     </group>
                 </sheet>

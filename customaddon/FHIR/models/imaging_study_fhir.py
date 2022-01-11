@@ -40,9 +40,8 @@ class ImagingStudy(models.Model):
                                               ],
                                              string="Interpreter")
 
-    endpoint=fields.Reference([('endpoint', 'Endpoint')
-                                              ],
-                                             string="Interpreter")
+
+    endpoint = fields.One2many("endpoint", "imagingStudy_endpoint", string="Endpoint")
 
     numberOfSeries=fields.Integer(string="numberOfSeries")
 
@@ -128,14 +127,13 @@ class Series(models.Model):
 
     numberOfInstances = fields.Integer(string="NumberOfSeriesRelatedInstances")
 
-    endpoint = fields.Reference([('endpoint', 'Endpoint')
-                                                     ],
-                                                    string="Endpoint")
+    specimen = fields.One2many("specimen", "imaging_Study_Series_specimen", string="Specimen" )
+
+    endpoint=fields.One2many("endpoint","imagingStudySeries_endpoint" ,string="Endpoint")
 
     bodySite = fields.One2many("imaging.study.series.body.site", "ImagingStudy_BodySite",
                                        string="BodyPartExamined")
 
-    specimen = fields.Reference([('specimen', 'Specimen')], string="Specimen")
 
     started = fields.Datetime(string="Series Started")
 
@@ -144,6 +142,8 @@ class Series(models.Model):
     laterality=fields.One2many("imaging.study.series.laterality","ImagingStudy_laterality",string="Laterality")
 
     modality=fields.One2many("imaging.study.series.modality","ImagingStudy_series_modality",string="modality")
+
+
 
 
     class Modality(models.Model):
