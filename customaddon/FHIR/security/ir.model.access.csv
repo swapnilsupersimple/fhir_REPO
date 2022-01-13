@@ -49,7 +49,7 @@ access_endpoint,endpoint,model_endpoint,,1,1,1,1
 access_endpoint_payload_type,endpoint.payload.type,model_endpoint_payload_type,,1,1,1,1
 access_imaging_study_series_body_site,imaging.study.series.body.site,model_imaging_study_series_body_site,,1,1,1,1
 access_imaging_study_series_laterality,imaging.study.series.laterality,model_imaging_study_series_laterality,,1,1,1,1
-
+access_imaging_study_procedure_code,imaging.study.procedure.code,model_imaging_study_procedure_code,,1,1,1,1
 
 
 

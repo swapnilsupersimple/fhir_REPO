@@ -50,6 +50,8 @@ class ImagingStudy(models.Model):
     procedureReference=fields.Reference([('procedure.fhir', 'Procedure')],
                                              string="Procedure")
 
+    procedureCode=fields.One2many("imaging.study.procedure.code","ImagingStudy_ProcedureCode",string="procedureCode")
+
     location=fields.Reference([('location.fhir', 'Location')],
                                              string="Location")
 
@@ -101,16 +103,19 @@ class ImagingStudy(models.Model):
 
         code = fields.Text(string="code")
 
-
-
         ImagingStudy_modality = fields.Many2one("imaging.study", string="ImagingStudy_modality")
 
+    class ProcedureCode(models.Model):
+        _name = "imaging.study.procedure.code"
+        _rec_name = "code"
 
+        system = fields.Char(string="system")
 
+        code = fields.Char(string="code")
+        display = fields.Char(string="display")
+        text=fields.Char(string="text")
 
-
-
-
+        ImagingStudy_ProcedureCode = fields.Many2one("imaging.study", string="ImagingStudy_ProcedureCode")
 
 
 class Series(models.Model):
@@ -146,7 +151,7 @@ class Series(models.Model):
 
 
 
-    class Modality(models.Model):
+class Modality(models.Model):
         _name = "imaging.study.series.modality"
         _rec_name = "code"
 
@@ -159,7 +164,7 @@ class Series(models.Model):
 
 
 
-    class Instance(models.Model):
+class Instance(models.Model):
         _name = "sop.instance.series"
 
         ImagingStudy_SOP_instance_series = fields.Many2one("imaging.study.series", string="ImagingStudy_SOP_instance_series")
@@ -172,7 +177,7 @@ class Series(models.Model):
 
         SOPClassUID=fields.One2many("sop.instance.series.sop.class.uid","ImagingStudy_sopClassUID",string="SOPClassUID")
 
-        class sopClassUID(models.Model):
+class sopClassUID(models.Model):
             _name = "sop.instance.series.sop.class.uid"
 
             ImagingStudy_sopClassUID = fields.Many2one("sop.instance.series", string="ImagingStudy_sopClassUID", invisible=1)
@@ -181,7 +186,7 @@ class Series(models.Model):
             code = fields.Char("Code")
 
 
-    class ImagingStudySeriesBodySite(models.Model):
+class ImagingStudySeriesBodySite(models.Model):
         _name = "imaging.study.series.body.site"
         _rec_name = "display"
 
@@ -189,7 +194,7 @@ class Series(models.Model):
         code = fields.Char("Code")
         ImagingStudy_BodySite = fields.Many2one("imaging.study.series", string="ImagingStudy_BodySite", invisible=1)
 
-    class Laterality(models.Model):
+class Laterality(models.Model):
         _name = "imaging.study.series.laterality"
         _rec_name = "display"
 

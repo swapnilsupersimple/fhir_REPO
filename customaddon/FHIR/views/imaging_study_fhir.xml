@@ -25,6 +25,7 @@
                             <field name="encounter"/>
                             <field name="started"/>
                             <field name="basedOn"/>
+                            <field name="procedureCode"/>
 
                             <field name="referrer"/>
                             <field name="interpreter"/>
