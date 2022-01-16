@@ -75,4 +75,3 @@ class ImagingStudy(http.Controller):
 
 # time_date_format_for '%Y-%m-%d %H:%M:%S'
 
-# extract dictionary from input dictionary , apppend to series.Do same for endpoint
