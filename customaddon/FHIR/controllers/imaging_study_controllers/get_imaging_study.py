@@ -23,6 +23,12 @@ class ImagingStudy(http.Controller):
                 "numberOfSeries": rec.numberOfSeries,
 
                 "numberOfInstances": rec.numberOfInstances,
+                "reasonCode": [
+                    {
+                        "coding": []
+
+                    }
+                ],
 
                 "description": rec.description,
 
@@ -30,12 +36,6 @@ class ImagingStudy(http.Controller):
 
                 "series": [],
 
-                "reasonCode": [
-                    {
-                        "coding": []
-
-                    }
-                ],
 
             }
 
@@ -82,24 +82,24 @@ class ImagingStudy(http.Controller):
         for rec in imaging_study_rec.series.laterality:
             laterality = dict(zip(["display", "code"], [rec.display, rec.code]))
 
-        for rec in imaging_study_rec.series.specimen:
-            specimen = [dict(zip(["reference"], [rec.reference]))]
+        # for rec in imaging_study_rec.series.specimen:
+        #     specimen = [dict(zip(["reference"], [rec.reference]))]
 
 
-        for rec in imaging_study_rec.series.instance.SOPClassUID:
+        for rec in imaging_study_rec.series.instance.sopClass:
             SOPClassUID=dict(zip(["system", "code"], [rec.system, rec.code]))
 
         for rec in imaging_study_rec.series.modality:
             series_modality=dict(zip(["system", "code"], [rec.system, rec.code]))
             print("series_modality-->",series_modality)
 
-            list_for_instance = [dict(zip(["uid","number","title","sopClass"], [rec.SOPInstanceUID,rec.InstanceNumber,rec.instanceTitle,SOPClassUID])) for rec in imaging_study_rec.series.instance]
+            list_for_instance = [dict(zip(["uid","number","title","sopClass"], [rec.uid,rec.number,rec.title,SOPClassUID])) for rec in imaging_study_rec.series.instance]
 
 
-        list_for_series = [dict(zip(["uid", "number","modality", "description", "numberOfInstances","endpoint" ,"started","instance","bodySite","laterality","specimen"],
+        list_for_series = [dict(zip(["uid", "number","modality", "description", "numberOfInstances","endpoint" ,"started","instance","bodySite","laterality"],
                                     [rec.uid, rec.number,series_modality, rec.description,
                                      rec.numberOfInstances,endpoint,
-                                     rec.started,list_for_instance,rec.bodySite,laterality,specimen])) for rec in imaging_study_rec.series]
+                                     rec.started,list_for_instance,rec.bodySite,laterality])) for rec in imaging_study_rec.series]
 
         for key in vals:
             if key == "series":

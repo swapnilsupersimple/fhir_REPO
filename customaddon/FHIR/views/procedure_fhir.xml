@@ -38,6 +38,7 @@
                             <field name="procedure_followUp" widget="many2many_tags"/>
                             <field name="procedure_note"/>
                             <field name="procedure_usedCode" widget="many2many_tags"/>
+                            <field name="reference"/>
                         </group>
                     </group>
                     <notebook>

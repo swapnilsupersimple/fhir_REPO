@@ -26,7 +26,7 @@ class Identifier(models.Model):
     assigner=fields.Reference([('organization', 'Organization')],
                                                     string="Identifier Assigner")
 
-
+    imagingStudy_identifier=fields.Many2one("imaging.study",string="imagingStudy_identifier")
 
 
 

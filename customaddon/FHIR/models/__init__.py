@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 
-from . import models, patient_fhir, organization_fhir, diagnostic_report_fhir,encounter_fhir,specimen_fhir,observation_fhir,media_fhir,attachment,imaging_study_fhir,annotation,endpoint_fhir
+from . import models, patient_fhir, organization_fhir, diagnostic_report_fhir, encounter_fhir, specimen_fhir,observation_fhir, media_fhir, attachment, imaging_study_fhir, annotation, endpoint_fhir,procedure_fhir,identifier_fhir
+
 
 # organization_fhir, practitioner_fhir, practitioner_role_fhir, care_team_fhir, \
 # device_fhir, related_person, location_fhir, group_fhir, condition_fhir, appointment_fhir, slot_fhir, \

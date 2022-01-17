@@ -20,6 +20,7 @@
                 <sheet>
                     <group>
                         <group>
+                            <field name="identifier"/>
                             <field name="status"/>
                             <field name="subject"/>
                             <field name="encounter"/>
@@ -75,6 +76,7 @@
                     <group>
                         <field name="code"/>
                         <field name="display"/>
+                        <field name="system"/>
                     </group>
                 </sheet>
             </form>
@@ -171,7 +173,7 @@
         <field name="arch" type="xml">
             <tree string="Sop Instance Series view">
 
-                <field name="instanceTitle"/>
+                <field name="title"/>
 
 
             </tree>
@@ -186,10 +188,10 @@
                 <sheet>
                     <group>
                         <!--                        <field name="language"/>-->
-                        <field name="SOPInstanceUID"/>
-                        <field name="InstanceNumber"/>
-                        <field name="instanceTitle"/>
-                        <field name="SOPClassUID"/>
+                        <field name="uid"/>
+                        <field name="number"/>
+                        <field name="title"/>
+                        <field name="sopClass"/>
 
 
                     </group>

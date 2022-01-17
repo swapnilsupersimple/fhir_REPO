@@ -85,6 +85,10 @@ class Procedure(models.Model):
 
     procedure_usedCode=fields.Many2many(comodel_name="procedure.used.code",string="Used Code")
 
+    reference=fields.Char(string="reference")
+
+    ImagingStudy_procedureReference=fields.Many2one("imaging.study",string="ImagingStudy_procedureReference")
+
 
 
 class ProcedureStatusReason(models.Model):

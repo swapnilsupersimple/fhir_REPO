@@ -6,6 +6,8 @@ class ImagingStudy(models.Model):
     _description = "Details about Imaging Study"
     # _rec_name = "location_name"
 
+    identifier=fields.One2many("identifier","imagingStudy_identifier",string="Identifier")
+
     status = fields.Selection(selection=[
         ("registered", "Registered"),
         ("available", "Available"),
@@ -43,12 +45,14 @@ class ImagingStudy(models.Model):
 
     endpoint = fields.One2many("endpoint", "imagingStudy_endpoint", string="Endpoint")
 
-    numberOfSeries=fields.Integer(string="numberOfSeries")
+    numberOfSeries=fields.Char(string="numberOfSeries")
 
-    numberOfInstances=fields.Integer(string="numberOfInstances")
+    numberOfInstances=fields.Char(string="numberOfInstances")
 
-    procedureReference=fields.Reference([('procedure.fhir', 'Procedure')],
-                                             string="Procedure")
+
+
+    procedureReference = fields.One2many('procedure.fhir', 'ImagingStudy_procedureReference',
+                                          string="Procedure")
 
     procedureCode=fields.One2many("imaging.study.procedure.code","ImagingStudy_ProcedureCode",string="procedureCode")
 
@@ -124,13 +128,13 @@ class Series(models.Model):
     ImagingStudy_Series = fields.Many2one("imaging.study", string="ImagingStudy_series")
 
 
-    uid = fields.Integer(string="SeriesInstanceUID")
+    uid = fields.Char(string="SeriesInstanceUID")
 
-    number = fields.Integer(string="SeriesNumber")
+    number = fields.Char(string="SeriesNumber")
 
     description = fields.Char(string="SeriesDescription")
 
-    numberOfInstances = fields.Integer(string="NumberOfSeriesRelatedInstances")
+    numberOfInstances = fields.Char(string="NumberOfSeriesRelatedInstances")
 
     specimen = fields.One2many("specimen", "imaging_Study_Series_specimen", string="Specimen" )
 
@@ -169,13 +173,13 @@ class Instance(models.Model):
 
         ImagingStudy_SOP_instance_series = fields.Many2one("imaging.study.series", string="ImagingStudy_SOP_instance_series")
 
-        SOPInstanceUID = fields.Integer(string="SeriesInstanceUID")
+        uid = fields.Char(string="SeriesInstanceUID")
 
-        InstanceNumber = fields.Integer(string="InstanceNumber")
+        number = fields.Char(string="InstanceNumber")
 
-        instanceTitle = fields.Char(string="instanceTitle")
+        title = fields.Char(string="instanceTitle")
 
-        SOPClassUID=fields.One2many("sop.instance.series.sop.class.uid","ImagingStudy_sopClassUID",string="SOPClassUID")
+        sopClass=fields.One2many("sop.instance.series.sop.class.uid","ImagingStudy_sopClassUID",string="SOPClassUID")
 
 class sopClassUID(models.Model):
             _name = "sop.instance.series.sop.class.uid"
@@ -192,6 +196,8 @@ class ImagingStudySeriesBodySite(models.Model):
 
         display = fields.Char("Display")
         code = fields.Char("Code")
+        system = fields.Char(string="system")
+
         ImagingStudy_BodySite = fields.Many2one("imaging.study.series", string="ImagingStudy_BodySite", invisible=1)
 
 class Laterality(models.Model):
@@ -199,6 +205,8 @@ class Laterality(models.Model):
         _rec_name = "display"
 
         display = fields.Char("Display")
+        system = fields.Char(string="system")
+
         code = fields.Char("Code")
         ImagingStudy_laterality = fields.Many2one("imaging.study.series", string="ImagingStudy_laterality")
 

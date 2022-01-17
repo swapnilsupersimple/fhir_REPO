@@ -44,5 +44,6 @@
         </field>
     </record>
 
-    <menuitem id="FHIR_identifier" name="Identifier" parent="FHIR_base_datatype" action="action_identifier"/>
+    <menuitem id="FHIR_identifier" name="Identifier" parent="FHIR_root" action="action_identifier"/>
+    <menuitem id="FHIR_root" name="FHIR"/>
 </odoo>
