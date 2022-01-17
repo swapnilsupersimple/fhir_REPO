@@ -22,6 +22,8 @@ class Organization(models.Model):
 
     organization_contact_address=fields.Reference([('address.fhir', 'Address')], string="Contact Address")
 
+    reference=fields.Char(string="reference")
+
 class OrganizationAlias(models.Model):
     _name ="organization.alias"
     _description = 'Organization Alias'

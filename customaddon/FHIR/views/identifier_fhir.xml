@@ -28,11 +28,15 @@
                         <field name="start"/>
                         <field name="end"/>
                         <field name="assigner"/>
+                        <field name="type"/>
+                        <field name="system"/>
+
                     </group>
                 </sheet>
             </form>
         </field>
     </record>
+
 
     <record model="ir.actions.act_window" id="action_identifier">
         <field name="name">Identifier</field>

@@ -25,6 +25,7 @@
                             <field name="organization_alias_ids"/>
                             <field name="organization_telecom"/>
                             <field name="organization_address"/>
+                              <field name="reference"/>
                         </group>
                         <group>
                             <h3>

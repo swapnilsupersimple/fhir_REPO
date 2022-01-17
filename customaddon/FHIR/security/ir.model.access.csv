@@ -53,7 +53,7 @@ access_imaging_study_procedure_code,imaging.study.procedure.code,model_imaging_s
 
 access_procedure_fhir,procedure.fhir,model_procedure_fhir,,1,1,1,1
 access_identifier,identifier,model_identifier,,1,1,1,1
-
+access_idenifier_type,idenifier.type,model_idenifier_type,,1,1,1,1
 
 
 

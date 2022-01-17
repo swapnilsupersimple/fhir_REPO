@@ -2,6 +2,8 @@ from odoo import http
 from odoo.http import request
 from datetime import date
 from odoo.tools import DEFAULT_SERVER_DATETIME_FORMAT
+import json
+
 
 
 class ImagingStudy(http.Controller):
@@ -47,7 +49,6 @@ class ImagingStudy(http.Controller):
                 "number": "",
                 "numberOfInstances": "",
                 "started":"",
-
                 "modality":[(0,0,values_for_modality)],
                 "bodySite":[(0,0,values_for_imaging_study_series_bodysite)],
                 "laterality":[(0,0,values_for_imaging_study_series_laterality)],
@@ -55,10 +56,25 @@ class ImagingStudy(http.Controller):
                 "instance":[(0,0,values_for_imaging_study_series_instance)],
 
             }
+            values_for_identifier_type={
+                "code":"",
+                "system":""
+            }
+            values_for_idenifier={
+                "type": {
+                    "coding": [(0,0,values_for_identifier_type)]
+                }
+            }
+
+
+
 
 
 
             values_for_imaging_study = {
+                # "identifier":[(0,0,[values_for_idenifier])],
+                "identifier":[(0,0,values_for_idenifier)],
+
                 "status": rec["status"],
                 "modality":[],
                 "procedureCode":[],
@@ -75,6 +91,22 @@ class ImagingStudy(http.Controller):
 
             }
 
+            # start_of_code_for_idenitfier
+            # for inp_for_identifier in rec["identifier"]:
+            #     print("inp_for_identifier-->",inp_for_identifier["system"] )
+            #
+            #     for key in values_for_imaging_study:
+            #
+            #         if key == "identifier":
+            #             values_for_idenifier.append((0,0,inp_for_identifier))
+
+            for inp_for_identifier in rec["identifier"][0]["type"]["coding"][0]:
+                print("inp_for_identifier-->", inp_for_identifier["system"])
+
+                for key in values_for_imaging_study:
+
+                    if key == "identifier":
+                        values_for_identifier_type.update((0,0,inp_for_identifier["system"]))
             # start_of_code_for_reason_code
 
             for inp_for_reasonCode in rec["reasonCode"][0]["coding"]:
@@ -100,7 +132,7 @@ class ImagingStudy(http.Controller):
 
             # start_of_code_for_modality
             for inp_for_modality in rec["modality"]:
-                print("inp_for_reasonCode-->", inp_for_modality)
+                # print("inp_for_reasonCode-->", inp_for_modality)
 
                 for key in values_for_imaging_study:
 
