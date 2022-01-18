@@ -29,7 +29,8 @@ class DiagnosticReport(models.Model):
                                 ],
                                string="Subject")
 
-    encounter = fields.Reference([('encounter', "Encounter")], string="Encounter")
+    encounter = fields.One2many("encounter","diagnostic_Report_encounter",string="Encounter")
+
 
     effectiveDateTime = fields.Datetime(string="Effective")
 
