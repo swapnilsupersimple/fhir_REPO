@@ -8,6 +8,7 @@
         <field name="arch" type="xml">
             <tree string="Imaging Study Tree view">
                 <field name="status"/>
+                <field name="display"/>
             </tree>
         </field>
     </record>

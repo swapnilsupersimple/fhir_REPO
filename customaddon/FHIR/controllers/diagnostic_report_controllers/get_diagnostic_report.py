@@ -13,28 +13,10 @@ class DiagnosticReport(http.Controller):
 
         for rec in diagnostic_Report_rec:
             vals = {
-                # "identifier":[
-                #     {
-                #         "use": rec.patient_identifier.use,
-                #         "value": rec.patient_identifier.value,
-                #         "period":
-                #             {
-                #                 "start": rec.patient_identifier.start,
-                #                 "end": rec.patient_identifier.end,
-                #             },
-                #         "assigner": [
-                #             {
-                #             "assignerName": rec.patient_identifier.assigner.organization_name
-                #         }
-                #         ]
-                #     }
-                # ],
 
-                "status": [
-                    {
-                        "status": rec.status
-                    }
-                ],
+
+                "status": rec.status,
+
 
                 "category": [
                     {
@@ -54,9 +36,11 @@ class DiagnosticReport(http.Controller):
 
                 "issued": rec.issued,
 
-                "specimen": "",
+                "specimen": [],
 
-                "imagingStudy": "",
+                "result":[],
+
+                "imagingStudy": [],
 
                 "media": [],
 
@@ -82,21 +66,71 @@ class DiagnosticReport(http.Controller):
                 #     }
                 # ],
 
-                "result": "",
+
 
                 "presentedForm": ""
 
             }
+#start_of_code_for_category:
 
-        list_for_category = [dict(zip(["display", "code"], [rec.display, rec.code])) for rec in
+        list_for_category = [dict(zip(["display", "system"], [rec.display, rec.system])) for rec in
                              diagnostic_Report_rec.category]
 
         for key in vals["category"][0]:
-
             if key == "coding":
                 vals["category"][0].update({"coding": list_for_category})
+#End_of_code_for_category
 
-        list_for_conclusionCode = [dict(zip(["display", "code"], [rec.display, rec.code])) for rec in
+
+
+# start_of_code_for_CODEField:
+        list_for_code = [dict(zip(["system", "code", "display"], [rec.system, rec.code, rec.display])) for rec in
+                         diagnostic_Report_rec.code]
+
+        for key in vals["code"]:
+
+            if key == "coding":
+                vals["code"].update({"coding": list_for_code})
+#End_of_code_for_CODEField
+
+# start_of_code_for_specimen:
+                list_for_specimen = [dict(zip(["display"], [ rec.display])) for rec
+                                 in
+                                 diagnostic_Report_rec.specimen]
+
+                for key in vals:
+
+                    if key == "specimen":
+                        vals["specimen"].append(( list_for_specimen))
+# End_of_code_for_specimen
+
+
+
+# start_of_code_for_result:
+        list_for_observation_result = [dict(zip(["reference"],
+                                                [rec.reference]))
+                                       for rec in diagnostic_Report_rec.result]
+
+        for key in vals:
+            if key == "result":
+                vals["result"].append((list_for_observation_result))
+
+
+# End_of_code_for_result
+
+# start_of_code_for_imaging_study:
+        list_for_imaging_study = [dict(zip(["display"],
+                                                [rec.display]))
+                                       for rec in diagnostic_Report_rec.imagingStudy]
+
+        for key in vals:
+            if key == "imagingStudy":
+                vals["imagingStudy"].append((list_for_imaging_study))
+# End_of_code_for_imaging_study
+
+# start_of_code_for_conclusionCode:
+
+        list_for_conclusionCode = [dict(zip(["system", "code","display"], [rec.system,rec.display, rec.code])) for rec in
                                    diagnostic_Report_rec.conclusionCode]
 
         for key in vals["conclusionCode"][0]:
@@ -104,16 +138,7 @@ class DiagnosticReport(http.Controller):
             if key == "coding":
                 vals["conclusionCode"][0].update({"coding": list_for_conclusionCode})
 
-        # code_for_CODEFIELD
-
-        list_for_code = [dict(zip(["display"], [rec.display, ])) for rec in
-                         diagnostic_Report_rec.code]
-
-
-        for key in vals["code"]:
-
-            if key == "coding":
-                vals["code"].update({"coding": list_for_code})
+# start_of_code_for_conclusionCode
 
         list_for_attachemnt = [dict(zip(["data", "url", "size", "title", "creation"],
                                         [rec.data, rec.url, rec.size, rec.title, rec.creation]))
@@ -123,29 +148,9 @@ class DiagnosticReport(http.Controller):
             if key == "presentedForm":
                 vals.update({"presentedForm": list_for_attachemnt})
 
-        list_for_specimen = [dict(zip(["reference","display"],
-                                      [rec.reference,rec.display]))
-                             for rec in diagnostic_Report_rec.specimen]
 
-        for key in vals:
-            if key == "specimen":
-                vals.update({"specimen": list_for_specimen})
 
-        list_for_observation_result = [dict(zip(["reference","display"],
-                                                [rec.reference,rec.display]))
-                                       for rec in diagnostic_Report_rec.result]
 
-        for key in vals:
-            if key == "result":
-                vals.update({"result": list_for_observation_result})
-
-        list_for_imaging_study = [dict(zip(["reference" ,"display"],
-                                           [rec.reference,rec.display]))
-                                  for rec in diagnostic_Report_rec.imagingStudy]
-
-        for key in vals:
-            if key == "imagingStudy":
-                vals.update({"imagingStudy": list_for_imaging_study})
 
       #code_for_media
 

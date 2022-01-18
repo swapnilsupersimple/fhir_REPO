@@ -8,6 +8,7 @@
         <field name="arch" type="xml">
             <tree string="Specimen Tree view">
                 <field name="specimen_status"/>
+                 <field name="display"/>
             </tree>
         </field>
     </record>

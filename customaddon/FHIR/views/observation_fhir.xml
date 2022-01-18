@@ -8,6 +8,7 @@
         <field name="arch" type="xml">
             <tree string="Observation Tree view">
                 <field name="observation_status"/>
+                 <field name="reference"/>
             </tree>
         </field>
     </record>

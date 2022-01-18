@@ -81,6 +81,7 @@ class DiagnosticReportCategory(models.Model):
     _rec_name = "display"
 
     display = fields.Char("Display")
+    system= fields.Char("System")
     code = fields.Char("Code")
     dagnostic_Report_Category_id = fields.Many2one("diagnostic.report", string="DiagnosticReportConclusionCode")
 
@@ -91,6 +92,8 @@ class DiagnosticReportCode(models.Model):
 
     display = fields.Char("Display")
     code = fields.Char("Code")
+    system= fields.Char("System")
+
     diagnostic_Report_code_id = fields.Many2one("diagnostic.report", string="DiagnosticReportCode")
 
 
@@ -101,6 +104,8 @@ class DiagnosticReportConclusionCode(models.Model):
 
     display = fields.Char("Display")
     code = fields.Char("Code")
+    system= fields.Char("System")
+
     dagnostic_Report_Conclusion_Code_id = fields.Many2one("diagnostic.report", string="DiagnosticReportConclusionCode")
 
 

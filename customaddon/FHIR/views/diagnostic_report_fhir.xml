@@ -21,8 +21,8 @@
                     <group>
                         <group>
                             <field name="status"/>
-                            <field name="category" widget="many2many_tags"/>
-                            <field name="code" widget="many2many_tags"/>
+                            <field name="category" />
+                            <field name="code" />
                             <field name="subject"/>
                             <field name="encounter"/>
                             <field name="effectiveDateTime"/>
@@ -32,7 +32,7 @@
                             <field name="specimen"/>
                             <field name="result"/>
                             <field name="imagingStudy"/>
-                            <field name="conclusionCode" widget="many2many_tags"/>
+                            <field name="conclusionCode" />
                             <field name="conclusion"/>
                             <field name="start"/>
                             <field name="end"/>
@@ -76,6 +76,7 @@
                     <group>
                         <field name="display"/>
                         <field name="code"/>
+                        <field name="system"/>
                     </group>
                 </sheet>
             </form>
@@ -123,6 +124,7 @@
                     <group>
                         <field name="display"/>
                         <field name="code"/>
+                        <field name="system"/>
                     </group>
                 </sheet>
             </form>

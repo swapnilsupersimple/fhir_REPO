@@ -30,18 +30,18 @@ class DiagnosticReport(http.Controller):
 
                 # "result":[],
                 "presentedForm": [],
-                "media":[]
+                # "media":[]
 
             }
 
 
-            for inp_for_media_comment in rec["media"]:
-                print("inp_for_media_comment-->",inp_for_media_comment)
-                for key in values_for_diagnostic_report:
-
-                    if key == "media":
-                        values_for_diagnostic_report["media"].append((0, 0,inp_for_media_comment
-                                                                     ))
+            # for inp_for_media_comment in rec["media"]:
+            #     print("inp_for_media_comment-->",inp_for_media_comment)
+            #     for key in values_for_diagnostic_report:
+            #
+            #         if key == "media":
+            #             values_for_diagnostic_report["media"].append((0, 0,inp_for_media_comment
+            #                                                          ))
 
             # for inp_for_presented_form in rec["presentedForm"]:
             #
