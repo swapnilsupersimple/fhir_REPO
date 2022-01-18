@@ -31,6 +31,7 @@ class DiagnosticReport(http.Controller):
 
                     }
                 ,
+                "encounter": "",
 
                 "effectiveDateTime": rec.effectiveDateTime,
 
@@ -59,13 +60,6 @@ class DiagnosticReport(http.Controller):
                 #
                 #     }
                 # ],
-
-                # "encounter":[
-                #     {
-                #         "reference":rec.encounter.encounter_status
-                #     }
-                # ],
-
 
 
                 "presentedForm": ""
@@ -133,40 +127,47 @@ class DiagnosticReport(http.Controller):
         list_for_conclusionCode = [dict(zip(["system", "code","display"], [rec.system,rec.display, rec.code])) for rec in
                                    diagnostic_Report_rec.conclusionCode]
 
+
         for key in vals["conclusionCode"][0]:
 
             if key == "coding":
-                vals["conclusionCode"][0].update({"coding": list_for_conclusionCode})
+                vals["conclusionCode"][0].update({
+                    "coding": list_for_conclusionCode})
 
-# start_of_code_for_conclusionCode
+#end_of_code_for_conclusionCode
 
-        list_for_attachemnt = [dict(zip(["data", "url", "size", "title", "creation"],
-                                        [rec.data, rec.url, rec.size, rec.title, rec.creation]))
+#start_of_code_for_Attachment:
+
+        list_for_attachemnt = [dict(zip(["language","data", "url", "size", "title", "creation"],
+                                        [rec.language,rec.data, rec.url, rec.size, rec.title, rec.creation]))
                                for rec in diagnostic_Report_rec.presentedForm]
 
         for key in vals:
             if key == "presentedForm":
                 vals.update({"presentedForm": list_for_attachemnt})
+#end_of_code_for_Attachment
 
-
-
-
-
-      #code_for_media
-
-        for x in diagnostic_Report_rec.media:
-            inp_for_comment=x.comment
-
+#start_of_code_for_media:
+        inp_for_media_comment= diagnostic_Report_rec.media["comment"]
+        print(inp_for_media_comment)
         for rec in diagnostic_Report_rec.media:
             inp_for_link=dict(zip(["reference" ,"display"], [rec.reference,rec.display]))
 
             for key in vals:
                 if key == "media":
-                    vals["media"].append({"comment":inp_for_comment,"link":inp_for_link})
+                    vals["media"].append({"comment":inp_for_media_comment,
+                        "link":inp_for_link})
+#end_of_code_for_Media
 
-
-
+#start_of_code_for_encounter
+        for rec in diagnostic_Report_rec.encounter:
+            inp_for_encounter = dict(zip(["reference"], [rec.reference]))
+        for key in vals:
+            if key == "encounter":
+                vals["encounter"]=inp_for_encounter
+#end_of_code_for_encounter
         diagnostic_Report.append(vals)
 
         data = {'status': 200, 'response': diagnostic_Report}
         return data
+
