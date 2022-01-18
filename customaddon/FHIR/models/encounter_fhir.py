@@ -73,6 +73,10 @@ class Encounter(models.Model):
 
     encounter_service_provider=fields.Reference([('organization','Organization Name')],
                                                    string="Service Provider")
+    
+    diagnostic_Report_encounter=fields.Many2one("diagnostic.report",string="diagnostic_Report_encounter")
+
+    reference=fields.Char(string="reference")
 
 
 class EncounterType(models.Model):
