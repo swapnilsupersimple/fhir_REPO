@@ -8,6 +8,7 @@
         <field name="arch" type="xml">
             <tree string="Procedure Tree view">
                 <field name="procedure_status"/>
+                 <field name="reference"/>
             </tree>
         </field>
     </record>

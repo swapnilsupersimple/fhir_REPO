@@ -56,24 +56,12 @@ class ImagingStudy(http.Controller):
                 "instance":[(0,0,values_for_imaging_study_series_instance)],
 
             }
-            values_for_identifier_type={
-                "code":"",
-                "system":""
-            }
-            values_for_idenifier={
-                "type": {
-                    "coding": [(0,0,values_for_identifier_type)]
-                }
-            }
-
-
 
 
 
 
             values_for_imaging_study = {
-                # "identifier":[(0,0,[values_for_idenifier])],
-                "identifier":[(0,0,values_for_idenifier)],
+                "identifier":[],
 
                 "status": rec["status"],
                 "modality":[],
@@ -91,22 +79,17 @@ class ImagingStudy(http.Controller):
 
             }
 
-            # start_of_code_for_idenitfier
-            # for inp_for_identifier in rec["identifier"]:
-            #     print("inp_for_identifier-->",inp_for_identifier["system"] )
-            #
-            #     for key in values_for_imaging_study:
-            #
-            #         if key == "identifier":
-            #             values_for_idenifier.append((0,0,inp_for_identifier))
 
-            for inp_for_identifier in rec["identifier"][0]["type"]["coding"][0]:
-                print("inp_for_identifier-->", inp_for_identifier["system"])
-
+            # # start_of_code_for_idenitfier
+            for inp_for_identifier in rec["identifier"]:
+                inp_for_identifier.pop('type', None)
+                print(inp_for_identifier)
                 for key in values_for_imaging_study:
 
                     if key == "identifier":
-                        values_for_identifier_type.update((0,0,inp_for_identifier["system"]))
+                        values_for_imaging_study["identifier"].append((0,0,inp_for_identifier))
+
+
             # start_of_code_for_reason_code
 
             for inp_for_reasonCode in rec["reasonCode"][0]["coding"]:
@@ -121,7 +104,6 @@ class ImagingStudy(http.Controller):
 
             # start_of_code_for_endpoint
             for inp_for_endpoint in rec["endpoint"]:
-                print("inp_for_reasonCode-->", inp_for_endpoint)
 
                 for key in values_for_imaging_study:
 
@@ -132,7 +114,6 @@ class ImagingStudy(http.Controller):
 
             # start_of_code_for_modality
             for inp_for_modality in rec["modality"]:
-                # print("inp_for_reasonCode-->", inp_for_modality)
 
                 for key in values_for_imaging_study:
 
@@ -143,7 +124,6 @@ class ImagingStudy(http.Controller):
 
             # start_of_code_for_note
             for inp_for_note in rec["note"]:
-                print("inp_for_reasonCode-->", inp_for_note)
 
                 for key in values_for_imaging_study:
                     if key == "note":
@@ -152,16 +132,19 @@ class ImagingStudy(http.Controller):
             # end_of_code_for_note
 
             inp_for_procedureReference=rec["procedureReference"]["reference"]
-            # for inp_for_procedureCode in rec["procedureReference"]:
-            #     print("inp_for_procedureCode-->",inp_for_procedureCode["reference"])
-
             for key in values_for_imaging_study:
                     if key == "procedureReference":
                         values_for_imaging_study["procedureReference"].append((0,0,{"reference":inp_for_procedureReference} ))
 
+            for inp_for_procedureCode in rec["procedureCode"][0]["coding"]:
+                print("inp_for_procedureCode-->",inp_for_procedureCode)
 
+                for key in values_for_imaging_study:
 
-# start_of_code_for_inp_for_procedureCode
+                    if key == "procedureCode":
+                        values_for_imaging_study["procedureCode"].append((0, 0, inp_for_procedureCode))
+
+            # start_of_code_for_inp_for_procedureCode
 
             for inp_for_procedureCode in rec["procedureCode"][0]["coding"]:
                 print(inp_for_procedureCode)
@@ -181,6 +164,8 @@ class ImagingStudy(http.Controller):
                     #             values_for_imaging_study["modality"].append((0, 0, inp_for_modality))
 
 # end_of_code_for_modality
+
+#start_of_code_for_series
             inp_for_imagaing_study_series_description = rec["series"][0]["description"]
             inp_for_imagaing_study_series_uid = rec["series"][0]["uid"]
             inp_for_imagaing_study_series_number = rec["series"][0]["number"]
@@ -197,9 +182,7 @@ class ImagingStudy(http.Controller):
                     values_for_imaging_study_series["numberOfInstances"] = inp_for_imagaing_study_series_numberOfInstances
                     values_for_imaging_study_series["started"] = inp_for_imagaing_study_series_started
 
-
-
-
+#End_of_code_for_series
 
             for inp_for_endpoint in rec["series"][0]["endpoint"]:
                 for key in values_for_imaging_study:

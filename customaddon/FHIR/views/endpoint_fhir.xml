@@ -8,6 +8,7 @@
         <field name="arch" type="xml">
             <tree string="Endpoint Tree view">
                 <field name="endpoint_status"/>
+                  <field name="reference"/>
             </tree>
         </field>
     </record>
@@ -16,7 +17,7 @@
         <field name="name">endpoint.form</field>
         <field name="model">endpoint</field>
         <field name="arch" type="xml">
-            <form string="Practitioner Form">
+            <form string="Endpoint Form">
                 <sheet>
                     <group>
                         <group>
