@@ -8,6 +8,7 @@
         <field name="arch" type="xml">
             <tree string="Encounter Tree view">
                 <field name="encounter_status"/>
+                  <field name="reference"/>
             </tree>
         </field>
     </record>
@@ -27,6 +28,7 @@
                             <field name="encounter_priority"/>
                             <field name="encounter_subject"/>
                             <field name="encounter_service_provider"/>
+                              <field name="reference"/>
                         </group>
                     </group>
                     <notebook>
