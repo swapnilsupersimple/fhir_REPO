@@ -21,36 +21,41 @@ class DiagnosticReport(http.Controller):
                 "effectiveDateTime": rec["effectiveDateTime"],
 
                 "issued": rec["issued"],
-                # "specimen": [],
+                "specimen": [],
 
                 "conclusionCode": [],
 
-                # "conclusion": rec["diagnosticReport_conclusion"],
-                # "imagingStudy":[],
+                "conclusion": rec["conclusion"],
 
-                # "result":[],
+                "imagingStudy":[],
+
+                "result":[],
                 "presentedForm": [],
-                # "media":[]
+                "media":[],
+                "encounter":[]
 
             }
+            for y in rec["encounter"]:
+              reference=rec["encounter"]["reference"]
+              inp_for_encounter=dict(zip(["reference"], [reference]))
+              for key in values_for_diagnostic_report:
 
+                  if key == "encounter":
+                      values_for_diagnostic_report["encounter"].append((0, 0, inp_for_encounter
+                                                                    ))
 
-            # for inp_for_media_comment in rec["media"]:
-            #     print("inp_for_media_comment-->",inp_for_media_comment)
-            #     for key in values_for_diagnostic_report:
-            #
-            #         if key == "media":
-            #             values_for_diagnostic_report["media"].append((0, 0,inp_for_media_comment
-            #                                                          ))
+            for x in rec["media"]:
+                comment=x["comment"]
+                display=x["link"]["display"]
+                reference=x["link"]["reference"]
 
-            # for inp_for_presented_form in rec["presentedForm"]:
-            #
-            #     for key in values_for_diagnostic_report:
-            #
-            #         if key == "presentedForm":
-            #             values_for_diagnostic_report["presentedForm"].append((0, 0, inp_for_presented_form
-            #                                                                   ))
+                inp_for_media= dict(zip(["reference","display","comment"], [reference,display,comment]))
 
+                for key in values_for_diagnostic_report:
+
+                    if key == "media":
+                        values_for_diagnostic_report["media"].append((0, 0,inp_for_media
+                                                                     ))
 
 
 
@@ -62,20 +67,20 @@ class DiagnosticReport(http.Controller):
                         values_for_diagnostic_report["code"].append((0, 0, inp_for_code
                                                                      ))
 
-            for inp_conclusionCode in rec["conclusionCode"]:
+            for inp_conclusionCode in rec["conclusionCode"][0]["coding"]:
 
                 for key in values_for_diagnostic_report:
 
                     if key == "conclusionCode":
-                        values_for_diagnostic_report["conclusionCode"].append((0, 0, {"display": inp_conclusionCode
-                                                                                      }))
+                        values_for_diagnostic_report["conclusionCode"].append((0, 0,  inp_conclusionCode
+                                                                                      ))
 
-            for inp_category in rec["category"]:
+            for inp_category in rec["category"][0]["coding"]:
                 for key in values_for_diagnostic_report:
 
                     if key == "category":
-                        values_for_diagnostic_report["category"].append((0, 0, {"display": inp_category
-                                                                                }))
+                        values_for_diagnostic_report["category"].append((0, 0,inp_category
+                                                                                ))
             for inp_for_presented_form in rec["presentedForm"]:
 
                 for key in values_for_diagnostic_report:
@@ -84,27 +89,27 @@ class DiagnosticReport(http.Controller):
                         values_for_diagnostic_report["presentedForm"].append((0, 0, inp_for_presented_form
                                                                               ))
 
-            # for inp_for_imagingStudy in rec["imagingStudy"]:
+            for inp_for_imagingStudy in rec["imagingStudy"]:
+
+                for key in values_for_diagnostic_report:
+
+                    if key == "imagingStudy":
+                        values_for_diagnostic_report["imagingStudy"].append((0, 0, inp_for_imagingStudy
+                                                                              ))
             #
-            #     for key in values_for_diagnostic_report:
-            #
-            #         if key == "imagingStudy":
-            #             values_for_diagnostic_report["imagingStudy"].append((0, 0, inp_for_imagingStudy
-            #                                                                   ))
-            #
-            # for inp_for_result in rec["result"]:
-            #
-            #     for key in values_for_diagnostic_report:
-            #
-            #         if key == "result":
-            #             values_for_diagnostic_report["result"].append((0, 0, inp_for_result
-            #                                                                  ))
-            # for inp_for_specimen in rec["specimen"]:
-            #
-            #     for key in values_for_diagnostic_report:
-            #
-            #         if key == "specimen":
-            #             values_for_diagnostic_report["specimen"].append((0, 0, inp_for_specimen))
+            for inp_for_result in rec["result"]:
+
+                for key in values_for_diagnostic_report:
+
+                    if key == "result":
+                        values_for_diagnostic_report["result"].append((0, 0, inp_for_result
+                                                                             ))
+            for inp_for_specimen in rec["specimen"]:
+
+                for key in values_for_diagnostic_report:
+
+                    if key == "specimen":
+                        values_for_diagnostic_report["specimen"].append((0, 0, inp_for_specimen))
 
         print("this is new change")
         new_diagnostic_report = request.env['diagnostic.report'].sudo().create(values_for_diagnostic_report)
