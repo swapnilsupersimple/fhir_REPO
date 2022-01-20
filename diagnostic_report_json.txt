@@ -1,0 +1,77 @@
+{
+    "jsonrpc": "2.0",
+    "params": {
+        "status": "registered",
+        "category": [
+            {
+                "coding": [
+                    {
+                        "display": "Haematology test",
+                        "system": "http://snomed.info/sct"
+                    }
+                ]
+            }
+        ],
+        "code": {
+            "coding": [
+                {
+                    "system": "http://loinc.org",
+                    "code": "58410-2",
+                    "display": "Complete blood count (hemogram) panel - Blood by Automated count"
+                },
+                {
+                    "code": "CBC",
+                    "display": "MASTER FULL BLOOD COUNT"
+                }
+            ]
+        },
+        "effectiveDateTime": "2011-12-12",
+        "issued": "2011-12-12",
+        "result": [
+            {
+                "reference": "Observation/r1"
+            }
+        ],
+        "conclusion": "conclusion demo",
+        "conclusionCode": [
+            {
+                "coding": [
+                    {
+                        "system": "http://snomed.info/sct",
+                        "code": "188340000",
+                        "display": "Malignant tumor of craniopharyngeal duct"
+                    }
+                ]
+            }
+        ],
+        "imagingStudy": [
+            {
+                "display": "HEAD and NECK CT DICOM imaging study"
+            }
+        ],
+        "specimen": [
+            {
+                "reference": "Specimen/example"
+            }
+        ],
+        "presentedForm": [
+            {
+                "url": "url1",
+                "size": 128,
+                "title": "title1"
+            }
+        ],
+        "media": [
+            {
+                "comment": "A comment about the image",
+                "link": {
+                    "reference": "Media/1.2.840.11361907579238403408700.3.1.04.19970327150033",
+                    "display": "WADO example image"
+                }
+            }
+        ],
+        "encounter": {
+            "reference": "Encounter/example"
+        }
+    }
+}
