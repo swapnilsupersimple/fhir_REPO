@@ -1,0 +1,51 @@
+from odoo import http
+from odoo.http import request
+from datetime import date
+from odoo.tools import DEFAULT_SERVER_DATETIME_FORMAT
+
+
+class ImagingStudy(http.Controller):
+    @http.route('/create_imaging_study1', type='json', auth='user')
+    def create_imaging_study(self, **rec):
+
+        if request.jsonrequest:
+
+
+            valsB={
+                "endpoint":[]
+            }
+
+            values_for_imaging_study = {
+                "status": rec["status"],
+                "series": [(0,0,valsB)]
+
+            }
+
+
+            for inp_series in rec["series"]:
+                a=inp_series["uid"]
+                b=inp_series["description"]
+                c=inp_series["number"]
+                d=inp_series["numberOfInstances"]
+                x = dict(zip(["uid","description","number","numberOfInstances"], [a,b,c,d]))
+
+                values_for_imaging_study["series"].append((1,22,x))
+
+            z=[]
+            for inp_endpoint in rec["series"][0]["endpoint"]:
+                    z.append(inp_endpoint)
+                    values_for_imaging_study["series"][0][2]["endpoint"].append((0,0,inp_endpoint))
+                    print(values_for_imaging_study["series"][0][2]["endpoint"])
+
+
+
+
+        new_imaging_study = request.env['imaging.study'].sudo().create(values_for_imaging_study)
+
+        args = {'success': True, 'message': 'Success', 'id': new_imaging_study.id}
+
+        return args
+
+# time_date_format_for '%Y-%m-%d %H:%M:%S'
+
+# extract dictionary from input dictionary , apppend to series.Do same for endpoint
