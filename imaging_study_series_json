@@ -1,0 +1,85 @@
+{
+    "jsonrpc": "2.0",
+    "params": {
+        "status": "registered",
+        "numberOfSeries": 1,
+        "numberOfInstances": 2,
+        "description": "XR Wrist 3+ Views",
+        "note": [
+            {
+                "text": "XR Wrist 3+ Views"
+            }
+        ],
+        "modality": [
+            {
+                "system": "http://dicom.nema.org/resources/ontology/DCM",
+                "code": "DX"
+            }
+        ],
+        "reasonCode": [
+            {
+                "coding": [
+                    {
+                        "system": "http://snomed.info/sct",
+                        "code": "357009",
+                        "display": "Closed fracture of trapezoidal bone of wrist"
+                    }
+                ]
+            }
+        ],
+        "endpoint": [
+            {
+                "reference": "Endpoint/example-wadors"
+            }
+        ],
+        "procedureCode": [
+            {
+                "coding": [
+                    {
+                        "system": "http://www.radlex.org",
+                        "code": "RPID2589",
+                        "display": "XR Wrist 3+ Views"
+                    }
+                ]
+            }
+        ],
+        "procedureReference": {
+            "reference": "Procedure/example"
+        },
+        "series": [
+            {
+                "uid": "2.16.124.113543.6003.1154777499.30246.19789.3503430045.1",
+                "number": "3",
+                "description": "XR Wrist 3+ Views",
+                "numberOfInstances": 2,
+                "started": "2011-12-12",
+                "endpoint": [
+                    {
+                        "reference": "Endpoint/example-wadors"
+                    }
+                ],
+                "bodySite": {
+                    "system": "http://snomed.info/sct",
+                    "code": "T-15460",
+                    "display": "Wrist Joint"
+                },
+                "laterality": {
+                    "system": "http://snomed.info/sct",
+                    "code": "419161000",
+                    "display": "Unilateral left"
+                },
+                "instance": [
+                    {
+                        "uid": "2.16.124.113543.6003.1154777499.30246.19789.3503430045.1.1",
+                        "sopClass": {
+                            "system": "urn:ietf:rfc:3986",
+                            "code": "urn:oid:1.2.840.10008.5.1.4.1.1.2"
+                        },
+                        "number": 1,
+                        "title": "PA VIEW"
+                    }
+                ]
+            }
+        ]
+    }
+}
