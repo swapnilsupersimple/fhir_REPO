@@ -11,87 +11,71 @@ class ImagingStudy(http.Controller):
         if request.jsonrequest:
 
             valsB={
-                "sopClass":[]
+
+                 "sopClass":[]
             }
 
             valsA = {
                 "endpoint":[],
                 "bodySite":[],
                 "laterality":[],
-                "instance":[(0,0,valsB)]
+                "instance":[],
+                # "instance":[(0,0,valsB)]
             }
 
+
             values_for_imaging_study = {
-                "status": rec["status"],
+                "status":rec["status"],
                 "series": [(0, 0, valsA)]
             }
+
+
+
 #start_of_code_for_endpoint
+
             z = []
             for inp_endpoint in rec["series"][0]["endpoint"]:
                 z.append(inp_endpoint)
                 print("inp_endpoint-->", inp_endpoint)
                 # print(values_for_imaging_study["series"])
                 values_for_imaging_study["series"][0][2]["endpoint"].append((0, 0, inp_endpoint))
+
 #end_of_code_for_endpoint
 
 #start_of_code_for_bodysite
+
             system = rec["series"][0]["bodySite"]["system"]
             code = rec["series"][0]["bodySite"]["code"]
             display = rec["series"][0]["bodySite"]["display"]
             bodySite = dict(zip(["system", "code", "display"], [system, code, display]))
             values_for_imaging_study["series"][0][2]["bodySite"].append((0,0, bodySite))
+
 # end_of_code_for_bodysite
 
 # start_of_code_for_laterality
+
             system = rec["series"][0]["laterality"]["system"]
             code = rec["series"][0]["laterality"]["code"]
             display = rec["series"][0]["laterality"]["display"]
             laterality = dict(zip(["system", "code", "display"], [system, code, display]))
             values_for_imaging_study["series"][0][2]["laterality"].append((0, 0, laterality))
+
 # end_of_code_for_laterality
-
-            # for inp_series_instance in rec["series"][0]["instance"]:
-            #
-            #     values_for_imaging_study["series"][0][2]["instance"][0][2]["sopClass"].append((0, 0, inp_series_instance["sopClass"]))
-
 
 
             last_id_for_imaging_study_series=request.env['imaging.study.series'].sudo().search([])[-1].id + 1
 
             print("last_id_for_imaging_study_series-->",last_id_for_imaging_study_series)
 
-            last_id_for_imaging_study_series_instance=request.env['sop.instance.series'].sudo().search([])[-1].id + 1
 
-            print("last_id_for_imaging_study_series_instance-->",last_id_for_imaging_study_series_instance)
-
-            # for inp_series_instance in rec["series"][0]["instance"]:
-            #     a = inp_series_instance["uid"]
-            #     b = inp_series_instance["number"]
-            #     c = inp_series_instance["title"]
-            #     p = dict(zip(["uid", "number", "title"], [a, b, c]))
-            #
-            #     values_for_imaging_study["series"][0][2]["instance"].append((0, 0, p))
-
-            #
             for inp_series_instance in rec["series"][0]["instance"]:
-                print("inp_series_instance_sopClass-->",inp_series_instance)
-                values_for_imaging_study["series"][0][2]["instance"].append((0, 0, inp_series_instance["sopClass"]))
-
-
-                # def create_imaging_study():
-
-                #     for inp_series_instance in rec["series"][0]["instance"]:
-                #         a = inp_series_instance["uid"]
-                #         b = inp_series_instance["number"]
-                #         c = inp_series_instance["title"]
-                #         p = dict(zip(["uid", "number", "title"], [a, b, c]))
-                #
-                #         values_for_imaging_study["series"][0][2]["instance"].append((1, last_id_for_imaging_study_series_instance, p))
-
-
-                # create_imaging_study()
-
-
+                    a = inp_series_instance["uid"]
+                    b = inp_series_instance["number"]
+                    c = inp_series_instance["title"]
+                    d=inp_series_instance["sopClass"]["system"]
+                    e=inp_series_instance["sopClass"]["code"]
+                    p = dict(zip(["uid", "number", "title","system","code"], [a, b, c,d,e]))
+                    values_for_imaging_study["series"][0][2]["instance"].append((0,0,p))
 
 
             def create_imaging_study():
@@ -105,7 +89,6 @@ class ImagingStudy(http.Controller):
 
                     values_for_imaging_study["series"].append((1,last_id_for_imaging_study_series,x))
 
-
             create_imaging_study()
 
         new_imaging_study = request.env['imaging.study'].sudo().create(values_for_imaging_study)
@@ -113,6 +96,8 @@ class ImagingStudy(http.Controller):
         args = {'success': True, 'message': 'Success', 'id': new_imaging_study.id}
 
         return args
+
+
 
 # time_date_format_for '%Y-%m-%d %H:%M:%S'
 
